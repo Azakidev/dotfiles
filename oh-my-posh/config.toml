@@ -38,13 +38,13 @@ final_space = true
         powerline_symbol = ''
         foreground = 'p:text'
         background = 'cyan'
-        template = ' {{ .HEAD }}'
-
+        template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }}⇣{{.Behind}}{{ end }}{{ if gt .Ahead 0 }}⇡{{.Ahead}}{{ end }}</>'
+        
         [blocks.segments.properties]
             branch_icon = ' '
             cherry_pick_icon = ' '
             commit_icon = ' '
-            fetch_status = false
+            fetch_status = true
             fetch_upstream_icon = false
             merge_icon = ' '
             no_commits_icon = ' '
