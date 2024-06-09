@@ -1,0 +1,111 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 2
+final_space = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'diamond'
+    leading_diamond = ''
+    foreground = 'p:text'
+    background = 'cyan'
+    template = '{{ .UserName }}'
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'powerline'
+    powerline_symbol = ''
+    foreground = 'p:text'
+    background = 'blue'
+    template = ' {{ .Path }}'
+
+    [blocks.segments.properties]
+        mixed_threshold = 7
+        
+        folder_separator_icon = '/'
+        folder_icon = ''
+        home_icon = '~'
+
+        style = 'full'
+
+    [[blocks.segments]]
+        type = 'git'
+        style = 'powerline'
+        powerline_symbol = ''
+        foreground = 'p:text'
+        background = 'cyan'
+        template = ' {{ .HEAD }}'
+
+        [blocks.segments.properties]
+            branch_icon = ' '
+            cherry_pick_icon = ' '
+            commit_icon = ' '
+            fetch_status = false
+            fetch_upstream_icon = false
+            merge_icon = ' '
+            no_commits_icon = ' '
+            rebase_icon = ' '
+            revert_icon = ' '
+            tag_icon = ' '
+
+[[blocks]]
+    type = 'prompt'
+    alignment = 'right'
+
+    [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'cyan'
+    template = "  took {{ .FormattedMs }} "
+
+        [blocks.segments.properties]
+        style = 'round'
+        threshhold = 2000
+
+[[blocks]]
+    type = 'prompt'
+    alignment = 'left'
+    newline = true
+
+    [[blocks.segments]]
+        type = 'text'
+        background = 'transparent'
+        template = ' ⮡ '
+        foreground_templates = [
+            '{{ if gt .Code 0 }}red{{end}}',
+            '{{ if gt 0 .Code }}green{{end}}',
+            '{{ if eq .Code 0 }}blue{{end}}'
+        ]
+
+[secondary_prompt]
+    template = ' ⮡➝'
+    background = 'transparent'
+    foreground_templates = [
+        '{{ if gt .Code 0 }}red{{end}}',
+        '{{ if gt 0 .Code }}green{{end}}',
+        '{{ if eq .Code 0 }}blue{{end}}'
+    ]
+
+[[blocks]]
+    type = "rprompt"
+
+    [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    template = '{{if ne .Code  0}}Code: {{ .Code }}{{end}}'
+[transient_prompt]
+    template = ' ➝ '
+    background = 'transparent'
+    foreground_templates = [
+        '{{ if gt .Code 0 }}red{{end}}',
+        '{{ if gt 0 .Code }}green{{end}}',
+        '{{ if eq .Code 0 }}darkGray{{end}}'
+    ]
+
+[palette]
+    text = '#282a36'
