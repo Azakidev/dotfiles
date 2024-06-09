@@ -38,7 +38,7 @@ final_space = true
         powerline_symbol = ''
         foreground = 'p:text'
         background = 'cyan'
-        template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }}⇣{{.Behind}}{{ end }}{{ if gt .Ahead 0 }}⇡{{.Ahead}}{{ end }}</>'
+        template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}{{ if gt .Behind 0 }}⇣{{.Behind}}{{ end }}{{ if gt .Ahead 0 }}⇡{{.Ahead}}{{ end }}'
         
         [blocks.segments.properties]
             branch_icon = ' '
