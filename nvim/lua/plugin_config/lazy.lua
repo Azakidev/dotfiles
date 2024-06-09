@@ -19,6 +19,7 @@ local plugins = {
     'fedepujol/move.nvim',
     'nvim-treesitter/nvim-treesitter',
     'm4xshen/autoclose.nvim',
+    'tpope/vim-fugitive',
     -- LSP stuff
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
