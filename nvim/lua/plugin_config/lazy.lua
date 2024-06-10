@@ -21,6 +21,7 @@ local plugins = {
     'm4xshen/autoclose.nvim',
 
     'tpope/vim-fugitive',
+    'lewis6991/gitsigns.nvim',
 
     'nvim-treesitter/nvim-treesitter',
     'habamax/vim-godot',
@@ -95,6 +96,4 @@ local plugins = {
 local opts = {}
 
 require("lazy").setup(plugins, opts)
-
 require("autoclose").setup()
-require("toggleterm").setup()

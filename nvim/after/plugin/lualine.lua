@@ -1,28 +1,28 @@
 local colors = {
-  blue   = '#80a0ff',
-  cyan   = '#79dac8',
-  black  = '#080808',
-  white  = '#c6c6c6',
-  red    = '#ff5189',
-  violet = '#d183e8',
-  grey   = '#303030',
+  bg     = '#282a36',
+  cl     = '#44475a',
+  fg     = '#f8f8f2',
+  purple = '#bd93f9',
+  green  = '#50fa7b',
+  cyan   = '#8be9fd',
+  red    = '#ff5555',
 }
 
 local bubbles_theme = {
   normal = {
-    a = { fg = colors.black, bg = colors.violet },
-    b = { fg = colors.white, bg = colors.grey },
-    c = { fg = colors.white },
+    a = { fg = colors.bg, bg = colors.purple },
+    b = { fg = colors.fg, bg = colors.cl },
+    c = { fg = colors.fg },
   },
 
-  insert = { a = { fg = colors.black, bg = colors.blue } },
-  visual = { a = { fg = colors.black, bg = colors.cyan } },
-  replace = { a = { fg = colors.black, bg = colors.red } },
+  insert = { a = { fg = colors.bg, bg = colors.cyan } },
+  visual = { a = { fg = colors.bg, bg = colors.green} },
+  replace = { a = { fg = colors.bg, bg = colors.red } },
 
   inactive = {
-    a = { fg = colors.white, bg = colors.black },
-    b = { fg = colors.white, bg = colors.black },
-    c = { fg = colors.white },
+    a = { fg = colors.fg, bg = colors.bg },
+    b = { fg = colors.fg, bg = colors.bg },
+    c = { fg = colors.fg },
   },
 }
 

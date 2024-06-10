@@ -1,16 +1,20 @@
 vim.g.mapleader = " "
 
-vim.keymap.set('n', "<leader>rr", vim.cmd.Ex)
-
-vim.keymap.set('n', "<S-Tab>", vim.cmd.BufferNext)
+-- Buffer navigation
 vim.keymap.set('n', "<A-c>", vim.cmd.BufferClose)
 
+vim.keymap.set('n', "<A-Right>", vim.cmd.BufferNext)
+vim.keymap.set('n', "<A-Left>", vim.cmd.BufferPrevious)
+
+-- Undo and redo
 vim.keymap.set({ 'n', 'i', 'v' }, "<C-z>", vim.cmd.undo)
 vim.keymap.set({ 'n', 'i', 'v' }, "<C-y>", vim.cmd.redo)
 
+-- Write and quit
 vim.keymap.set('n', "<C-s>", vim.cmd.w)
 vim.keymap.set('n', "<A-q>", vim.cmd.q)
 
+-- Search and replace
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("i", "<C-c>", "<Esc>")

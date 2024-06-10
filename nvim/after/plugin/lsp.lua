@@ -47,7 +47,6 @@ cmp.setup({
     sources = {
         {name = 'nvim_lsp'},
         {name = 'luasnip'},
-        {name = 'emmet_ls'}
     },
     window = {
         completion = cmp.config.window.bordered(),
