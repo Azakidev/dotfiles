@@ -5,6 +5,7 @@ Import-Module posh-git
 function batterystatus { Get-CimInstance -Class batterystatus -Namespace root/wmi }
 function sync_art { Param($arg) unison $arg C:\Users\zazag\Pictures\Art ssh://zazag@192.168.0.17/Pictures/Art }
 function update { Param($arg) winget update $arg }
+function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 
 # Aliases and time savers
 Set-Alias battery batterystatus
@@ -13,9 +14,8 @@ Set-Alias code codium
 Set-Alias clr clear
 Set-Alias upd update
 Set-Alias vim nvim
-Set-Alias ls eza
-
-Set-Alias ffmpeg 'C:\Users\zazag\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-7.0-full_build\bin\ffmpeg.exe'
+Set-Alias ls ezals
+Set-Alias cat bat
 
 oh-my-posh init pwsh --config ~\omp.toml | Invoke-Expression
 
