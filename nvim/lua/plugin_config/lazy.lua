@@ -20,6 +20,30 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     'm4xshen/autoclose.nvim',
     'tpope/vim-fugitive',
+    'habamax/vim-godot',
+    {
+        'folke/trouble.nvim',
+        opts = {},
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xq",
+                "<cmd>Trouble diagnostics toggle quickfix<cr>",
+                desc = "Quickfix list (Trouble)"
+            }
+
+        }
+    },
     -- LSP stuff
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
