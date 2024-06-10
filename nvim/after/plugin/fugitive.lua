@@ -4,9 +4,9 @@ local opts = {remap = false}
 
 vim.keymap.set("n", "<leader>p", function()
     vim.cmd.Git('push')
-end)
+end, opts)
 
 -- rebase always
 vim.keymap.set("n", "<leader>P", function()
     vim.cmd.Git({ 'pull', '--rebase' })
-end)
+end, opts)
