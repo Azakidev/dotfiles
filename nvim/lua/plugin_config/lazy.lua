@@ -15,11 +15,14 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     'Mofiqul/dracula.nvim',
+
     'mbbill/undotree',
     'fedepujol/move.nvim',
-    'nvim-treesitter/nvim-treesitter',
     'm4xshen/autoclose.nvim',
+
     'tpope/vim-fugitive',
+
+    'nvim-treesitter/nvim-treesitter',
     'habamax/vim-godot',
     {
         'folke/trouble.nvim',
@@ -50,6 +53,7 @@ local plugins = {
 
     'VonHeikemen/lsp-zero.nvim',
     'neovim/nvim-lspconfig',
+
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/nvim-cmp',
     'L3MON4D3/LuaSnip',
@@ -57,8 +61,8 @@ local plugins = {
     'mg979/vim-visual-multi',
     'rafamadriz/friendly-snippets',
     {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -71,8 +75,9 @@ local plugins = {
     },
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { {'nvim-lua/plenary.nvim'} }
+        dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
+    'akinsho/toggleterm.nvim',
     {
         'romgrk/barbar.nvim',
         dependencies = {
@@ -90,4 +95,6 @@ local plugins = {
 local opts = {}
 
 require("lazy").setup(plugins, opts)
+
 require("autoclose").setup()
+require("toggleterm").setup()
