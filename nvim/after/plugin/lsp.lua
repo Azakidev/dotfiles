@@ -67,6 +67,7 @@ cmp.setup({
         { name = 'nvim_lua' },
         { name = 'buffer' },
         { name = 'luasnip' },
+        { name = 'crates' },
     },
     window = {
         completion = cmp.config.window.bordered(),

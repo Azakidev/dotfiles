@@ -19,6 +19,7 @@ local plugins = {
     'mbbill/undotree',
     'fedepujol/move.nvim',
     'm4xshen/autoclose.nvim',
+    'norcalli/nvim-colorizer.lua',
 
     'tpope/vim-fugitive',
     'lewis6991/gitsigns.nvim',
@@ -76,6 +77,12 @@ local plugins = {
             "MunifTanjim/nui.nvim",
         }
     },
+    {
+        'saecki/crates.nvim',
+        config = function()
+            require('crates').setup()
+        end,
+    },
     -- Interface stuff
     {
         'nvim-telescope/telescope.nvim',
@@ -100,3 +107,4 @@ local opts = {}
 
 require("lazy").setup(plugins, opts)
 require("autoclose").setup()
+require("colorizer").setup()
