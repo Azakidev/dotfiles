@@ -20,7 +20,7 @@
         {
             "type": "os",
             "format": "{3}, btw",
-            "key": "│  ",
+            "key": "│  ",
             "keyColor": "blue"
         },
         {
