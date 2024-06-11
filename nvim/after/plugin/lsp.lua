@@ -26,6 +26,16 @@ require("mason-lspconfig").setup {
             lspconfig[server_name].setup({})
         end,
 
+        rust_analyzer = function()
+            lspconfig.rust_analyzer.setup({
+                settings = {
+                    ["rust_analyzer"] = {
+                        checkOnSave = { command = "clippy -- -W clippy::pedantic" }
+                    }
+                }
+            })
+        end,
+
         cssls = function()
             lspconfig.cssls.setup({
                 capabilities = capabilities
@@ -65,9 +75,10 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'buffer' },
         { name = 'luasnip' },
         { name = 'crates' },
+        { name = 'buffer' },
+        { name = 'path' },
     },
     window = {
         completion = cmp.config.window.bordered(),

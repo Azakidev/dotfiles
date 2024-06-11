@@ -55,13 +55,15 @@ local plugins = {
 
     'VonHeikemen/lsp-zero.nvim',
     'neovim/nvim-lspconfig',
-
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lua',
     'L3MON4D3/LuaSnip',
+    -- Cmp stuff
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
+    -- Editor stuff
     'mg979/vim-visual-multi',
     'rafamadriz/friendly-snippets',
     {
