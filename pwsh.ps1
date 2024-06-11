@@ -7,7 +7,7 @@ function sync_art { Param($arg) unison $arg C:\Users\zazag\Pictures\Art ssh://za
 function update { Param($arg) winget update $arg }
 function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 function explore { explorer . }
-function ffetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\config.jsonc }
+function ffetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\wconfig.jsonc }
 
 # Aliases and time savers
 Set-Alias battery batterystatus
