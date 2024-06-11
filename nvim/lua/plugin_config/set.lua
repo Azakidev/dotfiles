@@ -32,7 +32,7 @@ vim.opt.smartcase = true
 if (vim.loop.os_uname().sysname == "Windows_NT") then
     -- Set shell to powershell on windows
     vim.opt.shell = 'pwsh.exe'
-    vim.opt.shellcmdflag = '-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command '
+    vim.opt.shellcmdflag = '-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command '
     vim.opt.shellxquote = ''
     vim.opt.shellquote = ''
     vim.opt.shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
