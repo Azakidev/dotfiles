@@ -3,7 +3,7 @@
     "logo": {
 	    "type": "chafa",
 	    "height": 15 ,
-	    "source": "~/.config/fastfetch/celeste.png",
+	    "source": "~/Projects/dotfiles/fastfetch/celeste.png",
         "padding": {
             "top": 1,
             "left": 0,
