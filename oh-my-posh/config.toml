@@ -24,7 +24,7 @@ final_space = true
     template = ' {{ .Path }}'
 
     [blocks.segments.properties]
-        mixed_threshold = 7
+        mixed_threshold = 8
         
         folder_separator_icon = '/'
         folder_icon = ''
