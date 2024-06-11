@@ -76,6 +76,7 @@ local plugins = {
             "MunifTanjim/nui.nvim",
         }
     },
+    -- Interface stuff
     {
         'nvim-telescope/telescope.nvim',
         dependencies = { { 'nvim-lua/plenary.nvim' } }

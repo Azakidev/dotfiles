@@ -11,18 +11,25 @@ require('mason').setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
+        "marksman",
 
         "rust_analyzer",
         "taplo",
 
         "html",
-        "unocss",
+        "cssls",
         "tsserver",
         "jsonls",
     },
     handlers = {
-        function(server_name)  -- default handler (optional)
+        function(server_name) -- default handler (optional)
             lspconfig[server_name].setup({})
+        end,
+
+        cssls = function()
+            lspconfig.cssls.setup({
+                capabilities = capabilities
+            })
         end,
 
         lua_ls = function()
