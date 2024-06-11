@@ -30,7 +30,7 @@ final_space = true
         folder_icon = ''
         home_icon = '~'
 
-        style = 'full'
+        style = 'mixed'
 
     [[blocks.segments]]
         type = 'git'
@@ -74,6 +74,7 @@ final_space = true
 
     [[blocks.segments]]
         type = 'text'
+        style = 'plain'
         background = 'transparent'
         template = ' ⮡ '
         foreground_templates = [
