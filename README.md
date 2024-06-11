@@ -9,7 +9,8 @@ New-Item -ItemType SymbolicLink -Path C:\Users\[USERNAME]\Documents\PowerShell\M
 ```
 ### Linux symlinks
 ```zsh
-link oh-my-posh/config.toml ~/.config/oh-my-posh/config.toml
-link nvim ~/.config/nvim
-link .zshrc ~/zshrc
+ln -s oh-my-posh/config.toml ~/.config/oh-my-posh/config.toml
+ln -ds nvim ~/.config/nvim
+ln -s .zshrc ~/zshrc
+ln -ds fastfetch ~/.config/fastfetch
 ```
