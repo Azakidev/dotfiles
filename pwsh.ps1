@@ -7,6 +7,7 @@ function sync_art { Param($arg) unison $arg C:\Users\zazag\Pictures\Art ssh://za
 function update { Param($arg) winget update $arg }
 function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 function explore { explorer . }
+function ffetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\config.jsonc }
 
 # Aliases and time savers
 Set-Alias battery batterystatus
@@ -18,6 +19,7 @@ Set-Alias vim nvim
 Set-Alias ls ezals
 Set-Alias cat bat
 Set-Alias ex explore
+Set-Alias fetch ffetch
 
 oh-my-posh init pwsh --config ~\omp.toml | Invoke-Expression
 
