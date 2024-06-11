@@ -6,6 +6,7 @@ function batterystatus { Get-CimInstance -Class batterystatus -Namespace root/wm
 function sync_art { Param($arg) unison $arg C:\Users\zazag\Pictures\Art ssh://zazag@192.168.0.17/Pictures/Art }
 function update { Param($arg) winget update $arg }
 function ezals { Param($arg) eza --icons=always --no-quotes $arg }
+function explore { explorer . }
 
 # Aliases and time savers
 Set-Alias battery batterystatus
@@ -16,6 +17,7 @@ Set-Alias upd update
 Set-Alias vim nvim
 Set-Alias ls ezals
 Set-Alias cat bat
+Set-Alias ex explore
 
 oh-my-posh init pwsh --config ~\omp.toml | Invoke-Expression
 
