@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -19,20 +20,26 @@ require("mason-lspconfig").setup {
         "tsserver",
         "jsonls",
     },
+    handlers = {
+        function(server_name)  -- default handler (optional)
+            lspconfig[server_name].setup({})
+        end,
+
+        lua_ls = function()
+            lsp.configure('lua_ls', {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        }
+                    }
+                }
+            })
+        end
+    }
 }
 
-require('lspconfig').taplo.setup({})
-
 -- Fix Undefined global 'vim'
-lsp.configure('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
@@ -51,8 +58,8 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'buffer'   },
-        { name = 'luasnip'  },
+        { name = 'buffer' },
+        { name = 'luasnip' },
     },
     window = {
         completion = cmp.config.window.bordered(),
