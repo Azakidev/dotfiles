@@ -41,13 +41,13 @@ local plugins = {
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
                 desc = "Buffer Diagnostics (Trouble)",
             },
-            {
-                "<leader>xq",
-                "<cmd>Trouble diagnostics toggle quickfix<cr>",
-                desc = "Quickfix list (Trouble)"
-            }
-
         }
+    },
+    {
+        "aznhe21/actions-preview.nvim",
+        config = function()
+            vim.keymap.set({ "v", "n" }, "<leader>xq", require("actions-preview").code_actions)
+        end,
     },
     -- LSP stuff
     'williamboman/mason.nvim',
@@ -88,7 +88,7 @@ local plugins = {
     -- Interface stuff
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { { 'nvim-lua/plenary.nvim' } }
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
     'akinsho/toggleterm.nvim',
     {
@@ -102,6 +102,14 @@ local plugins = {
             animation = true,
             auto_hide = 1,
             separator_at_end = true,
+            icons = {
+                separator = { left = '▎', right = '' },
+                preset = "default",
+            },
+            sidebar_filetypes = {
+                ['neo-tree'] = true,
+                undotree = true,
+            },
         },
     },
 }

@@ -93,6 +93,7 @@ cmp.setup({
     formatting = cmp_format,
 })
 
+---@diagnostic disable-next-line: unused-local
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
