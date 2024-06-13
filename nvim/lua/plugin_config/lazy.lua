@@ -14,15 +14,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+    -- Common dependencies
+    'lewis6991/gitsigns.nvim',
+    'nvim-tree/nvim-web-devicons',
+    'nvim-lua/plenary.nvim',
+    -- Theme
     'Mofiqul/dracula.nvim',
 
+    -- Editor stuff
     'mbbill/undotree',
     'fedepujol/move.nvim',
     'm4xshen/autoclose.nvim',
     'norcalli/nvim-colorizer.lua',
 
     'tpope/vim-fugitive',
-    'lewis6991/gitsigns.nvim',
 
     'nvim-treesitter/nvim-treesitter',
     'habamax/vim-godot',
@@ -49,54 +54,50 @@ local plugins = {
             vim.keymap.set({ "v", "n" }, "<leader>xq", require("actions-preview").code_actions)
         end,
     },
-    -- LSP stuff
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-
-    'VonHeikemen/lsp-zero.nvim',
-    'neovim/nvim-lspconfig',
-    'L3MON4D3/LuaSnip',
-    -- Cmp stuff
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'saadparwaiz1/cmp_luasnip',
-    -- Editor stuff
     'mg979/vim-visual-multi',
-    'rafamadriz/friendly-snippets',
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
-    },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        }
-    },
     {
         'saecki/crates.nvim',
         config = function()
             require('crates').setup()
         end,
     },
-    -- Interface stuff
+    -- LSP stuff
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+
+    'VonHeikemen/lsp-zero.nvim',
+    'neovim/nvim-lspconfig',
     {
-        'nvim-telescope/telescope.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            -- Buffer and path
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            -- LuaSnip
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+            'rafamadriz/friendly-snippets',
+            -- Additional sources
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            { 'jackieaskins/cmp-emmet', build = 'npm run release' },
+        }
     },
+    -- Interface stuff
+    'nvim-telescope/telescope.nvim',
     'akinsho/toggleterm.nvim',
+    'nvim-lualine/lualine.nvim',
+    {
+        'stevearc/dressing.nvim',
+        event = 'VeryLazy',
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = { "MunifTanjim/nui.nvim" }
+    },
     {
         'romgrk/barbar.nvim',
-        dependencies = {
-            'lewis6991/gitsigns.nvim',
-            'nvim-tree/nvim-web-devicons',
-        },
         init = function() vim.g.barbar_auto_setup = false end,
         opts = {
             animation = true,

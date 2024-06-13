@@ -12,25 +12,27 @@ require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
         "marksman",
-
         "rust_analyzer",
-        "taplo",
 
         "html",
         "cssls",
         "tsserver",
+
+        "taplo",
         "jsonls",
     },
     handlers = {
         function(server_name) -- default handler (optional)
-            lspconfig[server_name].setup({})
+            lspconfig[server_name].setup({
+                capabilities = capabilities
+            })
         end,
 
         rust_analyzer = function()
             lspconfig.rust_analyzer.setup({
                 settings = {
                     ["rust_analyzer"] = {
-                        checkOnSave = { command = "clippy -- -W clippy::pedantic" }
+                        checkOnSave = { command = "clippy -- -W clippy::all" }
                     }
                 }
             })
@@ -42,6 +44,7 @@ require("mason-lspconfig").setup {
             })
         end,
 
+        -- Fix Undefined global 'vim'
         lua_ls = function()
             lsp.configure('lua_ls', {
                 settings = {
@@ -56,48 +59,12 @@ require("mason-lspconfig").setup {
     }
 }
 
--- Fix Undefined global 'vim'
-
-require('luasnip.loaders.from_vscode').lazy_load()
-
-local cmp = require('cmp')
-local cmp_format = require('lsp-zero').cmp_format({ details = true })
-local cmp_action = require('lsp-zero').cmp_action()
-
-local cmp_mappings = cmp.mapping.preset.insert({
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ['<C-n>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-p>'] = cmp_action.luasnip_jump_backward(),
-    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-})
-
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'luasnip' },
-        { name = 'crates' },
-        { name = 'buffer' },
-        { name = 'path' },
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp_mappings,
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end,
-    },
-    formatting = cmp_format,
-})
-
 ---@diagnostic disable-next-line: unused-local
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 end)
 
