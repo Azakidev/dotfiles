@@ -25,7 +25,7 @@ local plugins = {
     'mbbill/undotree',
     'fedepujol/move.nvim',
     'm4xshen/autoclose.nvim',
-    'norcalli/nvim-colorizer.lua',
+    'brenoprata10/nvim-highlight-colors',
 
     'tpope/vim-fugitive',
 
@@ -118,4 +118,3 @@ local opts = {}
 
 require("lazy").setup(plugins, opts)
 require("autoclose").setup()
-require("colorizer").setup()
