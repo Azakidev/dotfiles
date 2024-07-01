@@ -20,11 +20,11 @@ local plugins = {
     'nvim-lua/plenary.nvim',
     -- Theme
     'Mofiqul/dracula.nvim',
-
     -- Editor stuff
     'mbbill/undotree',
     'fedepujol/move.nvim',
     'm4xshen/autoclose.nvim',
+    "andrewferrier/wrapping.nvim",
     'brenoprata10/nvim-highlight-colors',
 
     'tpope/vim-fugitive',
@@ -114,7 +114,6 @@ local plugins = {
         },
     },
 }
-local opts = {}
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins)
 require("autoclose").setup()
