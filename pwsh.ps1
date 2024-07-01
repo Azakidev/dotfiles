@@ -3,7 +3,8 @@ Import-Module posh-git
 
 # Custom functions
 function batterystatus { Get-CimInstance -Class batterystatus -Namespace root/wmi }
-function sync_art { Param($arg) unison $arg C:\Users\zazag\Pictures\Art ssh://zazag@192.168.0.17/Pictures/Art }
+function sync_art { Param($arg) unison -batch $arg C:\Users\zazag\Pictures\Art ssh://zazag@192.168.0.17/Pictures/Art }
+function sync_music { Param($arg) unison -batch $arg C:\Users\zazag\Music ssh://zazag@192.168.0.17/Music }
 function update { Param($arg) winget update -r $arg }
 function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 function explore { explorer . }
@@ -12,6 +13,7 @@ function ffetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\wconfig.j
 # Aliases and time savers
 Set-Alias battery batterystatus
 Set-Alias syncart sync_art
+Set-Alias syncm sync_music
 Set-Alias code codium
 Set-Alias clr clear
 Set-Alias upd update
