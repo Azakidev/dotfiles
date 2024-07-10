@@ -1,8 +1,15 @@
 local lsp = require('lsp-zero')
 local lspconfig = require("lspconfig")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+-- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+capabilities.workspace = {
+    didChangeWatchedFiles = {
+        dynamicRegistration = true,
+    },
+}
 
 lsp.preset('recommended')
 
@@ -11,7 +18,7 @@ require('mason').setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
-        "marksman",
+        "markdown_oxide",
         "rust_analyzer",
 
         "html",
@@ -35,6 +42,12 @@ require("mason-lspconfig").setup {
                         checkOnSave = { command = "clippy -- -W clippy::all" }
                     }
                 }
+            })
+        end,
+
+        markdown_oxide = function()
+            lspconfig.markdown_oxide.setup({
+                capabilities = capabilities
             })
         end,
 
