@@ -10,6 +10,15 @@ function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 function explore { explorer . }
 function ffetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\wconfig.jsonc }
 
+# Git aliases
+function status { git status }
+function commit { Param($arg) git commit $arg }
+function add    { Param($arg) git add $arg }
+
+Set-Alias gs status
+Set-Alias gc commit
+Set-Alias ga add
+
 # Aliases and time savers
 Set-Alias battery batterystatus
 Set-Alias syncart sync_art

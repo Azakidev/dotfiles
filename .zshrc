@@ -43,6 +43,11 @@ alias dx='distrobox'
 alias dconv='davinconv'
 alias vim='nvim'
 
+# Git aliases
+alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
+
 alias clean='sudo pacman -Rs $(pacman -Qdtq) || echo "No orphans to remove"'
 alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
 alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
