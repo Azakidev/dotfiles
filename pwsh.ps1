@@ -16,7 +16,7 @@ function commit { Param($arg) git commit $arg }
 function add    { Param($arg) git add $arg }
 
 Set-Alias gs status
-Set-Alias gc commit
+Set-Alias gic commit
 Set-Alias ga add
 
 # Aliases and time savers
