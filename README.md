@@ -1,6 +1,18 @@
 # Dotfiles!
 For windows (powershell) and linux (zsh)
 
+# Dependencies
+Common:
+- Zoxide
+- Oh my posh
+- Node
+- Zig/gcc (a c compiler)
+- Neovim
+- Git
+- Ripgrep
+- Fastfetch
+- Eza
+
 ### Windows symlinks
 ```pwsh
 New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim -Target C:\Users\[USERNAME]\Projects\dotfiles\nvim\
