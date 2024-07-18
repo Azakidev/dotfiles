@@ -3,15 +3,26 @@ For windows (powershell) and linux (zsh)
 
 # Dependencies
 Common:
-- Zoxide
-- Oh my posh
-- Node
-- Zig/gcc (a c compiler)
-- Neovim
 - Git
-- Ripgrep
-- Fastfetch
-- Eza
+- Oh my posh
+- zoxide
+- Node
+- A C++ compiler
+- neovim
+- ripgrep
+- fastfetch
+- eza
+- bat
+- Unison
+Linux:
+- yay
+- zsh-autosuggestions
+- zsh-syntax-highlighter
+- thefuck
+- btop
+Windows:
+- Powertoys
+- PowerShell 7 installed via winget
 
 ### Windows symlinks
 ```pwsh
