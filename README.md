@@ -2,7 +2,7 @@
 For windows (powershell) and linux (zsh)
 
 # Dependencies
-Common:
+## Common:
 - Git
 - Oh my posh
 - zoxide
@@ -14,13 +14,13 @@ Common:
 - eza
 - bat
 - Unison
-Linux:
+## Linux:
 - yay
 - zsh-autosuggestions
 - zsh-syntax-highlighter
 - thefuck
 - btop
-Windows:
+## Windows:
 - Powertoys
 - PowerShell 7 installed via winget
 
@@ -34,6 +34,6 @@ New-Item -ItemType SymbolicLink -Path C:\Users\[USERNAME]\Documents\PowerShell\M
 ```zsh
 ln -s oh-my-posh/config.toml ~/.config/oh-my-posh/config.toml
 ln -ds nvim ~/.config/nvim
-ln -s .zshrc ~/zshrc
+ln -s .zshrc ~/.zshrc
 ln -ds fastfetch ~/.config/fastfetch
 ```
