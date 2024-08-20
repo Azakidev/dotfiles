@@ -37,32 +37,28 @@ bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 alias upd='yay -Syu'
 alias add='yay -S'
 alias remove='yay -R'
+
+alias rs='trash'
+alias clr='clear'
 alias cat='bat'
 alias top='btop'
-alias dx='distrobox'
-alias dconv='davinconv'
 alias vim='nvim'
+alias code='vscodium'
+alias ls='eza --icons'
+alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
+
+alias uefi='systemctl reboot --firmware-setup'
 
 # Git aliases
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
-
-alias clean='sudo pacman -Rs $(pacman -Qdtq) || echo "No orphans to remove"'
+# Quick clean
+alias clean='yay -Yc'
 alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
 alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
 alias cleantasks='rm -rf .cache/evolution/tasks/* && echo "Task cache cleaned"'
 alias cleanall='clean && cleanss && cleanyay && cleantasks'
-
-alias uefi='systemctl reboot --firmware-setup'
-alias rs='trash'
-alias clr='clear'
-alias ls='eza --icons'
-
-alias warp='flatpak run app.drey.Warp'
-alias discord='discord --enable-features=UseOzonePlatform --ozone-platform=wayland'
-alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
-alias code='vscodium'
 
 eval $(thefuck --alias)
 eval "$(zoxide init zsh --cmd cd)"
