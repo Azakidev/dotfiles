@@ -22,6 +22,7 @@ For windows (powershell) and linux (zsh)
 - zsh-syntax-highlighter
 - thefuck
 - btop
+- MangoHud
 ## Windows:
 - Powertoys
 - Winget
@@ -36,8 +37,9 @@ New-Item -ItemType SymbolicLink -Path $HOME\Documents\PowerShell\Microsoft.Power
 If the symlink is invalid, replace it with the actual path
 ### Linux symlinks
 ```zsh
-ln -s oh-my-posh/config.toml ~/.config/oh-my-posh/config.toml
-ln -ds nvim ~/.config/nvim
-ln -s .zshrc ~/.zshrc
 ln -ds fastfetch ~/.config/fastfetch
+ln -ds nvim ~/.config/nvim
+ln -ds MangoHud ~/.config/MangoHud
+ln -s oh-my-posh/config.toml ~/.config/oh-my-posh/config.toml
+ln -s .zshrc ~/.zshrc
 ```
