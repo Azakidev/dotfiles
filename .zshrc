@@ -57,8 +57,7 @@ alias ga='git add'
 alias clean='yay -Yc'
 alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
 alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
-alias cleantasks='rm -rf .cache/evolution/tasks/* && echo "Task cache cleaned"'
-alias cleanall='clean && cleanss && cleanyay && cleantasks'
+alias cleanall='clean && cleanss && cleanyay'
 
 eval $(thefuck --alias)
 eval "$(zoxide init zsh --cmd cd)"
