@@ -35,6 +35,14 @@
 
   "mouse_follows_focus": false,
 
+  "float_rules": [
+    {
+      "kind": "Title",
+      "id": "Krita",
+      "matching_strategy": "EndsWith"
+    }
+  ],
+
   "monitors": [
     {
       "workspaces": [
