@@ -30,7 +30,6 @@ local plugins = {
     'tpope/vim-fugitive',
 
     'nvim-treesitter/nvim-treesitter',
-    'habamax/vim-godot',
     {
         'folke/trouble.nvim',
         opts = {},
