@@ -38,7 +38,7 @@
   "float_rules": [
     {
       "kind": "Title",
-      "id": "Krita",
+      "id": "- Krita",
       "matching_strategy": "EndsWith"
     }
   ],
