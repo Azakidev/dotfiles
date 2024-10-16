@@ -34,12 +34,18 @@
   },
 
   "mouse_follows_focus": false,
+  "focus_follows_mouse": "Komorebi",
 
   "float_rules": [
     {
       "kind": "Title",
       "id": "- Krita",
       "matching_strategy": "EndsWith"
+    },
+    {
+      "kind": "Title",
+      "id": "Arc extension popup",
+      "matching_strategy": "Equals"
     }
   ],
 
@@ -48,22 +54,6 @@
       "workspaces": [
         {
           "name": "1",
-          "layout": "BSP"
-        },
-        {
-          "name": "2",
-          "layout": "BSP"
-        },
-        {
-          "name": "3",
-          "layout": "BSP"
-        },
-        {
-          "name": "4",
-          "layout": "BSP"
-        },
-        {
-          "name": "5",
           "layout": "BSP"
         }
       ]

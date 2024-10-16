@@ -10,6 +10,13 @@
       "bottom": 50
     }
   },
+
+  "frame": {
+    "inner_margin": {
+      "x": 15,
+      "y": 2
+    }
+  },
   
   "font_family": "Nunito",
 
