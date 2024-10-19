@@ -46,6 +46,16 @@
       "kind": "Title",
       "id": "Arc extension popup",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "Arc Settings",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Class",
+      "id": "Qt51513QWindowIcon",
+      "matching_strategy": "Equals"
     }
   ],
 
