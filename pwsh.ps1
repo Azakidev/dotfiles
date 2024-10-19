@@ -5,6 +5,7 @@ Import-Module posh-git
 function battery { Get-CimInstance -Class batterystatus -Namespace root/wmi }
 function syncart { Param($arg) unison -ignore "Name desktop.ini" -batch $arg C:\Users\zazag\Pictures\Art ssh://zazag@192.168.0.17/Pictures/Art }
 function syncm { Param($arg) unison -ignore "Name desktop.ini" -batch $arg C:\Users\zazag\Music ssh://zazag@192.168.0.17/Music }
+function syncobsidian { Param($arg) unison -ignore "Name desktop.ini" -batch $arg C:\Users\zazag\Documents\Obsidian ssh://zazag@192.168.0.17/Documents/Obsidian }
 function upd { Param($arg) winget update -r $arg }
 function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 function explore { explorer . }
