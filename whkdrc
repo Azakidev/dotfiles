@@ -9,6 +9,7 @@ alt + shift + o         	: komorebic reload-configuration
 # The apps will be focused if open, or launched if not open
 alt + a                 	: if ($wshell.AppActivate('Arc') -eq $False) { start arc }
 alt + q                 	: if ($wshell.AppActivate('Powershell') -eq $False) { start wt }
+alt + e                 	: if ($wshell.AppActivate('Files') -eq $False) { start files }
 
 # Move windows
 alt + j    					: komorebic move left
@@ -17,8 +18,14 @@ alt + i      				: komorebic move up
 alt + l   					: komorebic move right
 alt + return  				: komorebic promote
 
+# Focus windows
+alt + control + j       		: komorebic focus left
+alt + control + k      		: komorebic focus down
+alt + control + i        		: komorebic focus up
+alt + control + l     		: komorebic focus right
+
 # Quit
-control + q						: komorebic close
+alt + control + q					: komorebic close
 
 # Stack windows
 alt + shift + j       		: komorebic stack left
@@ -26,8 +33,8 @@ alt + shift + k      		: komorebic stack down
 alt + shift + i        		: komorebic stack up
 alt + shift + l     		: komorebic stack right
 alt + shift + return   		: komorebic unstack
-alt + control + j       	: komorebic cycle-stack previous
-alt + control + l		    : komorebic cycle-stack next
+alt + shift + 9       		: komorebic cycle-stack previous
+alt + shift + 0		    	: komorebic cycle-stack next
 
 # Resize
 alt + shift + oem_plus      : komorebic resize-axis horizontal increase
