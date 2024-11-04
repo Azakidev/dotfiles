@@ -36,7 +36,7 @@
   "mouse_follows_focus": true,
   "focus_follows_mouse": "Komorebi",
 
-  "float_rules": [
+  "ignore_rules": [
     {
       "kind": "Title",
       "id": "- Krita",
