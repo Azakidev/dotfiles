@@ -7,7 +7,7 @@ alt + shift + o         	: komorebic reload-configuration
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
-alt + a                 	: if ($wshell.AppActivate('Arc') -eq $False) { start arc }
+alt + a                 	: if ($wshell.AppActivate('Zen Browser') -eq $False) { start "C:\Program Files\Zen Browser\zen.exe" }
 alt + q                 	: if ($wshell.AppActivate('Powershell') -eq $False) { start wt }
 alt + e                 	: if ($wshell.AppActivate('Files') -eq $False) { start files }
 
