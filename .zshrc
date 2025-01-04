@@ -11,7 +11,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt autocd extendedglob nomatch notify
+setopt autocd extendedglob nomatch notify correct
 unsetopt beep
 bindkey -e
 typeset -g -A key
@@ -26,7 +26,9 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.toml)"
+if ! {tty | grep -q "tty"} ; then
+    eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.toml)"
+fi
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
