@@ -55,6 +55,7 @@ alias uefi='systemctl reboot --firmware-setup'
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
+alias gd='git diff'
 # Quick clean
 alias clean='yay -Yc'
 alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
