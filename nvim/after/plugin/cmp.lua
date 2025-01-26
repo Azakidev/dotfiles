@@ -16,8 +16,8 @@ local cmp_mappings = cmp.mapping.preset.insert({
                 luasnip.expand()
             else
                 cmp.confirm({ select = true })
+                cmp.close()
             end
-            cmp.select_next_item()
         elseif luasnip.locally_jumpable(1) then
             luasnip.jump(1)
         else
