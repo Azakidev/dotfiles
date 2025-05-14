@@ -1,4 +1,3 @@
-local lsp = require('lsp-zero')
 local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -11,8 +10,6 @@ capabilities.workspace = {
     },
 }
 
-lsp.preset('recommended')
-
 require('mason').setup()
 
 require("mason-lspconfig").setup {
@@ -23,7 +20,7 @@ require("mason-lspconfig").setup {
 
         "html",
         "cssls",
-        "tsserver",
+        "ts_ls",
 
         "taplo",
         "jsonls",
@@ -59,7 +56,7 @@ require("mason-lspconfig").setup {
 
         -- Fix Undefined global 'vim'
         lua_ls = function()
-            lsp.configure('lua_ls', {
+            lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
                         diagnostics = {
@@ -72,13 +69,14 @@ require("mason-lspconfig").setup {
     }
 }
 
----@diagnostic disable-next-line: unused-local
-lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function (event)
+        local opts = { buffer = event.buf }
 
-    --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-end)
+        --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    end,
+})
 
-lsp.setup()

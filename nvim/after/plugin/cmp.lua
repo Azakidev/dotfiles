@@ -1,6 +1,4 @@
 local cmp = require('cmp')
-local cmp_format = require('lsp-zero').cmp_format({ details = true })
-local cmp_action = require('lsp-zero').cmp_action()
 local luasnip = require('luasnip')
 
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -8,8 +6,6 @@ require('luasnip.loaders.from_vscode').lazy_load()
 local cmp_mappings = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-n>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-p>'] = cmp_action.luasnip_jump_backward(),
     ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
             if luasnip.expandable() then
@@ -46,5 +42,5 @@ cmp.setup({
         end,
     },
     mapping = cmp_mappings,
-    formatting = cmp_format,
+    formatting = vim.lsp.buf.format({ async = true }),
 })
