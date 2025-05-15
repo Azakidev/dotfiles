@@ -13,14 +13,8 @@ function explore { explorer . }
 function fetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\wconfig.jsonc }
     # Git aliases
 function gs { git status }
-function gic { Param($arg) git commit $arg }
+function gic { Param($arg) git commit -m $arg }
 function ga    { Param($arg) git add $arg }
-    # Komorebi
-function restile {
-    taskkill /f /im komorebi.exe ;
-    taskkill /f /im komorebi-bar.exe ;
-    komorebic start --whkd --bar --ffm ;
-}
 
 # Aliases and time savers
 Set-Alias code codium
