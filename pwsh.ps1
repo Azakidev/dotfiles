@@ -16,6 +16,19 @@ function gs { git status }
 function gic { Param($arg) git commit -m $arg }
 function ga    { Param($arg) git add $arg }
 
+function so {
+    Param($arg)
+    if ($null -ne $arg) {
+        $res = fzf -q $arg;
+    }
+    else {
+        $res = fzf;
+    }
+    if ($null -ne $res) {
+        explorer $res;
+    }
+}
+
 # Aliases and time savers
 Set-Alias code codium
 Set-Alias clr clear
@@ -28,4 +41,4 @@ oh-my-posh init pwsh --config ~\omp.toml | Invoke-Expression
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) }) 
 
-
+Set-PSReadLineKeyHandler -Chord Tab -Function MenuComplete
