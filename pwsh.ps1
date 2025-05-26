@@ -40,7 +40,7 @@ Set-Alias vim nvim
 Set-Alias ls ezals
 Set-Alias cat bat
 
-oh-my-posh init pwsh --config ~\omp.toml | Invoke-Expression
+oh-my-posh init pwsh --config ~\.config\omp.toml | Invoke-Expression
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) }) 
 
