@@ -31,11 +31,8 @@ For windows (powershell) and linux (zsh)
 ### Windows symlinks
 ```pwsh
 New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim -Target $HOME\Projects\dotfiles\nvim\
-New-Item -ItemType SymbolicLink -Path ~\omp.toml -Target $HOME\Projects\dotfiles\oh-my-posh\config.toml
+New-Item -ItemType SymbolicLink -Path ~\.config\omp.toml -Target $HOME\Projects\dotfiles\oh-my-posh\config.toml
 New-Item -ItemType SymbolicLink -Path $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 -Target $HOME\Projects\dotfiles\pwsh.ps1
-New-Item -ItemType SymbolicLink -Path ~\.config\whkdrc -Target $HOME\Projects\dotfiles\whkdrc
-New-Item -ItemType SymbolicLink -Path ~\komorebi.json -Target $HOME\Projects\dotfiles\komorebi\komorebi.json
-New-Item -ItemType SymbolicLink -Path ~\komorebi.bar.json -Target $HOME\Projects\dotfiles\komorebi\komorebi.bar.json
 ```
 If the symlink is invalid, replace it with the actual path
 ### Linux symlinks
