@@ -12,9 +12,18 @@ function ezals { Param($arg) eza --icons=always --no-quotes $arg }
 function explore { explorer . }
 function fetch { fastfetch --config $HOME\Projects\dotfiles\fastfetch\wconfig.jsonc }
     # Git aliases
-function gs { git status }
-function gic { Param($arg) git commit -m $arg }
-function ga    { Param($arg) git add $arg }
+function gs   { git status }
+function push { git push }
+function gic  { Param($arg) git commit -a -m $arg; push }
+function ga   {
+    Param($arg)
+    if ($null -ne $arg) {
+        git add $arg;
+    } else {
+        git add .;
+    }
+    git status;
+}
 
 function so {
     Param($arg)
