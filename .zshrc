@@ -62,5 +62,9 @@ alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
 alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
 alias cleanall='clean && cleanss && cleanyay'
 
+alias dim="ddcutil -d 1 setvcp 10 0"
+alias bright="ddcutil -d 1 setvcp 10 100"
+alias blc="ddcutil -d 1 setvcp 10"
+
 eval $(thefuck --alias)
 eval "$(zoxide init zsh --cmd cd)"
