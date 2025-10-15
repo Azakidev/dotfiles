@@ -48,6 +48,7 @@ alias vim='nvim'
 alias code='vscodium'
 alias ls='eza --icons'
 alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
+alias :q='exit'
 
 alias uefi='systemctl reboot --firmware-setup'
 
@@ -66,5 +67,4 @@ alias dim="ddcutil -d 1 setvcp 10 0"
 alias bright="ddcutil -d 1 setvcp 10 100"
 alias blc="ddcutil -d 1 setvcp 10"
 
-eval $(thefuck --alias)
 eval "$(zoxide init zsh --cmd cd)"
