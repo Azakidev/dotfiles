@@ -13,6 +13,7 @@
     packages = with pkgs; [
       # The basics
       ghostty
+      gh
       oh-my-posh
       # Utilities
       eza
@@ -34,7 +35,6 @@
     # Essentials
     neovim
     git
-    gh
     # Programming languages
     gcc
     cargo
