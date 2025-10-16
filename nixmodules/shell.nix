@@ -5,6 +5,8 @@
   services.desktopManager.gnome.enable = true;
   services.gnome.games.enable = false;
 
+  services.xserver.enable = true;
+
   # Remove fodder
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
@@ -33,6 +35,7 @@
     # Extra packages
     refine
     showtime
+    gnome-tweaks
     papers
     gcolor3
     nautilus-python

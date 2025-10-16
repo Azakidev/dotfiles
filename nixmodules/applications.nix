@@ -3,9 +3,13 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  programs.firefox.enable = false;
-
   services.flatpak.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.adb.enable = true;
+  services.udev.packages = with pkgs; [
+    android-udev-rules
+  ];
 
   services.syncthing = {
     enable = true;
@@ -29,7 +33,8 @@
       beeper
 
       android-studio
-      androidenv.androidPkgs.platform-tools
+      # androidenv.androidPkgs.platform-tools # Already included by programs.adb.enable
+      httptoolkit
     ];
   };
 
