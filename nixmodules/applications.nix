@@ -3,19 +3,19 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      (pkgs.runCommand "steamrun-lib" { } "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
+    ];
+  };
+
   services.flatpak.enable = true;
 
-  programs.nix-ld.enable = true;
   programs.adb.enable = true;
   services.udev.packages = with pkgs; [
     android-udev-rules
   ];
-
-  services.syncthing = {
-    enable = true;
-    user = "zazag";
-    dataDir = "/home/zazag/";
-  };
 
   users.users.zazag = {
     packages = with pkgs; [
@@ -33,7 +33,6 @@
       beeper
 
       android-studio
-      # androidenv.androidPkgs.platform-tools # Already included by programs.adb.enable
       httptoolkit
     ];
   };
@@ -41,4 +40,11 @@
   programs.steam = {
     enable = true;
   };
+
+  services.syncthing = {
+    enable = true;
+    user = "zazag";
+    dataDir = "/home/zazag/";
+  };
+
 }

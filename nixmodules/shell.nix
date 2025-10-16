@@ -5,6 +5,9 @@
   services.desktopManager.gnome.enable = true;
   services.gnome.games.enable = false;
 
+  # Screen rotation
+  hardware.sensor.iio.enable = true;
+
   services.xserver.enable = true;
 
   # Remove fodder
@@ -39,6 +42,18 @@
     papers
     gcolor3
     nautilus-python
+    ( # kra file thumbnailer
+      writeTextFile {
+        name = "krita-thumbnails";
+        text = ''
+            [Thumbnailer Entry]
+            TryExec=unzip
+            Exec=sh -c "${pkgs.unzip}/bin/unzip -p %i preview.png > %o"
+            MimeType=application/x-krita;
+        '';
+        destination = "/share/thumbnailers/kra.thumbnailer";
+      }
+    )
     # Extensions
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge

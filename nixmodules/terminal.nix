@@ -20,7 +20,9 @@
       zoxide
       bat
       ripgrep
+      fzf
       tealdeer
+      unzip
       # CLIs
       jq
       yq
