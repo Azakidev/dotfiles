@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
 
   programs.firefox.enable = false;
 
@@ -16,11 +17,12 @@
     packages = with pkgs; [
       thunderbird
       resources
-      
+
       localsend
-      
+
       obsidian
       krita
+      davinci-resolve
 
       discord
       betterdiscordctl

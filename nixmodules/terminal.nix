@@ -12,13 +12,25 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       ghostty
+      oh-my-posh
+      gh
       eza
       zoxide
       bat
       ripgrep
       jq
-      oh-my-posh
+      yq
     ];
   };
+
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
+    gcc
+    cargo
+    rustc
+    nodejs
+  ];
 
 }
