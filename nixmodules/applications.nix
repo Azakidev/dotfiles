@@ -3,18 +3,21 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      (pkgs.runCommand "steamrun-lib" { } "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
-    ];
-  };
-
   services.flatpak.enable = true;
 
-  programs.adb.enable = true;
-  services.udev.packages = with pkgs; [
-    android-udev-rules
+  virtualisation.waydroid.enable = true;
+
+  # services.udev.packages = with pkgs; [
+  #   android-udev-rules
+  # ];
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    distrobox
   ];
 
   users.users.zazag = {
@@ -27,6 +30,7 @@
       obsidian
       krita
       davinci-resolve
+      blender-hip
 
       discord
       betterdiscordctl

@@ -15,6 +15,9 @@
       ghostty
       gh
       oh-my-posh
+      # Fonts
+      fira-code
+      meslo-lgs-nf
       # Utilities
       eza
       zoxide
@@ -27,8 +30,9 @@
       jq
       yq
       # Python packages
-      python313Packages.jsonpath-ng
-      python313Packages.xmltodict
+      python3Packages.jsonpath-ng
+      python3Packages.xmltodict
+      python3Packages.requests
     ];
   };
 
@@ -43,6 +47,11 @@
     rustc
     nodejs
     python313
+    cmake
+    # Fprint stuff
+    usbutils
+    openssl
+    opencv
   ];
 
 }

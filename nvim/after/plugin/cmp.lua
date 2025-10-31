@@ -24,7 +24,6 @@ local cmp_mappings = cmp.mapping.preset.insert({
 
 cmp.setup({
     sources = {
-        { name = 'emmet' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'nvim_lua' },

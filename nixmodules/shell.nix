@@ -66,6 +66,7 @@
     gnomeExtensions.week-start-modifier
     gnomeExtensions.window-title-is-back
     gnomeExtensions.rounded-corners
+    gnomeExtensions.gjs-osk
   ];
 
 }

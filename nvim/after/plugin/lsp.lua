@@ -21,6 +21,7 @@ require("mason-lspconfig").setup {
         "html",
         "cssls",
         "ts_ls",
+        "emmet_language_server",
 
         "taplo",
         "jsonls",

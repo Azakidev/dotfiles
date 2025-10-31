@@ -1,26 +1,31 @@
 { config, pkgs, ... }:
 
 {
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
+  # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Zram
+  zramSwap.enable = true;
+  zramSwap.algorithm = "lz4";
 
   # Enable networking
   networking.networkmanager.enable = true;
 
   # Firewall
-  networking.firewall.allowedTCPPorts = [ 53317 8384 22000 ];
-  networking.firewall.allowedUDPPorts = [ 53317 8384 22000 ];
-  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 53317 8384 22000 9300 8080 3000 ];
+  networking.firewall.allowedUDPPorts = [ 53317 8384 22000 9300 8080 3000 ];
+  networking.firewall.enable = false;
+  networking.nftables.enable = true;
 
   # User definition
   users.users.zazag = {
     isNormalUser = true;
     description = "zazag";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "input" ];
   };
 
   # Set your time zone.
@@ -51,5 +56,24 @@
     pulse.enable = true;
     #jack.enable = true;
   };
+
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Enable ROCm 
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+  };
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mesa.opencl # Enables Rusticl (OpenCL) support
+      rocmPackages.clr.icd
+    ];
+  };
+
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
 
 }

@@ -78,7 +78,6 @@ local plugins = {
             -- Additional sources
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-nvim-lua',
-            { 'jackieaskins/cmp-emmet', build = 'npm run release' },
         }
     },
     -- Interface stuff
