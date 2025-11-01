@@ -72,12 +72,14 @@ require("mason-lspconfig").setup {
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
-    callback = function (event)
-        local opts = { buffer = event.buf }
+    callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true)
+        end
 
-        --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        local opts = { buffer = event.buf }
         vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     end,
 })
-

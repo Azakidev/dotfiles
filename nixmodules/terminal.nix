@@ -29,10 +29,6 @@
       # CLIs
       jq
       yq
-      # Python packages
-      python3Packages.jsonpath-ng
-      python3Packages.xmltodict
-      python3Packages.requests
     ];
   };
 
@@ -41,12 +37,14 @@
     # Essentials
     neovim
     git
+    wget
     # Programming languages
     gcc
     cargo
     rustc
     nodejs
     python313
+    jdk
     cmake
     # Fprint stuff
     usbutils
