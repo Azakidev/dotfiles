@@ -36,7 +36,7 @@ bindkey "$terminfo[kdch1]" delete-char
 bindkey "^[[1;$terminfo[kdch1]" kill-word
 bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 
-alias upd='yay -Syu'
+alias upd='yay -Syu --noconfirm'
 alias add='yay -S'
 alias remove='yay -R'
 
