@@ -38,6 +38,8 @@
     neovim
     git
     wget
+    wl-clipboard
+    ffmpeg-full
     # Programming languages
     gcc
     cargo

@@ -18,7 +18,6 @@
     gnome-music
     gnome-software
     simple-scan
-    totem
     epiphany
     geary
     yelp
@@ -42,6 +41,7 @@
     papers
     gcolor3
     nautilus-python
+    ffmpegthumbnailer
     ( # kra file thumbnailer
       writeTextFile {
         name = "krita-thumbnails";
@@ -55,18 +55,16 @@
       }
     )
     # Extensions
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.forge
-    gnomeExtensions.app-hider
-    gnomeExtensions.caffeine
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.hot-edge
-    gnomeExtensions.middle-click-to-close-in-overview
-    gnomeExtensions.tray-icons-reloaded
-    gnomeExtensions.week-start-modifier
-    gnomeExtensions.window-title-is-back
-    gnomeExtensions.rounded-corners
-    gnomeExtensions.gjs-osk
+    # gnomeExtensions.blur-my-shell
+    # gnomeExtensions.forge
+    # gnomeExtensions.caffeine
+    # gnomeExtensions.clipboard-indicator
+    # gnomeExtensions.hot-edge
+    # gnomeExtensions.middle-click-to-close-in-overview
+    # gnomeExtensions.tray-icons-reloaded
+    # gnomeExtensions.window-title-is-back
+    # gnomeExtensions.rounded-corners
+    # gnomeExtensions.gjs-osk
   ];
 
 }

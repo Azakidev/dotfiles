@@ -7,9 +7,7 @@
 
   virtualisation.waydroid.enable = true;
 
-  # services.udev.packages = with pkgs; [
-  #   android-udev-rules
-  # ];
+  programs.gamemode.enable = true;
 
   virtualisation.podman = {
     enable = true;
@@ -24,13 +22,14 @@
     packages = with pkgs; [
       thunderbird
       resources
-
       localsend
-
       obsidian
       krita
+      winboat
+
       davinci-resolve
       blender-hip
+      heroic
 
       discord
       betterdiscordctl
