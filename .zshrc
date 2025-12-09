@@ -45,7 +45,7 @@ alias clr='clear'
 alias cat='bat'
 alias top='btop'
 alias vim='nvim'
-alias code='vscodium'
+alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
 alias ls='eza --icons'
 alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
 alias :q='exit'

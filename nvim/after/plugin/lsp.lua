@@ -1,14 +1,6 @@
 local lspconfig = require("lspconfig")
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
--- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
-capabilities.workspace = {
-    didChangeWatchedFiles = {
-        dynamicRegistration = true,
-    },
-}
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 require('mason').setup()
 
@@ -58,13 +50,7 @@ require("mason-lspconfig").setup {
         -- Fix Undefined global 'vim'
         lua_ls = function()
             lspconfig.lua_ls.setup({
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { 'vim' }
-                        }
-                    }
-                }
+                capabilities = capabilities
             })
         end
     }
