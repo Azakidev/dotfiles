@@ -20,14 +20,11 @@ end)
 -- Search and replace
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("i", "<C-c>", "<Esc>")
-
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 if (vim.loop.os_uname().sysname ~= "Windows_NT") then
     vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 end
-
