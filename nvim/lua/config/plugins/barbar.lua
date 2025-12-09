@@ -13,6 +13,7 @@ return {
             sidebar_filetypes = {
                 ['neo-tree'] = true,
                 undotree = true,
+                filesystem = true,
             },
         },
     },

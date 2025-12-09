@@ -4,7 +4,7 @@ return {
 
         dependencies = 'rafamadriz/friendly-snippets',
 
-        version = 'v0.*',
+        version = 'v1.*',
 
         opts = {
             keymap = { preset = 'super-tab' },
@@ -14,7 +14,23 @@ return {
                 nerd_font_variant = 'mono'
             },
 
-            signature = { enabled = true }
+            signature = { enabled = true },
+
+            completion = {
+                menu = { border = 'single' },
+                ghost_text = {
+                    enabled = false
+                },
+                list = {
+                    selection = { preselect = true, auto_insert = false },
+                }
+            },
+
+            sources = {
+                per_filetype = {
+                    rust = { inherit_defaults = true, 'crates' },
+                }
+            }
         },
     },
 }
