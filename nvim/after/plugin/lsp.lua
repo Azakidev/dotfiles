@@ -6,8 +6,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.inlay_hint.enable(true)
         end
 
-        local opts = { buffer = event.buf }
-        vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+        local telescope_builtin = require('telescope.builtin')
+
+        local opts = { buffer = event.buf, silent = true }
+        vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     end,
 })

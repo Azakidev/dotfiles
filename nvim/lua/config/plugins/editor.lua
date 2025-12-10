@@ -55,7 +55,7 @@ return {
                 }
             })
 
-            vim.keymap.set('n', "<leader>s", ":Neotree toggle<CR>")
+            vim.keymap.set('n', "<leader>s", ":Neotree toggle<CR>", { silent = true })
             vim.keymap.set('n', "<leader>fs", vim.cmd.Neotree)
         end
     },
