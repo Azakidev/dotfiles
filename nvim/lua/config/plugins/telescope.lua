@@ -21,8 +21,6 @@ return {
                         "%.pdf",
                         "%.mkv",
                         "%.mp4",
-                        "%.png",
-                        "%.jpeg",
                         "%.zip"
                     },
                 },
@@ -37,6 +35,12 @@ return {
     {
         "aznhe21/actions-preview.nvim",
         config = function()
+            require("actions-preview").setup {
+                diff = {
+                    algorithm = "patience",
+                    ignore_whitespace = true,
+                },
+            }
             vim.keymap.set({ "v", "n" }, "<leader>xq", require("actions-preview").code_actions)
         end,
     },

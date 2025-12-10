@@ -14,16 +14,37 @@ return {
                 nerd_font_variant = 'mono'
             },
 
-            signature = { enabled = true },
-
             completion = {
-                menu = { border = 'single' },
+                menu = {
+                    border = 'single',
+                    draw = {
+                        columns = { { "kind_icon" }, { "label", gap = 1 } },
+                        components = {
+                            label = {
+                                text = function(ctx)
+                                    return require("colorful-menu").blink_components_text(ctx)
+                                end,
+                                highlight = function(ctx)
+                                    return require("colorful-menu").blink_components_highlight(ctx)
+                                end,
+                            },
+                        },
+                    },
+                },
+
+                documentation = { window = { border = 'single' } },
+
                 ghost_text = {
                     enabled = false
                 },
                 list = {
                     selection = { preselect = true, auto_insert = false },
                 }
+            },
+
+            signature = {
+                enabled = true,
+                window = { border = 'single' }
             },
 
             sources = {

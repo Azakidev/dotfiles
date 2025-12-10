@@ -54,17 +54,6 @@
         destination = "/share/thumbnailers/kra.thumbnailer";
       }
     )
-    # Extensions
-    # gnomeExtensions.blur-my-shell
-    # gnomeExtensions.forge
-    # gnomeExtensions.caffeine
-    # gnomeExtensions.clipboard-indicator
-    # gnomeExtensions.hot-edge
-    # gnomeExtensions.middle-click-to-close-in-overview
-    # gnomeExtensions.tray-icons-reloaded
-    # gnomeExtensions.window-title-is-back
-    # gnomeExtensions.rounded-corners
-    # gnomeExtensions.gjs-osk
   ];
 
 }
