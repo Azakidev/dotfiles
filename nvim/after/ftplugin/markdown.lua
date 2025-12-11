@@ -1,3 +1,3 @@
 vim.o.wrap = true
 vim.o.linebreak = true
-vim.o.textwidth = 30
+vim.o.tw = 80

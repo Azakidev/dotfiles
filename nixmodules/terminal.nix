@@ -26,6 +26,7 @@
       fzf
       tealdeer
       unzip
+      tree
       # CLIs
       jq
       yq
