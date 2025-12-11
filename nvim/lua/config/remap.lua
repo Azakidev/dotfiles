@@ -13,18 +13,11 @@ vim.keymap.set({ 'n', 'i', 'v' }, "<C-y>", vim.cmd.redo)
 -- Write, source and quit
 vim.keymap.set('n', "<C-s>", vim.cmd.w)
 vim.keymap.set('n', "<A-q>", vim.cmd.q)
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
 
 -- Search and replace
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-
+-- LSP binds
+vim.keymap.set("n", "zc", vim.lsp.foldexpr())
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
-if (vim.loop.os_uname().sysname ~= "Windows_NT") then
-    vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-end

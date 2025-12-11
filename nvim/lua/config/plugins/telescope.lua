@@ -21,6 +21,8 @@ return {
                         "%.pdf",
                         "%.mkv",
                         "%.mp4",
+                        "%.png",
+                        "%.jpeg",
                         "%.zip"
                     },
                 },

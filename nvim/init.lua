@@ -1,5 +1,5 @@
 -- Settings
-require("config.remap")
 require("config.set")
+require("config.remap")
 -- Lazy
 require("config.lazy")

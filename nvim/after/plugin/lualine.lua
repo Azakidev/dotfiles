@@ -1,3 +1,5 @@
+-- Lualine is annoying so I rather configure it here
+
 local colors = {
   bg     = '#282a36',
   cl     = '#44475a',
@@ -8,7 +10,7 @@ local colors = {
   red    = '#ff5555',
 }
 
-local bubbles_theme = {
+local dracula_theme = {
   normal = {
     a = { fg = colors.bg, bg = colors.purple },
     b = { fg = colors.fg, bg = colors.cl },
@@ -28,7 +30,7 @@ local bubbles_theme = {
 
 require('lualine').setup {
   options = {
-    theme = bubbles_theme,
+    theme = dracula_theme,
     component_separators = '',
     section_separators = { left = '', right = '' },
   },
@@ -36,7 +38,7 @@ require('lualine').setup {
     lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
     lualine_b = { 'filename', 'branch' },
     lualine_c = {
-      '%=', --[[ add your center compoentnts here in place of this comment ]]
+      '%=', --[[ add your center components here in place of this comment ]]
     },
     lualine_x = {},
     lualine_y = { 'filetype', 'progress' },
@@ -55,3 +57,5 @@ require('lualine').setup {
   tabline = {},
   extensions = {},
 }
+
+vim.cmd([[hi StatusLine guibg=NONE]])

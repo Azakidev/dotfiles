@@ -16,7 +16,6 @@ return {
 
             completion = {
                 menu = {
-                    border = 'single',
                     draw = {
                         columns = { { "kind_icon" }, { "label", gap = 1 } },
                         components = {
@@ -32,10 +31,9 @@ return {
                     },
                 },
 
-                documentation = { window = { border = 'single' } },
 
                 ghost_text = {
-                    enabled = false
+                    enabled = false,
                 },
                 list = {
                     selection = { preselect = true, auto_insert = false },
@@ -44,7 +42,6 @@ return {
 
             signature = {
                 enabled = true,
-                window = { border = 'single' }
             },
 
             sources = {
@@ -53,5 +50,12 @@ return {
                 }
             }
         },
+    },
+    {
+        "xzbdmw/colorful-menu.nvim",
+        config = function()
+            -- You don't need to set these options.
+            require("colorful-menu").setup()
+        end
     },
 }

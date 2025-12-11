@@ -1,3 +1,5 @@
+-- Here go additional configurations for LSP servers
+
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
@@ -10,15 +12,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         local opts = { buffer = event.buf, silent = true }
         vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     end,
 })
 
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
-            diagnostics = {
-                globals = { "vim" } }
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            }
         }
     }
 })
@@ -30,3 +32,10 @@ vim.lsp.config("rust_analyzer", {
         }
     }
 })
+
+
+vim.filetype.add {
+    extension = {
+        njk = 'html',
+    },
+}

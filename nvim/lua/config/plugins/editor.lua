@@ -1,7 +1,15 @@
 return {
     'nvim-lualine/lualine.nvim',
-    'mg979/vim-visual-multi',
-    'brenoprata10/nvim-highlight-colors',
+    -- 'mg979/vim-visual-multi',
+    {
+        'brenoprata10/nvim-highlight-colors',
+        config = function()
+            require('nvim-highlight-colors').setup({
+                render = 'background',
+                enable_var_usage = true,
+            })
+        end
+    },
     {
         "andrewferrier/wrapping.nvim",
         config = function()
@@ -22,11 +30,11 @@ return {
                 }
             })
             -- Normal mode
-            vim.keymap.set('n', '<A-Up>', ':MoveLine(-1)<CR>')
-            vim.keymap.set('n', '<A-Down>', ':MoveLine(1)<CR>')
+            vim.keymap.set('n', '<A-Up>', ':MoveLine(-1)<CR>', { silent = true })
+            vim.keymap.set('n', '<A-Down>', ':MoveLine(1)<CR>', { silent = true })
             -- Visual mode
-            vim.keymap.set('v', '<A-Up>', ':MoveBlock(-1)<CR>')
-            vim.keymap.set('v', '<A-Down>', ':MoveBlock(1)<CR>')
+            vim.keymap.set({ 'v', 'x' }, '<A-Up>', ':MoveBlock(-1)<CR>', { silent = true })
+            vim.keymap.set({ 'v', 'x' }, '<A-Down>', ':MoveBlock(1)<CR>', { silent = true })
         end
     },
     {
@@ -56,7 +64,24 @@ return {
             })
 
             vim.keymap.set('n', "<leader>s", ":Neotree toggle<CR>", { silent = true })
-            vim.keymap.set('n', "<leader>fs", vim.cmd.Neotree)
         end
+    },
+    {
+        'romgrk/barbar.nvim',
+        init = function() vim.g.barbar_auto_setup = false end,
+        opts = {
+            animation = true,
+            auto_hide = 1,
+            separator_at_end = true,
+            icons = {
+                separator = { left = '▎', right = '' },
+                preset = "default",
+            },
+            sidebar_filetypes = {
+                ['neo-tree'] = true,
+                undotree = true,
+                filesystem = true,
+            },
+        },
     },
 }
