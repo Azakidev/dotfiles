@@ -5,24 +5,31 @@ return {
         ---@type oil.SetupOpts
         opts = {
             delete_to_trash = true,
-            autosave_changes = true,
             watch_for_changes = true,
             skip_confirm_for_simple_edits = true,
+
             view_options = {
                 show_hidden = true,
+            },
+
+            lsp_file_methods = {
+                enabled = true,
+                timeout_ms = 1000,
+                autosave_changes = true,
             },
         },
 
         config = function()
             local oil = require("oil")
             oil.setup()
-            vim.keymap.set({'n'}, "<leader>e", function()
+            vim.keymap.set({ 'n' }, "<leader>e", function()
                 if vim.bo.filetype == 'oil' then
                     require("oil").close()
                 else
                     vim.cmd([[Oil --float]])
                 end
             end, { desc = "File navigation" })
+            vim.keymap.set({'n'}, "<leader>s", vim.cmd.w)
         end,
 
         -- Optional dependencies
