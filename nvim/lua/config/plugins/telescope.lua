@@ -28,9 +28,12 @@ return {
                 },
             })
 
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-            vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-            vim.keymap.set('n', '<C-g>', builtin.git_files, {})
+            vim.keymap.set({ 'n' }, '<leader>ff', builtin.find_files)
+            vim.keymap.set({ 'n' }, '<leader>fg', builtin.live_grep)
+            vim.keymap.set({ 'n' }, '<C-g>', builtin.git_files)
+            vim.keymap.set({ 'n' }, "<leader>fk", builtin.keymaps)
+            vim.keymap.set({ 'n' }, "<leader>t", builtin.builtin)
+            vim.keymap.set({ 'n' }, "<leader>sf", builtin.current_buffer_fuzzy_find)
         end
     },
     -- Code actions
@@ -43,7 +46,7 @@ return {
                     ignore_whitespace = true,
                 },
             }
-            vim.keymap.set({ "v", "n" }, "<leader>xq", require("actions-preview").code_actions)
+            vim.keymap.set({ "v", "n" }, "<leader>sa", require("actions-preview").code_actions)
         end,
     },
 }

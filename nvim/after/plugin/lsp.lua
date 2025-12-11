@@ -15,14 +15,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.lsp.config("lua_ls", {
-    settings = {
-        Lua = {
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-            }
-        }
-    }
+vim.lsp.config("emmet-ls", {
+    filetypes = { "html", "njk", "markdown", "javascript", "javascriptreact" }
 })
 
 vim.lsp.config("rust_analyzer", {
@@ -32,7 +26,6 @@ vim.lsp.config("rust_analyzer", {
         }
     }
 })
-
 
 vim.filetype.add {
     extension = {

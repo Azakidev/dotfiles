@@ -6,7 +6,7 @@ return {
         },
 
         config = function()
-            require('mason').setup()
+            require("mason").setup()
         end
     },
     {
@@ -28,6 +28,7 @@ return {
     },
     {
         'saecki/crates.nvim',
+        tag = "stable",
         config = function()
             require('crates').setup()
         end,

@@ -10,7 +10,7 @@ vim.keymap.set('n', "<A-Left>", vim.cmd.BufferPrevious)
 vim.keymap.set({ 'n', 'i', 'v' }, "<C-z>", vim.cmd.undo)
 vim.keymap.set({ 'n', 'i', 'v' }, "<C-y>", vim.cmd.redo)
 
--- Write, source and quit
+-- Write, source, and quit
 vim.keymap.set('n', "<C-s>", vim.cmd.w)
 vim.keymap.set('n', "<A-q>", vim.cmd.q)
 vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
@@ -19,5 +19,4 @@ vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- LSP binds
-vim.keymap.set("n", "zc", vim.lsp.foldexpr())
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
