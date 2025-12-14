@@ -1,4 +1,4 @@
-version = 3
+version = 4
 final_space = true
 
 [palette]
@@ -34,13 +34,13 @@ final_space = true
     background = 'blue'
     type = 'path'
     style = 'powerline'
-
-    [blocks.segments.properties]
-      folder_icon = ''
-      folder_separator_icon = '/'
-      home_icon = '~'
-      mixed_threshold = 8
-      style = 'mixed'
+    
+    [blocks.segments.options]
+        folder_icon = ''
+        home_icon = '~'
+        style = 'mixed'
+        folder_separator_icon = '/'
+        mixed_threshold = 8
 
   [[blocks.segments]]
     template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}{{ if gt .Behind 0 }}⇣{{.Behind}}{{ end }}{{ if gt .Ahead 0 }}⇡{{.Ahead}}{{ end }}'
@@ -49,8 +49,8 @@ final_space = true
     background = 'cyan'
     type = 'git'
     style = 'powerline'
-
-    [blocks.segments.properties]
+    
+    [blocks.segments.options]
       branch_icon = ' '
       cherry_pick_icon = ' '
       commit_icon = ' '
@@ -71,12 +71,9 @@ final_space = true
     foreground = 'cyan'
     background = 'transparent'
     type = 'executiontime'
-    style = 'plain'
-
-    [blocks.segments.properties]
-      style = 'round'
-      threshhold = 2000
-
+    style = 'round'
+    threshhold = 2000
+    
 [[blocks]]
   type = 'prompt'
   alignment = 'left'

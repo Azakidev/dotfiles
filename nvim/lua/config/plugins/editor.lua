@@ -9,27 +9,6 @@ return {
         end
     },
     {
-        'fedepujol/move.nvim',
-        config = function()
-            require('move').setup({
-                line = {
-                    enable = true, -- Enables line movement
-                    indent = true  -- Toggles indentation
-                },
-                block = {
-                    enable = true, -- Enables block movement
-                    indent = true  -- Toggles indentation
-                }
-            })
-            -- Normal mode
-            vim.keymap.set('n', '<A-Up>', ':MoveLine(-1)<CR>', { silent = true })
-            vim.keymap.set('n', '<A-Down>', ':MoveLine(1)<CR>', { silent = true })
-            -- Visual mode
-            vim.keymap.set({ 'v', 'x' }, '<A-Up>', ':MoveBlock(-1)<CR>', { silent = true })
-            vim.keymap.set({ 'v', 'x' }, '<A-Down>', ':MoveBlock(1)<CR>', { silent = true })
-        end
-    },
-    {
         'm4xshen/autoclose.nvim',
         config = function()
             require("autoclose").setup()

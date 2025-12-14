@@ -6,9 +6,10 @@ return {
         opts = {
             animation = true,
             auto_hide = 1,
-            separator_at_end = true,
+            separator_at_end = false,
             icons = {
                 separator = { left = '▎', right = '' },
+                separator_at_end = false,
                 preset = "default",
             },
             sidebar_filetypes = {
