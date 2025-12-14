@@ -35,7 +35,7 @@ final_space = true
     type = 'path'
     style = 'powerline'
     
-    [blocks.segments.options]
+    [blocks.segments.properties]
         folder_icon = ''
         home_icon = '~'
         style = 'mixed'
@@ -50,7 +50,7 @@ final_space = true
     type = 'git'
     style = 'powerline'
     
-    [blocks.segments.options]
+    [blocks.segments.properties]
       branch_icon = ' '
       cherry_pick_icon = ' '
       commit_icon = ' '
