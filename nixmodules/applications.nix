@@ -37,8 +37,13 @@
 
       android-studio
       httptoolkit
+      # Fonts
+      corefonts
+      vista-fonts
     ];
   };
+
+  fonts.fontDir.enable = true;
 
   programs.steam = {
     enable = true;
