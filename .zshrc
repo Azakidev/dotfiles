@@ -2,12 +2,13 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
+export ANDROID_HOME="~/Android/Sdk/"
 export PATH="/home/zazag/Android/Sdk/platform-tools/:/opt/rocm/bin:/opt/rocm-*/:$PATH"
 
-export ANDROID_HOME="~/Android/Sdk/"
-
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -38,35 +39,52 @@ bindkey "$terminfo[kdch1]" delete-char
 bindkey "^[[1;$terminfo[kdch1]" kill-word
 bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 
-alias upd='yay -Syu --noconfirm'
-alias add='yay -S'
-alias remove='yay -R'
+# Yay commands
+if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
+    alias upd='yay -Syu --noconfirm'
+    alias add='yay -S'
+    alias remove='yay -R'
+    # Quick clean
+    alias clean='yay -Yc'
+    alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
+    alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
+    alias cleanall='clean && cleanss && cleanyay'
 
+    alias dim="ddcutil -d 1 setvcp 10 0"
+    alias bright="ddcutil -d 1 setvcp 10 100"
+    alias blc="ddcutil -d 1 setvcp 10"
+fi
+
+# NixOS commands
+if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
+    alias rebuild='sudo nixos-rebuild switch'
+    alias update='sudo nixos-rebuild switch --upgrade'
+    alias adbshell='nix-shell -p androidenv.androidPkgs.platform-tools'
+    alias adb='steam-run adb'
+fi
+
+# Time savers
 alias rs='trash'
 alias clr='clear'
 alias cat='bat'
 alias top='btop'
 alias vim='nvim'
-alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
 alias ls='eza --icons'
 alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
 alias :q='exit'
-
 alias uefi='systemctl reboot --firmware-setup'
+
+# Ollama GPU override on Arch
+if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
+    alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
+fi
 
 # Git aliases
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
 alias gd='git diff'
-# Quick clean
-alias clean='yay -Yc'
-alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
-alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
-alias cleanall='clean && cleanss && cleanyay'
-
-alias dim="ddcutil -d 1 setvcp 10 0"
-alias bright="ddcutil -d 1 setvcp 10 100"
-alias blc="ddcutil -d 1 setvcp 10"
+alias gsall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; gs; cd ..; fi; done'
+alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull; cd ..; fi; done'
 
 eval "$(zoxide init zsh --cmd cd)"
