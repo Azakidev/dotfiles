@@ -73,6 +73,7 @@ alias ls='eza --icons'
 alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
 alias :q='exit'
 alias uefi='systemctl reboot --firmware-setup'
+alias avenv='source .venv/bin/activate'
 
 # Ollama GPU override on Arch
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
