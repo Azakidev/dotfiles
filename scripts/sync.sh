@@ -34,7 +34,7 @@ sync-file() {
         if [[ -f "$OUT_PATH/$file" ]]; then
             # If both files are the same, do nothing
             # If they're different, correct the name
-            if [[ $(md5sum "$line" "$OUT_PATH/$file" | md5sum --check) ]]; then
+            if cmp -s "$line" "$OUT_PATH/$file"; then
                 :
             else
                 # $HOME/Pictures/.../Dir
