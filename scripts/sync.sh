@@ -10,6 +10,8 @@ ART_PATH="$HOME/Pictures/Art"
 OUT_PATH="$HOME/Pictures/Share"
 declare -a EXTENSIONS=("png" "gif" "avif" "jpeg" "jpg")
 
+declare -a FILES=()
+
 usage() {
 	local prog=${0##*/}
 	cat <<-EOF
@@ -35,6 +37,7 @@ sync-file() {
             # If both files are the same, do nothing
             # If they're different, correct the name
             if cmp -s "$line" "$OUT_PATH/$file"; then
+                FILES+=("$file")
                 :
             else
                 # $HOME/Pictures/.../Dir
@@ -45,11 +48,27 @@ sync-file() {
                 local new_name="$dir_name-$file"
 
                 echo "Saving $file as $new_name"
-
+                
+                FILES+=("$new_name")
                 rsync -at "$line" "$OUT_PATH/$new_name"
             fi
         else
+            FILES+=("$file")
             rsync -at "$line" $OUT_PATH
+        fi
+    done
+}
+
+clean() {
+    for file in $OUT_PATH/*; do
+        if [[ -f "$file" ]]; then
+            local filename=${file##*/}
+            if [[ "${FILES[*]}" =~ "$filename" ]]; then
+                :
+            else
+                rm "$OUT_PATH/$filename"
+                echo "Cleared $filename"
+            fi
         fi
     done
 }
@@ -62,6 +81,7 @@ walk-tree() {
     for type in ${EXTENSIONS[@]}; do
        sync-file < <(find $ART_PATH -type f -name "*.$type" -print0)
     done
+    clean
 }
 
 regenerate() {

@@ -39,7 +39,7 @@ bindkey "$terminfo[kdch1]" delete-char
 bindkey "^[[1;$terminfo[kdch1]" kill-word
 bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 
-# Yay commands
+# Arch commands
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
     alias upd='yay -Syu --noconfirm'
     alias add='yay -S'
