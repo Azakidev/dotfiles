@@ -14,7 +14,7 @@ declare -a FILES=()
 
 usage() {
 	local prog=${0##*/}
-	cat <<-EOF
+	cat <<- EOF
 Usage: $prog [options]
  
 Sync and flatten media in a deeply nested folder structure
@@ -78,26 +78,28 @@ export -f sync-file
 walk-tree() {
     export -f sync-file 
     local type
-    for type in ${EXTENSIONS[@]}; do
-       sync-file < <(find $ART_PATH -type f -name "*.$type" -print0)
+    for type in "${EXTENSIONS[@]}"; do
+       sync-file < <(find "$ART_PATH" -type f -name "*.$type" -print0)
     done
     clean
 }
 
 regenerate() {
-    rm -f $OUT_PATH/*;
+    rm -f "$OUT_PATH/*";
     walk-tree 
 }
 
 daemon-run() {
     while true; do
-        inotifywait -r -e modify,create,delete $ART_PATH
+        inotifywait -r -e modify,create,delete "$ART_PATH"
         walk-tree
     done
 }
 
 main() {
-    mkdir -p $OUT_PATH
+    if [[ ! -d "$OUT_PATH" ]]; then 
+        mkdir -p "$OUT_PATH"
+    fi
 
     local opt OPTIND OPTARG
     while getopts 'rdsh' opt; do
