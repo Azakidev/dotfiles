@@ -1,0 +1,37 @@
+// Uncomment this line to ask the clients to omit their client-side decorations if possible.
+// prefer-no-csd
+
+workspace "main"
+workspace "dump"
+
+window-rule {
+    geometry-corner-radius 14
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^huiontablet$"
+    open-on-workspace "dump"
+}
+
+window-rule {
+    match app-id="^krita$" title="Krita - Edit Text — Krita"
+    open-floating true
+}
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}

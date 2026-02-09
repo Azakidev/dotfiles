@@ -1,0 +1,85 @@
+include "includes.kdl"
+
+// This config is in the KDL format: https://kdl.dev
+
+// Input device configuration.
+// https://yalter.github.io/niri/Configuration:-Input
+input {
+    keyboard {
+        xkb {
+            // layout "gb"
+            // options "compose:ralt"
+        }
+        numlock
+    }
+
+    // Next sections include libinput settings.
+    // Omitting settings disables them, or leaves them at their default values.
+    // All commented-out settings here are examples, not defaults.
+    touchpad {
+        tap
+        // dwt
+        // drag false
+        // drag-lock
+        natural-scroll
+    }
+
+    focus-follows-mouse max-scroll-amount="50%"
+}
+
+// Find more information on the wiki:
+// https://yalter.github.io/niri/Configuration:-Outputs
+output "HDMI-A-1" {
+    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
+    mode "1920x1080@74.973"
+    scale 1
+    transform "normal"
+    variable-refresh-rate
+    position x=0 y=0
+}
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+}
+
+layout {
+    center-focused-column "never"
+
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    shadow {
+        on
+        softness 20
+        spread 3
+        offset x=0 y=5
+        color "#0007"
+    }
+}
+
+overview {
+    zoom 0.6
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+clipboard {
+    disable-primary
+}
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
