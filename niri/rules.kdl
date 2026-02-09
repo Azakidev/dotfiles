@@ -1,6 +1,7 @@
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // prefer-no-csd
 
+workspace "art"
 workspace "main"
 workspace "dump"
 
@@ -11,21 +12,40 @@ window-rule {
 
 window-rule {
     match app-id=r#"zen$"# title="^Picture-in-Picture$"
+
     open-floating true
+    open-focused false
+    
+    min-width 385
+    min-height 216
+
+    max-width 768
+    max-height 432
+
+    default-floating-position x=8 y=8 relative-to="top-right"
 }
 
 window-rule {
     match app-id="^huiontablet$"
+
     open-on-workspace "dump"
+    open-focused false
 }
 
 window-rule {
     match app-id="^krita$" title="Krita - Edit Text — Krita"
+
     open-floating true
 }
 
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    match app-id="^krita$" title="Krita" is-floating=false
+
+    open-maximized true
+    open-on-workspace "art"
+    open-focused true
+}
+
 /-window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
