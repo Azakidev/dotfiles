@@ -1,8 +1,8 @@
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// prefer-no-csd
+prefer-no-csd
 
-workspace "art"
 workspace "main"
+workspace "art"
 workspace "dump"
 
 window-rule {

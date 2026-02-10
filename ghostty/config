@@ -1,6 +1,8 @@
 # Visual
 theme = Dracula
 
+window-decoration=client
+
 window-padding-x = 8
 window-padding-y = 4
 window-theme=ghostty

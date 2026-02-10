@@ -1,5 +1,7 @@
 include "binds.kdl"
 include "rules.kdl"
+include "animations.kdl"
+
 include "dms/cursor.kdl"
 include "dms/wpblur.kdl"
 include "dms/alttab.kdl"
