@@ -22,7 +22,7 @@ window-rule {
     max-width 768
     max-height 432
 
-    default-floating-position x=8 y=8 relative-to="top-right"
+    default-floating-position x=8 y=8 relative-to="bottom-left"
 }
 
 window-rule {
@@ -34,6 +34,7 @@ window-rule {
 
 window-rule {
     match app-id="^krita$" title="Krita - Edit Text — Krita"
+    match app-id="^krita$" title="PNG image — Krita"
 
     open-floating true
 }
