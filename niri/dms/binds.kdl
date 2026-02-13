@@ -4,4 +4,6 @@ binds {
     Mod+N hotkey-overlay-title="Notifications: Toggle" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Super+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "call" "lock" "lock"; }
     Super+Shift+Period hotkey-overlay-title="Settings: Open" { spawn "dms" "ipc" "call" "settings" "open"; }
+    Super+XF86AudioLowerVolume hotkey-overlay-title="Brightness Down (5%)" { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
+    Super+XF86AudioRaiseVolume hotkey-overlay-title="Brightness Up (5%)" { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
 }

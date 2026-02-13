@@ -11,8 +11,48 @@ window-rule {
 }
 
 window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+window-rule {
+    match app-id=r#"pavucontrol$"# title="^Volume Control$"
+
+    open-floating true
+
+    min-height 520
+    min-width 750
+
+    max-height 520
+    max-width 750
+
+    default-floating-position x=8 y=8 relative-to="top-right"
+}
+
+window-rule {
+    match app-id="^discord$" title="^Discord Updater$"
+
+    open-focused false
+    default-floating-position x=8 y=8 relative-to="top-right"
+}
+
+window-rule {
+    match app-id="^XEyes" title="^xeyes$"
+
+    open-floating true
+    open-focused false
+    
+    min-width 385
+    min-height 216
+
+    max-width 385
+    max-height 216
+
+    default-floating-position x=8 y=8 relative-to="top-right"
+}
+
+window-rule {
     match app-id=r#"zen$"# title="^Picture-in-Picture$"
-    match app-id=r#"^xeyes$"# title="^Xeyes"
 
     open-floating true
     open-focused false
@@ -48,12 +88,10 @@ window-rule {
     open-focused true
 }
 
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id="zen" title="$Passwords"
 
     block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
 }

@@ -2,7 +2,7 @@ include "dms/binds.kdl"
 
 binds {
     // Shortcuts
-    Mod+1 { spawn "discord"; }
+    Mod+1 { spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform-hint=auto"; }
     Mod+4 { spawn "flatpak" "run" "org.kde.krita"; }
     Mod+5 { spawn "flatpak" "run" "org.localsend.localsend_app"; }
 
