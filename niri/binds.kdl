@@ -108,4 +108,6 @@ binds {
     XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    Mod+XF86AudioPlay    allow-when-locked=false{ spawn "pavucontrol"; }
+    Mod+Shift+XF86AudioPlay    allow-when-locked=false{ spawn "flatpak" "run" "org.pipewire.Helvum"; }
 }

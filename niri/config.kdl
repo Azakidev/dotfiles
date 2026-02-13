@@ -3,8 +3,8 @@ include "includes.kdl"
 input {
     keyboard {
         xkb {
-            // layout "gb"
-            // options "compose:ralt"
+            layout "gb"
+            options "compose:rctrl,ctrl:nocaps"
         }
         numlock
     }

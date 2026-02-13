@@ -12,6 +12,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    match app-id=r#"^xeyes$"# title="^Xeyes"
 
     open-floating true
     open-focused false
