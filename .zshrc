@@ -39,6 +39,26 @@ bindkey "$terminfo[kdch1]" delete-char
 bindkey "^[[1;$terminfo[kdch1]" kill-word
 bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 
+# Time savers
+alias rs='trash'
+alias clr='clear'
+alias cat='bat'
+alias top='btop'
+alias vim='nvim'
+alias ls='eza --icons'
+alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
+alias :q='exit'
+alias uefi='systemctl reboot --firmware-setup'
+alias avenv='source .venv/bin/activate'
+
+# Git aliases
+alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
+alias gd='git diff'
+alias gsall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; gs; cd ..; fi; done'
+alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull; cd ..; fi; done'
+
 # Arch commands
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
     alias upd='yay -Syu --noconfirm'
@@ -53,6 +73,9 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
     alias dim="ddcutil -d 1 setvcp 10 0"
     alias bright="ddcutil -d 1 setvcp 10 100"
     alias blc="ddcutil -d 1 setvcp 10"
+    
+    # Ollama GPU override on Arch
+    alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
 fi
 
 # NixOS commands
@@ -61,31 +84,8 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; the
     alias update='sudo nixos-rebuild switch --upgrade'
     alias adbshell='nix-shell -p androidenv.androidPkgs.platform-tools'
     alias adb='steam-run adb'
+
+    alias vim='steam-run nvim'
 fi
-
-# Time savers
-alias rs='trash'
-alias clr='clear'
-alias cat='bat'
-alias top='btop'
-alias vim='nvim'
-alias ls='eza --icons'
-alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
-alias :q='exit'
-alias uefi='systemctl reboot --firmware-setup'
-alias avenv='source .venv/bin/activate'
-
-# Ollama GPU override on Arch
-if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
-    alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
-fi
-
-# Git aliases
-alias gs='git status'
-alias gc='git commit'
-alias ga='git add'
-alias gd='git diff'
-alias gsall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; gs; cd ..; fi; done'
-alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull; cd ..; fi; done'
 
 eval "$(zoxide init zsh --cmd cd)"

@@ -14,9 +14,6 @@
     dockerCompat = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
 
   users.users.zazag = {
     packages = with pkgs; [
@@ -25,10 +22,7 @@
       localsend
       obsidian
       krita
-      winboat
 
-      davinci-resolve
-      blender-hip
       heroic
 
       discord
