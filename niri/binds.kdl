@@ -1,5 +1,3 @@
-include "dms/binds.kdl"
-
 binds {
     // Shortcuts
     Mod+1 { spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform-hint=auto"; }

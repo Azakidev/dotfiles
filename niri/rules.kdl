@@ -23,8 +23,8 @@ window-rule {
     min-height 520
     min-width 750
 
-    max-height 520
-    max-width 750
+    max-height 800
+    max-width 900
 
     default-floating-position x=8 y=8 relative-to="top-right"
 }

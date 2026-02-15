@@ -40,7 +40,6 @@ bindkey "^[[1;$terminfo[kdch1]" kill-word
 bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 
 # Time savers
-alias rs='trash'
 alias clr='clear'
 alias cat='bat'
 alias top='btop'
