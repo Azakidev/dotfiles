@@ -1,29 +1,5 @@
 include "includes.kdl"
 
-input {
-    keyboard {
-        xkb {
-            layout "gb"
-            options "compose:rctrl,ctrl:nocaps"
-        }
-        numlock
-    }
-
-    touchpad {
-        tap
-        // dwt
-        // drag false
-        // drag-lock
-        natural-scroll
-    }
-
-    focus-follows-mouse max-scroll-amount="50%"
-}
-
-clipboard {
-    disable-primary
-}
-
 output "HDMI-A-1" {
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "1920x1080@74.973"

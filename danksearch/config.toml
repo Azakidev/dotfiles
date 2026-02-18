@@ -1,0 +1,93 @@
+# DankSearch Configuration
+# See https://github.com/AvengeMedia/danksearch for documentation
+
+index_path = "~/.cache/danksearch/index"
+listen_addr = ":43654"
+max_file_bytes = 2097152
+worker_count = 6
+text_extensions = [".txt", ".md", ".go", ".py", ".js", ".ts", ".jsx", ".tsx", ".json", ".yaml", ".yml", ".toml", ".html", ".css", ".rs", ".c", ".cpp", ".h", ".java", ".rb", ".php", ".sh"]
+index_all_files = true
+max_depth = 0
+
+[[index_paths]]
+  path = "~/Documents/"
+  max_depth = 6
+  exclude_hidden = true
+  exclude_dirs = []
+  extract_exif = true
+
+[[index_paths]]
+  path = "~/Pictures/"
+  max_depth = 6
+  exclude_hidden = true
+  exclude_dirs = []
+  extract_exif = true
+
+[[index_paths]]
+  path = "~/Videos/"
+  max_depth = 6
+  exclude_hidden = true
+  exclude_dirs = []
+  extract_exif = true
+
+[[index_paths]]
+  path = "~/Music/"
+  max_depth = 6
+  exclude_hidden = true
+  exclude_dirs = []
+  extract_exif = true
+
+[[index_paths]]
+  path = "~/Downloads/"
+  max_depth = 6
+  exclude_hidden = true
+  exclude_dirs = []
+  extract_exif = true
+
+[[index_paths]]
+  path = "~/Projects/"
+  max_depth = 6
+  exclude_hidden = true
+  exclude_dirs = [
+    ".git",
+
+    # JavaScript/Node.js
+    "node_modules", "bower_components", ".npm", ".yarn",
+
+    # Python
+    "site-packages", "__pycache__", ".venv", "venv", ".tox",
+    ".pytest_cache", ".eggs",
+
+    # Build outputs
+    "dist", "build", "out", "bin", "obj",
+
+    # Rust
+    "target",
+
+    # Go
+    "vendor",
+
+    # Java/JVM
+    ".gradle", ".m2", ".kotlin",
+
+    # Ruby
+    "bundle",
+
+    # Cache directories
+    ".cache", ".parcel-cache", ".next", ".nuxt",
+
+    # OS specific
+    "Library", ".Trash-1000",
+
+    # Databases
+    ".postgresql", ".mysql", ".mongodb", ".redis",
+
+    # Package manager caches
+    "go", ".cargo", ".pyenv", ".rbenv", ".nvm", ".rustup",
+
+    # IDE/Editor
+    ".idea", ".vscode", ".java", ".android",
+
+    "Mod", ".stfolder"
+    ]
+  extract_exif = true

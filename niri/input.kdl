@@ -1,0 +1,27 @@
+input {
+    keyboard {
+        xkb {
+            layout "gb"
+            options "compose:rctrl,ctrl:nocaps"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        // dwt
+        // drag false
+        // drag-lock
+        natural-scroll
+    }
+
+    mouse {
+        accel-profile "adaptive"
+    }
+
+    focus-follows-mouse max-scroll-amount="50%"
+}
+
+clipboard {
+    disable-primary
+}

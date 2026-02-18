@@ -1,6 +1,7 @@
 include "binds.kdl"
 include "rules.kdl"
 include "animations.kdl"
+include "input.kdl"
 
 include "dms/cursor.kdl"
 include "dms/wpblur.kdl"
@@ -8,3 +9,4 @@ include "dms/alttab.kdl"
 include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/binds.kdl"
+include "dms/windowrules.kdl"
