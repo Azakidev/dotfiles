@@ -2,38 +2,11 @@
 
 {
   services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  services.gnome.games.enable = false;
 
   # Screen rotation
   hardware.sensor.iio.enable = true;
 
-  services.xserver.enable = true;
-
-  # Remove fodder
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-tour
-    gnome-user-docs
-    gnome-console
-    gnome-music
-    gnome-software
-    simple-scan
-    epiphany
-    geary
-    yelp
-    evince
-    file-roller
-  ];
-
-  services.xserver.excludePackages = with pkgs; [
-    xterm
-  ];
-
   environment.systemPackages = with pkgs; [
-    # Themes
-    adw-gtk3
-    morewaita-icon-theme
-    afterglow-cursors-recolored
     # Extra packages
     refine
     showtime
@@ -55,5 +28,4 @@
       }
     )
   ];
-
 }

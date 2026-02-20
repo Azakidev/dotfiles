@@ -9,19 +9,6 @@
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Zram
-  zramSwap.enable = true;
-  zramSwap.algorithm = "lz4";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Firewall
-  networking.firewall.allowedTCPPorts = [ 53317 8384 22000 9300 8080 3000 ];
-  networking.firewall.allowedUDPPorts = [ 53317 8384 22000 9300 8080 3000 ];
-  networking.firewall.enable = false;
-  networking.nftables.enable = true;
-
   # User definition
   users.users.zazag = {
     isNormalUser = true;
@@ -76,5 +63,14 @@
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
+  
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "es";
+    variant = "";
+  };
+
+  # Configure console keymap
+  console.keyMap = "es";
 
 }

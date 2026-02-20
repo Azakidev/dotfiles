@@ -49,10 +49,6 @@
     python313
     jdk
     cmake
-    # Fprint stuff
-    usbutils
-    openssl
-    opencv
   ];
 
 }
