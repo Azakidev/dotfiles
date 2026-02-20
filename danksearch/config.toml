@@ -1,7 +1,7 @@
 # DankSearch Configuration
 # See https://github.com/AvengeMedia/danksearch for documentation
 
-index_path = "~/.cache/danksearch/index"
+index_path = "/home/zazag/.cache/danksearch/index"
 listen_addr = ":43654"
 max_file_bytes = 2097152
 worker_count = 6
@@ -10,42 +10,42 @@ index_all_files = true
 max_depth = 0
 
 [[index_paths]]
-  path = "~/Documents/"
+  path = "/home/zazag/Documents/"
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = []
   extract_exif = true
 
 [[index_paths]]
-  path = "~/Pictures/"
+  path = "/home/zazag/Pictures/"
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = []
   extract_exif = true
 
 [[index_paths]]
-  path = "~/Videos/"
+  path = "/home/zazag/Videos/"
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = []
   extract_exif = true
 
 [[index_paths]]
-  path = "~/Music/"
+  path = "/home/zazag/Music/"
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = []
   extract_exif = true
 
 [[index_paths]]
-  path = "~/Downloads/"
+  path = "/home/zazag/Downloads/"
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = []
   extract_exif = true
 
 [[index_paths]]
-  path = "~/Projects/"
+  path = "/home/zazag/Projects/"
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = [
