@@ -1,7 +1,5 @@
-{
-    inputs,
-    ...
-}: let
+{ inputs, ... }:
+let
     inherit (inputs) self;
 
     nixosModules = with self.nixosModules; [
@@ -15,6 +13,7 @@
         terminal
         gaming
         syncthing
+        zen
     ];
 
 in {

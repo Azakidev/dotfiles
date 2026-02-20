@@ -9,4 +9,5 @@
     gaming = import ./gaming.nix;
     android = import ./android.nix;
     syncthing = import ./syncthing.nix;
+    zen = import ./zen.nix;
 }

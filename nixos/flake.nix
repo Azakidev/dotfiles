@@ -5,9 +5,15 @@
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
         quickshell = {
-              url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-              inputs.nixpkgs.follows = "nixpkgs";
+            url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        zen-browser = {
+            url = "github:youwen5/zen-browser-flake";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
     };
 
     outputs = {
