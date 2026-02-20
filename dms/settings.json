@@ -398,11 +398,20 @@
         ],
         "createdAt": 1771628609199,
         "updatedAt": 1771628609199
+      },
+      "profile_1771628720717_mua38n": {
+        "id": "profile_1771628720717_mua38n",
+        "name": "Laptop",
+        "outputSet": [
+          "eDP-1"
+        ],
+        "createdAt": 1771628720717,
+        "updatedAt": 1771628720717
       }
     }
   },
   "activeDisplayProfile": {
-    "niri": "profile_1771628609199_wsm5yc"
+    "niri": "profile_1771628720717_mua38n"
   },
   "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
