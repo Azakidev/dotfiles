@@ -1,0 +1,18 @@
+{
+  "dankGifSearch": {
+    "enabled": true
+  },
+  "dankLauncherKeys": {
+    "enabled": true
+  },
+  "dankStickerSearch": {
+    "enabled": false
+  },
+  "emojiLauncher": {
+    "enabled": true
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
+  }
+}

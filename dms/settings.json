@@ -177,7 +177,7 @@
   "appPickerViewMode": "grid",
   "filePickerUsageHistory": {},
   "sortAppsAlphabetically": false,
-  "appLauncherGridColumns": 5,
+  "appLauncherGridColumns": 7,
   "spotlightCloseNiriOverview": true,
   "spotlightSectionViewModes": {
     "apps": "grid"
@@ -354,7 +354,7 @@
   "osdPosition": 5,
   "osdVolumeEnabled": true,
   "osdMediaVolumeEnabled": true,
-  "osdMediaPlaybackEnabled": true,
+  "osdMediaPlaybackEnabled": false,
   "osdBrightnessEnabled": true,
   "osdIdleInhibitorEnabled": true,
   "osdMicMuteEnabled": true,
