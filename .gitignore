@@ -4,3 +4,4 @@ lazy-lock.json
 dms/.changelog*
 dms/plugins
 niri/dms/outputs.kdl
+niri/keymap.kdl

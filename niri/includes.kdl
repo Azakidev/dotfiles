@@ -2,6 +2,7 @@ include "binds.kdl"
 include "rules.kdl"
 include "animations.kdl"
 include "input.kdl"
+include "keymap.kdl"
 
 include "dms/cursor.kdl"
 include "dms/wpblur.kdl"
