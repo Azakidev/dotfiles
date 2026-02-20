@@ -1,13 +1,15 @@
 binds {
     Mod+C repeat=false hotkey-overlay-title="Clipboard: Toggle" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-    Mod+D repeat=false hotkey-overlay-title="App Launcher: Toggle" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+D hotkey-overlay-title="App Launcher: Toggle" repeat=false { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+N hotkey-overlay-title="Notifications: Toggle" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Super+Alt+Period repeat=false allow-when-locked=true hotkey-overlay-title="Power Menu: Toggle" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
     Super+L repeat=false hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "call" "lock" "lock"; }
-    Super+Shift+Period repeat=false hotkey-overlay-title="Settings: Open" { spawn "dms" "ipc" "call" "settings" "open"; }
+    Super+Shift+Period hotkey-overlay-title="Settings: Open" repeat=false { spawn "dms" "ipc" "call" "settings" "open"; }
     Super+XF86AudioLowerVolume allow-when-locked=true hotkey-overlay-title="Brightness Down (10%)" { spawn "dms" "ipc" "call" "brightness" "decrement" "10" ""; }
     Super+XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title="Brightness Up (10%)" { spawn "dms" "ipc" "call" "brightness" "increment" "10" ""; }
     XF86AudioNext repeat=false hotkey-overlay-title="Media: Next Track" { spawn "dms" "ipc" "call" "mpris" "next"; }
-    XF86AudioPlay repeat=false hotkey-overlay-title="Media: Play/Pause" { spawn "dms" "ipc" "call" "mpris" "playPause"; }
+    XF86AudioPlay hotkey-overlay-title="Media: Play/Pause" repeat=false { spawn "dms" "ipc" "call" "mpris" "playPause"; }
     XF86AudioPrev repeat=false hotkey-overlay-title="Media: Previous Track" { spawn "dms" "ipc" "call" "mpris" "previous"; }
+    XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Brightness Down (10%)" { spawn "dms" "ipc" "call" "brightness" "decrement" "10" ""; }
+    XF86MonBrightnessUp allow-when-locked=true hotkey-overlay-title="Brightness Up (10%)" { spawn "dms" "ipc" "call" "brightness" "increment" "10" ""; }
 }
