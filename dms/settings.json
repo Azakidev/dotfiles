@@ -388,8 +388,22 @@
     "eDP-1": {}
   },
   "hyprlandOutputSettings": {},
-  "displayProfiles": {},
-  "activeDisplayProfile": {},
+  "displayProfiles": {
+    "niri": {
+      "profile_1771628609199_wsm5yc": {
+        "id": "profile_1771628609199_wsm5yc",
+        "name": "Desktop",
+        "outputSet": [
+          "HDMI-A-1"
+        ],
+        "createdAt": 1771628609199,
+        "updatedAt": 1771628609199
+      }
+    }
+  },
+  "activeDisplayProfile": {
+    "niri": "profile_1771628609199_wsm5yc"
+  },
   "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
   "displaySnapToEdge": true,
