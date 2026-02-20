@@ -5,30 +5,31 @@
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     };
 
-    outputs = { self, nixpkgs }:
+    outputs = {
+        self,
+        nixpkgs,
+        ...
+        } @ inputs:
     let
-        system = "x86_64-linux";
+        systems = [
+          "x86_64-linux"
+        ];
+        # This is a function that generates an attribute by calling a function you
+        # pass to it, with each system as an argument
+        forAllSystems = nixpkgs.lib.genAttrs systems;
 
-        pkgs = import nixpkgs {
-            inherit system;
-
-            config = {
-                allowUnfree = true;
-            };
-        };
-    in
-    {
-
-    formatter = nixpkgs.alejandra;
+        username = "zazag";
+    in {
+    nixosModules = import ./modules/nixos;
 
     nixosConfigurations = {
         zazalapbottom = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit system; };
+            specialArgs = {
+                inherit inputs;
+                inherit username;
+            };
                     
-            modules = [ 
-            ./hosts/laptop.nix
-            ./modules
-            ];
+            modules = [ ./hosts/laptop/configuration.nix ];
         };
     };
 
