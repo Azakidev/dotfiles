@@ -366,7 +366,8 @@
   "powerMenuActions": [
     "reboot",
     "poweroff",
-    "restart"
+    "restart",
+    "hibernate"
   ],
   "powerMenuDefaultAction": "poweroff",
   "powerMenuGridLayout": false,
@@ -451,6 +452,10 @@
           "showMicIcon": false,
           "showBatteryIcon": false,
           "showPrinterIcon": false
+        },
+        {
+          "id": "battery",
+          "enabled": true
         }
       ],
       "spacing": 0,
