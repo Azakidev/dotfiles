@@ -1,14 +1,17 @@
 binds {
     // Shortcuts
     Mod+1 { spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform-hint=auto"; }
-    Mod+4 { spawn "flatpak" "run" "org.kde.krita"; }
+    // Mod+4 { spawn "flatpak" "run" "org.kde.krita"; }
+    Mod+4 { spawn "krita"; }
     Mod+5 { spawn "flatpak" "run" "org.localsend.localsend_app"; }
 
     Mod+Q hotkey-overlay-title="Open ghostty" { spawn "ghostty"; }
-    Mod+A hotkey-overlay-title="Open Zen" { spawn "zen-browser"; }
+    // Mod+A hotkey-overlay-title="Open Zen" { spawn "zen-browser"; }
+    Mod+A hotkey-overlay-title="Open Zen" { spawn "flatpak" "run" "app.zen_browser.zen"; }
     Mod+E hotkey-overlay-title="Open Files" { spawn "nautilus"; }
     
-    Control+Shift+Escape hotkey-overlay-title="Open Resources" { spawn "flatpak" "run" "net.nokyan.Resources"; }
+    // Control+Shift+Escape hotkey-overlay-title="Open Resources" { spawn "flatpak" "run" "net.nokyan.Resources"; }
+    Control+Shift+Escape hotkey-overlay-title="Open Resources" { spawn "resources"; }
 
     // Niri
     Mod+Shift+Q repeat=false { close-window; }

@@ -14,6 +14,7 @@
             discord
             betterdiscordctl
             beeper
+            stoat-desktop
         
             #Extra packages
             showtime

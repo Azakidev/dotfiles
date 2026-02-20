@@ -1,7 +1,8 @@
 input {
     keyboard {
         xkb {
-            layout "gb"
+            // layout "gb"
+            layout "es"
             options "compose:rctrl,ctrl:nocaps"
         }
         numlock
@@ -13,6 +14,10 @@ input {
         // drag false
         // drag-lock
         natural-scroll
+    }
+
+    touch {
+        // off
     }
 
     mouse {

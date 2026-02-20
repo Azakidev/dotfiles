@@ -1,17 +1,8 @@
 include "includes.kdl"
 
-output "HDMI-A-1" {
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@74.973"
-    scale 1
-    transform "normal"
-    variable-refresh-rate
-    position x=0 y=0
-}
-
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME "gtk3"
 }
 
 layout {

@@ -10,6 +10,7 @@
     common
 
     desktops.gnome
+    desktops.niri
   ];
 in {
   imports =
