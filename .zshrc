@@ -80,7 +80,7 @@ fi
 # NixOS commands
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; then
     alias rebuild='sudo nixos-rebuild switch'
-    alias update='sudo nixos-rebuild switch --upgrade'
+    alias update='sudo nixos-rebuild switch --upgrade --flake ~/Projects/dotfiles/nixos/'
     alias adbshell='nix-shell -p androidenv.androidPkgs.platform-tools'
     alias adb='steam-run adb'
 

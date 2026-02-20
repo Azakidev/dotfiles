@@ -19,6 +19,8 @@
     in
     {
 
+    formatter = nixpkgs.alejandra;
+
     nixosConfigurations = {
         zazalapbottom = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit system; };
