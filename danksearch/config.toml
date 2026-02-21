@@ -88,6 +88,9 @@ max_depth = 0
     # IDE/Editor
     ".idea", ".vscode", ".java", ".android",
 
-    "Mod", ".stfolder"
+    "Mod", ".stfolder",
+
+    # DO NOT INDEX THE ENTIRE FIREFOX SOURCE CODE DUMBASS
+    "firefox", "BetterDiscord"
     ]
   extract_exif = true
