@@ -464,6 +464,10 @@
           "enabled": true
         },
         {
+          "id": "battery",
+          "enabled": true
+        },
+        {
           "id": "controlCenterButton",
           "enabled": true,
           "showNetworkIcon": false,
@@ -475,10 +479,6 @@
           "showMicIcon": false,
           "showBatteryIcon": false,
           "showPrinterIcon": false
-        },
-        {
-          "id": "battery",
-          "enabled": true
         }
       ],
       "spacing": 0,
