@@ -1,7 +1,6 @@
 {
     inputs,
     pkgs,
-    lib,
     ...
 }: let
   customFprintRef = "github:oscar-schwarz/libfprint-goodix-55b4/b62173cdfe5097bdcb42b37d9448ca5bc3c1afbf";

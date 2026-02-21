@@ -229,7 +229,7 @@
   "notepadLastCustomTransparency": 0.7,
   "soundsEnabled": true,
   "useSystemSoundTheme": false,
-  "soundNewNotification": true,
+  "soundNewNotification": false,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
   "acMonitorTimeout": 600,
@@ -243,7 +243,7 @@
   "batterySuspendBehavior": 0,
   "batteryProfileName": "",
   "batteryChargeLimit": 100,
-  "lockBeforeSuspend": false,
+  "lockBeforeSuspend": true,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": true,
   "fadeToLockGracePeriod": 5,
@@ -367,7 +367,7 @@
     "reboot",
     "poweroff",
     "restart",
-    "hibernate"
+    "suspend"
   ],
   "powerMenuDefaultAction": "poweroff",
   "powerMenuGridLayout": false,

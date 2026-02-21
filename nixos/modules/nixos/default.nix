@@ -6,6 +6,7 @@
     terminal = import ./terminal.nix;
     theme = import ./theme.nix;
     fonts = import ./fonts.nix;
+    fprint = import ./fprint.nix;
     gaming = import ./gaming.nix;
     android = import ./android.nix;
     syncthing = import ./syncthing.nix;

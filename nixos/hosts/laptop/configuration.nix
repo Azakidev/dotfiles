@@ -8,6 +8,7 @@
   inherit (inputs) self;
   nixosModules = with self.nixosModules; [
     common
+    fprint
 
     desktops.gnome
     desktops.niri
