@@ -24,12 +24,4 @@
         LC_TELEPHONE = "es_ES.UTF-8";
         LC_TIME = "es_ES.UTF-8";
     };
-  
-    services.xserver.xkb = {
-        layout = "es";
-        variant = "";
-    };
-
-    # Configure console keymap
-    console.keyMap = "es";
 }
