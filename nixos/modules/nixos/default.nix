@@ -1,4 +1,5 @@
 {
+    android = import ./android.nix;
     applications = import ./applications.nix;
     core = import ./core;
     common = import ./common.nix;
@@ -8,7 +9,7 @@
     fonts = import ./fonts.nix;
     fprint = import ./fprint.nix;
     gaming = import ./gaming.nix;
-    android = import ./android.nix;
+    ssh = import ./ssh.nix;
     syncthing = import ./syncthing.nix;
     zen = import ./zen.nix;
 }

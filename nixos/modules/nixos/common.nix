@@ -8,11 +8,12 @@ let
         fonts
         theme
 
-        applications
         android
+        applications
         terminal
         gaming
         syncthing
+        ssh
         zen
     ];
 
