@@ -213,6 +213,9 @@ run() {
 main() {
     # Ensure we are on the script's folder so relative paths resolve correctly
     cd "$SDIR" || fail "Path didn't exist"
+
+    # Create ~/.config if it doesn't exist
+    mkdir -p "$HOME/.config/"
     
     local opt OPTIND OPTARG
     while getopts 'inafh' opt; do
