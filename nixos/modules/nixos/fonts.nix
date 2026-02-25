@@ -3,7 +3,10 @@
 {
   users.users.zazag = {
     packages = with pkgs; [
-      # Fonts
+      # Terminal
+      fira-code
+      meslo-lgs-nf
+      # Document
       corefonts
       vista-fonts
     ];

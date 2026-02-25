@@ -1,7 +1,14 @@
-{
-  programs= {
-    steam.enable = true;
+{ pkgs, ... }:
 
-    gamemode.enable = true;
-  };
+{
+    programs= {
+        steam.enable = true;
+        gamemode.enable = true;
+    };
+    
+    users.users.zazag = {
+        packages = with pkgs; [
+            heroic
+        ];
+    };
 }

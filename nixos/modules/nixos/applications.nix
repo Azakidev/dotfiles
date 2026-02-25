@@ -9,12 +9,10 @@
             obsidian
             krita
 
-            heroic
-
+            # Chat
             discord
-            betterdiscordctl
-            beeper
             stoat-desktop
+            beeper
         
             #Extra packages
             showtime

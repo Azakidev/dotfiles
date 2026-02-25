@@ -20,13 +20,13 @@ let
 in {
     imports = nixosModules;
 
-    # Enable flakes
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
     services.displayManager.gdm.enable = true;
 
     # Screen rotation
     hardware.sensor.iio.enable = true;
+
+    # Enable flakes
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # Misc  
     nixpkgs.config.allowUnfree = true;

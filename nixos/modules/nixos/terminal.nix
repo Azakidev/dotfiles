@@ -13,11 +13,8 @@
     packages = with pkgs; [
       # The basics
       ghostty
-      gh
       oh-my-posh
-      # Fonts
-      fira-code
-      meslo-lgs-nf
+      gh
       # Utilities
       eza
       zoxide
@@ -27,7 +24,8 @@
       tealdeer
       unzip
       tree
-      # CLIs
+      fastfetch
+
       jq
       yq
     ];
