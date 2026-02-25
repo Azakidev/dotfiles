@@ -6,6 +6,9 @@
 SDIR=$(dirname "$0")
 SDIR=$(readlink --canonicalize "$SDIR")
 
+ARCH_MAP="input { keyboard { kbd { layout \"gb\" } } }"
+NIX_MAP="input { keyboard { kbd { layout \"es\" } } }"
+
 # Flags
 START_INDEX=0
 IS_ARCH=0
@@ -68,7 +71,7 @@ install_yay() {
     echo "Installing yay"
 
     # Make a tmp dir
-    mkdir "$HOME/tmp"
+    mkdir -p "$HOME/tmp"
     cd "$HOME/tmp" || fail "Failed to make tmp folder"
     
     # Clone yay and install
@@ -102,22 +105,32 @@ arch_pkgs() {
         xdg-desktop-portal-gnome \
         niri matugen dms-shell-bin dsearch-bin xwayland-satellite \
         adw-gtk-theme morewaita-icon-theme
+
     # CLIs and utilities
     echo "Installing CLIs"
     yay -S --noconfirm \
         ffmpeg \
-        zoxide bat eza fastfetch yq jq \
+        treesitter \
+        zoxide bat eza fastfetch \
+        yq jq \
+        nodejs \
         wl-clipboard tealdeer \
         ffmpegthumbnailer \
         gamemode mangohud
+
     # ZSH plugins
     echo "Installing ZSH plugins"
     yay -S --noconfirm zsh ghostty neovim \
         oh-my-posh-bin \
         zsh-autosuggestions zsh-syntax-highlighting
+    # Set as default shell
+    chsh -s /usr/bin/zsh
+
     # Fonts
     echo "Installing fonts"
-    yay -S --noconfirm ttf-fira-code ttf-meslo-nerd ttf-nunito
+    yay -S --noconfirm \
+        ttf-fira-code ttf-meslo-nerd ttf-nunito
+
     # Apps
     echo "Installing apps"
     yay -S --noconfirm \
@@ -133,17 +146,38 @@ arch_pkgs() {
     fi
     if ! gdm --help &> /dev/null; then
         yay -S --noconfirm gdm
-        systemctl enable gdm.service
     fi
 }
 
 arch_services() {
     echo "Enabling services"
+    # GDM
+    sudo systemctl enable gdm.service
     # Bluetooth
-    systemctl enable bluetooth.service
+    sudo systemctl enable bluetooth.service
+    # Syncthing
+    systemctl --user start syncthing.service
     # Niri
     systemctl --user add-wants niri.service dms.service
     systemctl --user add-wants niri.service dsearch.service
+}
+
+arch_cursor() {
+    # Make a tmp dir
+    mkdir -p "$HOME/tmp"
+    cd "$HOME/tmp" || fail "Failed to make tmp folder"
+
+    # Clone and instal
+    git clone https://github.com/TeddyBearKilla/Afterglow-Cursors-Recolored.git acr
+    cd acr || "Failed to clone cursors"
+
+    colors/Dracula/Purple/install.sh
+    
+    # Clean
+    rm -rf "$HOME/tmp"
+    
+    # Return back to script folder
+    cd "$SDIR" || fail "What"
 }
 
 setup_flatpak() {
@@ -180,6 +214,12 @@ niri_config() {
         systemctl --user start dsearch.service
         dsearch index generate
     fi
+
+    if [[ $IS_ARCH == 1 ]]; then 
+        echo "$ARCH_MAP" > "$HOME/.config/niri/keymap.kdl"
+    elif [[ $IS_NIX == 1 ]]; then
+        echo "$NIX_MAP" > "$HOME/.config/niri/keymap.kdl"
+    fi
 }
 
 terminal_config() {
@@ -206,7 +246,8 @@ arch() {
     pacman_conf 
     install_yay
     arch_user_dirs 
-    arch_pkgs 
+    arch_pkgs
+    arch_cursor 
     arch_services 
 }
 
