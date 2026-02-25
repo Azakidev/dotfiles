@@ -135,7 +135,7 @@ arch_pkgs() {
     echo "Installing apps"
     yay -S --noconfirm \
         flatpak \
-        steam syncthing \
+        steam syncthing zen-browser-bin \
         resources loupe showtime decibels gcolor3 \
         discord betterdiscordctl \
         beeper-v4-bin stoat-desktop-bin telegram-desktop # android-studio
@@ -167,10 +167,12 @@ arch_cursor() {
     mkdir -p "$HOME/tmp"
     cd "$HOME/tmp" || fail "Failed to make tmp folder"
 
-    # Clone and instal
+    # Clone and install
     git clone https://github.com/TeddyBearKilla/Afterglow-Cursors-Recolored.git acr
     cd acr/colors/Dracula/Purple || "Failed to clone cursors"
 
+    # cp with no check award goes to
+    mkdir -p "$HOME/.local/share/icons"
     ./install.sh
     
     # Clean
