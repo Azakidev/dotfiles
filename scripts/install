@@ -110,7 +110,6 @@ arch_pkgs() {
     echo "Installing CLIs"
     yay -S --noconfirm \
         ffmpeg \
-        treesitter \
         zoxide bat eza fastfetch \
         yq jq \
         nodejs \
@@ -136,9 +135,10 @@ arch_pkgs() {
     yay -S --noconfirm \
         flatpak \
         steam syncthing zen-browser-bin \
-        resources loupe showtime decibels gcolor3 \
+        resources loupe showtime decibels gcolor3 gnome-tweaks \
         discord betterdiscordctl \
-        beeper-v4-bin stoat-desktop-bin telegram-desktop # android-studio
+        beeper-v4-bin stoat-desktop-bin telegram-desktop \
+        android-studio
     
     # Installing gnome stuff
     if ! nautilus --help &> /dev/null; then
@@ -251,6 +251,7 @@ arch() {
     arch_pkgs
     arch_cursor 
     arch_services 
+    install_thumbnailers
 }
 
 run() {
@@ -270,7 +271,6 @@ run() {
     niri_config
     nvim_config 
     misc_config 
-    install_thumbnailers
 
     if [[ $INSTALL_FLATPAK == 1 ]]; then
         setup_flatpak
