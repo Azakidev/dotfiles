@@ -20,7 +20,7 @@ max_depth = 0
   path = "/home/zazag/Pictures/"
   max_depth = 6
   exclude_hidden = true
-  exclude_dirs = []
+  exclude_dirs = ["Share"]
   extract_exif = true
 
 [[index_paths]]
@@ -42,55 +42,4 @@ max_depth = 0
   max_depth = 6
   exclude_hidden = true
   exclude_dirs = []
-  extract_exif = true
-
-[[index_paths]]
-  path = "/home/zazag/Projects/"
-  max_depth = 6
-  exclude_hidden = true
-  exclude_dirs = [
-    ".git",
-
-    # JavaScript/Node.js
-    "node_modules", "bower_components", ".npm", ".yarn",
-
-    # Python
-    "site-packages", "__pycache__", ".venv", "venv", ".tox",
-    ".pytest_cache", ".eggs",
-
-    # Build outputs
-    "dist", "build", "out", "bin", "obj",
-
-    # Rust
-    "target",
-
-    # Go
-    "vendor",
-
-    # Java/JVM
-    ".gradle", ".m2", ".kotlin",
-
-    # Ruby
-    "bundle",
-
-    # Cache directories
-    ".cache", ".parcel-cache", ".next", ".nuxt",
-
-    # OS specific
-    "Library", ".Trash-1000",
-
-    # Databases
-    ".postgresql", ".mysql", ".mongodb", ".redis",
-
-    # Package manager caches
-    "go", ".cargo", ".pyenv", ".rbenv", ".nvm", ".rustup",
-
-    # IDE/Editor
-    ".idea", ".vscode", ".java", ".android",
-
-    "Mod", ".stfolder",
-
-    # DO NOT INDEX THE ENTIRE FIREFOX SOURCE CODE DUMBASS
-    "firefox", "BetterDiscord"
-    ]
   extract_exif = true

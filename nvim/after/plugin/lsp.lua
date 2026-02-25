@@ -1,4 +1,5 @@
 -- Here go additional configurations for LSP servers
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
@@ -15,8 +16,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+vim.filetype.add {
+    extension = {
+        njk = 'html',
+    },
+}
+
 vim.lsp.config("emmet-ls", {
-    filetypes = { "html", "njk", "markdown", "javascript", "javascriptreact" }
+    capabilities = capabilities,
+    filetypes = { "html", "njk", "html.jinja", "jinja", "markdown", "javascript", "javascriptreact" }
 })
 
 vim.lsp.config("rust_analyzer", {
@@ -27,8 +35,12 @@ vim.lsp.config("rust_analyzer", {
     }
 })
 
-vim.filetype.add {
-    extension = {
-        njk = 'html',
-    },
-}
+vim.lsp.config("jinja_lsp", {
+    capabilities = capabilities,
+    filetypes = { "nunjucks", "njk", "jinja", "html.jinja" },
+    root_markers = { "package.json", ".git" },
+    settings = {
+        template_extensions = { "njk", "html.jinja", "html" },
+        templates = './pages/_includes',
+    }
+})

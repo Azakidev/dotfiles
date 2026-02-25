@@ -95,6 +95,11 @@
       "width": 50
     },
     {
+      "id": "wifi",
+      "enabled": true,
+      "width": 25
+    },
+    {
       "id": "nightMode",
       "enabled": true,
       "width": 25
@@ -107,7 +112,7 @@
     {
       "id": "idleInhibitor",
       "enabled": true,
-      "width": 50
+      "width": 25
     }
   ],
   "showWorkspaceIndex": false,
