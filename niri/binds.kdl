@@ -8,7 +8,7 @@ binds {
     Mod+A hotkey-overlay-title="Open Zen" { spawn-sh "zen-browser || zen"; }
     Mod+E hotkey-overlay-title="Open Files" { spawn "nautilus"; }
     
-    Control+Shift+Escape hotkey-overlay-title="Open Resources" { spawn-sh "flatpak run net.nokyan.Resources || resources"; }
+    Control+Shift+Escape hotkey-overlay-title="Open Resources" { spawn "resources"; }
 
     // Niri
     Mod+Shift+Q repeat=false { close-window; }

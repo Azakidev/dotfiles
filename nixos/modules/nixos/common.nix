@@ -12,6 +12,7 @@ let
         applications
         terminal
         gaming
+        nautilus
         syncthing
         ssh
         zen

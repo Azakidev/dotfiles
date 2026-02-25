@@ -42,7 +42,6 @@ bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 # Time savers
 alias clr='clear'
 alias cat='bat'
-alias top='btop'
 alias vim='nvim'
 alias ls='eza --icons=auto'
 alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
@@ -84,7 +83,7 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; the
     # Adb
     alias adbshell='nix-shell -p androidenv.androidPkgs.platform-tools'
     alias adb='steam-run adb'
-    # Alias betterdiscord to not keep it installed
+    # Alias betterdiscordctl to not keep it installed
     alias betterdiscordctl="nix run nixpkgs\#betterdiscordctl --"
 
     alias vim='steam-run nvim'

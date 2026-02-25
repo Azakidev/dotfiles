@@ -1,0 +1,234 @@
+#!/usr/bin/env bash
+#
+# Link all my configs to the correct places 
+# and set up an arch install from a minimal archinstall profile
+
+SDIR=$(basename "$0")
+
+# Flags
+START_INDEX=0
+IS_ARCH=0
+IS_NIX=0
+INSTALL_FLATPAK=0
+
+# Flatpak lists
+declare -a FLATPAKS=(
+    "io.github.kolunmi.Bazaar"
+    "io.github.flattool.Warehouse"
+    "com.github.tchx84.Flatseal"
+    
+    "org.pipewire.Helvum"
+
+    "com.usebottles.bottles"
+    "md.obsidian.Obsidian"
+    "org.kde.ark"
+
+    "com.orama_interactive.Pixelorama"
+    "org.gnome.gitlab.YaLTeR.VideoTrimmer"
+    "com.authormore.penpotdesktop"
+
+    "org.prismlauncher.PrismLauncher"
+)
+
+declare -a ARCH_FLATPAKS=(
+    "org.mozilla.Thunderbird"
+    "org.localsend.localsend_app"
+
+    "org.kde.krita"
+
+    "io.github.everestapi.Olympus"
+    "com.heroicgameslauncher.hgl"
+)
+
+usage() {
+    cat << EOF
+Install dotfiles, arch packages, and set up my flake
+Usage:
+    -a  Installs relevant packages and configurations for Arch Linux
+    -n  Installs relevant packages and configurations for NixOS
+    -i  Starts a dsearch indexing generation
+    -f  Set up flathub and install the usual flatpaks
+    -h  Print this usage message
+EOF
+}
+
+fail() {
+    echo "[ERROR] $1"
+    exit 1
+}
+
+install_yay() {
+    echo "Installing yay"
+
+    # Make a tmp dir
+    mkdir "$HOME/tmp"
+    cd "$HOME/tmp" || fail "Failed to make tmp folder"
+    
+    # Clone yay and install
+    git clone https://aur.archlinux.org/yay
+    cd yay || fail "Failed to clone yay"
+    makepkg -si
+    
+    # Clean
+    rm -r "$HOME/tmp"
+    
+    # Return back to script folder
+    cd "$SDIR" || fail "What"
+}
+
+arch_pkgs() {
+    # Basics and apps
+    echo "Installing apps"
+    yay -S --noconfirm \
+        flatpak \
+        steam syncthing \
+        resources loupe showtime decibels gcolor3 \
+        android-studio betterdiscordctl \
+        discord beeper-v4-bin stoat-desktop-bin telegram-desktop \
+    # Desktop
+    echo "Installing desktop"
+    yay -S --noconfirm \
+        xdg-desktop-portal-gnome \
+        niri matugen dms-shell-bin dsearch-bin \
+        adw-gtk-theme morewaita-icon-theme
+    # CLIs and utilities
+    echo "Installing CLIs"
+    yay -S --noconfirm \
+        ffmpeg \
+        zoxide bat eza fastfetch yq jq \
+        wl-clipboard tealdeer \
+        ffmpegthumbnailer \
+        gamemode mangohud
+    # ZSH plugins
+    echo "Installing ZSH plugins"
+    yay -S --noconfirm zsh ghostty neovim \
+        oh-my-posh-bin \
+        zsh-autosuggestions zsh-syntax-highlighting
+    # Fonts
+    echo "Installing fonts"
+    yay -S --noconfirm ttf-fira-code ttf-meslo-nerd ttf-nunito
+    
+    # Installing gnome stuff
+    if ! nautilus --help &> /dev/null; then
+        yay -S --noconfirm nautilus
+    fi
+    if ! gdm --help &> /dev/null; then
+        yay -S --noconfirm gdm
+        systemctl enable gdm.service
+    fi
+}
+
+arch_services() {
+    echo "Enabling services"
+    # Bluetooth
+    systemctl enable bluetooth.service
+    # Niri
+    systemctl --user add-wants niri.service dms.service
+    systemctl --user add-wants niri.service dsearch.service
+}
+
+setup_flatpak() {
+    flatpak --version &> /dev/null || fail "Flatpak is not installed"
+    
+    echo "Adding flathub repo"
+    flatpak remote-add --if-not-exists \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    echo "Installing flatpaks"
+    flatpak install --noninteractive "${FLATPAKS[@]}"
+    
+    if [[ $IS_ARCH == 1 ]]; then
+        echo "Installing arch-only flatpaks"
+        flatpak install --noninteractive "${ARCH_FLATPAKS[@]}"
+    fi
+}
+
+install_thumbnailers() {
+    sudo ln -s "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
+    sudo ln -s "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
+}
+
+niri_config() {
+    ln -s "$(readlink --canonicalize ../niri/)" "$HOME/.config/niri"
+    ln -s "$(readlink --canonicalize ../dms/)" "$HOME/.config/DankMaterialShell"
+    ln -s "$(readlink --canonicalize ../danksearch/)" "$HOME/.config/danksearch"
+
+    if [[ $START_INDEX == 1 ]]; then
+        echo "Starting dsearch index"
+        systemctl --user start dsearch.service
+        dsearch index generate
+    fi
+}
+
+terminal_config() {
+    ln -s "$(readlink --canonicalize ../.zshrc)" "$HOME/.zshrc"
+    ln -s "$(readlink --canonicalize ../oh-my-posh/)" "$HOME/.config/oh-my-posh"
+    ln -s "$(readlink --canonicalize ../ghostty/)" "$HOME/.config/ghostty"
+}
+
+nvim_config() {
+    ln -s "$(readlink --canonicalize ../nvim/)" "$HOME/.config/nvim"
+}
+
+misc_config() {
+    ln -s "$(readlink --canonicalize ../fastfetch/)" "$HOME/.config/fastfetch"
+    ln -s "$(readlink --canonicalize ../MangoHud/)" "$HOME/.config/MangoHud"
+}
+
+arch_installs() {
+    # Install git if not installed already
+    if ! git -v &> /dev/null; then
+        pacman -S --noconfirm git
+    fi
+
+    install_yay
+    arch_pkgs 
+    arch_services 
+}
+
+run() {
+    if [[ $IS_ARCH == 1 ]]; then
+        arch_installs 
+    fi
+
+    if [[ $IS_NIX == 1 ]]; then
+        if [[ -d "$HOME/Projects/dotfiles/" ]]; then
+            sudo nixos-rebuild switch --flake "$HOME/Projects/dotfiles/nixos/"
+        else
+            fail "Dotfiles not in ~/Projects"
+        fi
+    fi
+
+    terminal_config 
+    niri_config
+    nvim_config 
+    misc_config 
+    install_thumbnailers
+
+    if [[ $INSTALL_FLATPAK == 1 ]]; then
+        setup_flatpak
+    fi
+}
+
+main() {
+    # Ensure we are on the script's folder so relative paths resolve correctly
+    cd "$SDIR" || fail "Path didn't exist"
+    
+    local opt OPTIND OPTARG
+    while getopts 'inafh' opt; do
+        case $opt in
+            a) IS_ARCH=1 ;;
+            n) IS_NIX=1 ;;
+            f) INSTALL_FLATPAK=1 ;;
+            i) START_INDEX=1 ;;
+            h) usage ; return 0;;
+            \?) fail "Unknown flag";;
+            *) : ;;
+        esac
+    done
+    shift "$((OPTIND - 1))"
+
+    run
+}
+
+main "$@"
