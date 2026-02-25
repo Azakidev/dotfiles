@@ -95,8 +95,8 @@ arch_pkgs() {
         flatpak \
         steam syncthing \
         resources loupe showtime decibels gcolor3 \
-        android-studio betterdiscordctl \
-        discord beeper-v4-bin stoat-desktop-bin telegram-desktop \
+        discord betterdiscordctl beeper-v4-bin stoat-desktop-bin telegram-desktop
+        # android-studio
     # Desktop
     echo "Installing desktop"
     yay -S --noconfirm \
