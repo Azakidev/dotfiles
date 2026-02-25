@@ -210,6 +210,11 @@ niri_config() {
     ln -s "$(readlink --canonicalize ../niri/)" "$HOME/.config/niri"
     ln -s "$(readlink --canonicalize ../dms/)" "$HOME/.config/DankMaterialShell"
     ln -s "$(readlink --canonicalize ../danksearch/)" "$HOME/.config/danksearch"
+    
+    # Set a default wallpaper if none is set
+    if [[ $(dms ipc wallpaper get) != *"dotfiles"* ]]; then
+        dms ipc wallpaper set ~/Projects/dotfiles/wallpaper/hos.png
+    fi
 
     if [[ $START_INDEX == 1 ]]; then
         echo "Starting dsearch index"
