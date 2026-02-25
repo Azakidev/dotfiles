@@ -6,8 +6,8 @@
 SDIR=$(dirname "$0")
 SDIR=$(readlink --canonicalize "$SDIR")
 
-ARCH_MAP="input { keyboard { kbd { layout \"gb\" } } }"
-NIX_MAP="input { keyboard { kbd { layout \"es\" } } }"
+ARCH_MAP="input { keyboard { xkb { layout \"gb\"; }; }; }"
+NIX_MAP="input { keyboard { xkb { layout \"es\"; }; }; }"
 
 # Flags
 START_INDEX=0
