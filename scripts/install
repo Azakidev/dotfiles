@@ -194,7 +194,8 @@ arch_installs() {
     if ! git -v &> /dev/null; then
         pacman -S --noconfirm git
     fi
-
+    
+    pacman_conf 
     install_yay
     arch_pkgs 
     arch_services 
