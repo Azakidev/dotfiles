@@ -144,6 +144,9 @@ setup_flatpak() {
 }
 
 install_thumbnailers() {
+    # Create folder if it doesn't exist
+    mkdir -p /usr/share/thumbnailers/
+
     sudo ln -s "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
     sudo ln -s "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
 }
