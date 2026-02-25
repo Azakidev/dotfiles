@@ -88,20 +88,19 @@ install_yay() {
     cd "$SDIR" || fail "What"
 }
 
+arch_user_dirs() {
+    echo "Making user dirs"
+
+    yay -S --noconfirm xdg-user-dirs
+    xdg-user-dirs-update
+}
+
 arch_pkgs() {
-    # Basics and apps
-    echo "Installing apps"
-    yay -S --noconfirm \
-        flatpak \
-        steam syncthing \
-        resources loupe showtime decibels gcolor3 \
-        discord betterdiscordctl beeper-v4-bin stoat-desktop-bin telegram-desktop
-        # android-studio
     # Desktop
     echo "Installing desktop"
     yay -S --noconfirm \
         xdg-desktop-portal-gnome \
-        niri matugen dms-shell-bin dsearch-bin \
+        niri matugen dms-shell-bin dsearch-bin xwayland-satellite \
         adw-gtk-theme morewaita-icon-theme
     # CLIs and utilities
     echo "Installing CLIs"
@@ -119,6 +118,14 @@ arch_pkgs() {
     # Fonts
     echo "Installing fonts"
     yay -S --noconfirm ttf-fira-code ttf-meslo-nerd ttf-nunito
+    # Apps
+    echo "Installing apps"
+    yay -S --noconfirm \
+        flatpak \
+        steam syncthing \
+        resources loupe showtime decibels gcolor3 \
+        discord betterdiscordctl \
+        beeper-v4-bin stoat-desktop-bin telegram-desktop # android-studio
     
     # Installing gnome stuff
     if ! nautilus --help &> /dev/null; then
@@ -190,7 +197,7 @@ misc_config() {
     ln -s "$(readlink --canonicalize ../MangoHud/)" "$HOME/.config/MangoHud"
 }
 
-arch_installs() {
+arch() {
     # Install git if not installed already
     if ! git -v &> /dev/null; then
         pacman -S --noconfirm git
@@ -198,13 +205,14 @@ arch_installs() {
     
     pacman_conf 
     install_yay
+    arch_user_dirs 
     arch_pkgs 
     arch_services 
 }
 
 run() {
     if [[ $IS_ARCH == 1 ]]; then
-        arch_installs 
+        arch 
     fi
 
     if [[ $IS_NIX == 1 ]]; then
