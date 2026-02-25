@@ -169,9 +169,9 @@ arch_cursor() {
 
     # Clone and instal
     git clone https://github.com/TeddyBearKilla/Afterglow-Cursors-Recolored.git acr
-    cd acr || "Failed to clone cursors"
+    cd acr/colors/Dracula/Purple || "Failed to clone cursors"
 
-    colors/Dracula/Purple/install.sh
+    ./install.sh
     
     # Clean
     rm -rf "$HOME/tmp"
