@@ -4,6 +4,7 @@
 # and set up an arch install from a minimal archinstall profile
 
 SDIR=$(dirname "$0")
+SDIR=$(readlink --canonicalize "$SDIR")
 
 # Flags
 START_INDEX=0
