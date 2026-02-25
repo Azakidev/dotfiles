@@ -3,7 +3,7 @@
 # Link all my configs to the correct places 
 # and set up an arch install from a minimal archinstall profile
 
-SDIR=$(basename "$0")
+SDIR=$(dirname "$0")
 
 # Flags
 START_INDEX=0
@@ -212,7 +212,6 @@ run() {
 
 main() {
     # Ensure we are on the script's folder so relative paths resolve correctly
-    echo "$SDIR"
     cd "$SDIR" || fail "Path didn't exist"
     
     local opt OPTIND OPTARG
