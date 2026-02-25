@@ -212,6 +212,7 @@ run() {
 
 main() {
     # Ensure we are on the script's folder so relative paths resolve correctly
+    echo "$SDIR"
     cd "$SDIR" || fail "Path didn't exist"
     
     local opt OPTIND OPTARG
