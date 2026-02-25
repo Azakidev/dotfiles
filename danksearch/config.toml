@@ -20,14 +20,14 @@ max_depth = 0
   path = "/home/zazag/Pictures/"
   max_depth = 6
   exclude_hidden = true
-  exclude_dirs = ["Share"]
+  exclude_dirs = ["Share", "Screenshots"]
   extract_exif = true
 
 [[index_paths]]
   path = "/home/zazag/Videos/"
   max_depth = 6
   exclude_hidden = true
-  exclude_dirs = []
+  exclude_dirs = [ "Resolve Project Backups", "CacheClip" ]
   extract_exif = true
 
 [[index_paths]]
