@@ -57,6 +57,12 @@ fail() {
     exit 1
 }
 
+pacman_conf() {
+    # Override Arch's stupid ass configs
+    sudo ln -sf "$(readlink --canonicalize ../arch/pacman.conf)" /etc/pacman.conf
+    sudo ln -sf "$(readlink --canonicalize ../arch/makepkg.conf)" /etc/makepkg.conf
+}
+
 install_yay() {
     echo "Installing yay"
 
@@ -67,10 +73,15 @@ install_yay() {
     # Clone yay and install
     git clone https://aur.archlinux.org/yay
     cd yay || fail "Failed to clone yay"
-    makepkg -si
+    
+    # Install base-devel so installation succeeds
+    sudo pacman -S --noconfirm base-devel
+    
+    # Install yay
+    makepkg -si --noconfirm
     
     # Clean
-    rm -r "$HOME/tmp"
+    rm -rf "$HOME/tmp"
     
     # Return back to script folder
     cd "$SDIR" || fail "What"
