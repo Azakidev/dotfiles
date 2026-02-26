@@ -14,6 +14,7 @@ START_INDEX=0
 IS_ARCH=0
 IS_NIX=0
 INSTALL_FLATPAK=0
+USE_GDM=1
 
 # Flatpak lists
 declare -a FLATPAKS=(
@@ -74,6 +75,7 @@ Usage:
     -n  Installs relevant packages and configurations for NixOS
     -i  Starts a dsearch indexing generation
     -f  Set up flathub and install the usual flatpaks
+    -g  Use Greetd+dms greeter instead of GDM
     -h  Print this usage message
 EOF
 }
@@ -125,8 +127,10 @@ arch_user_dirs() {
 
 arch_pkgs() {
     # Installing gnome stuff
-    if ! gdm --help &> /dev/null; then
-        yay -S --noconfirm gdm
+    if [[ $USE_GDM == 1 ]]; then
+        if ! gdm --help &> /dev/null; then
+            yay -S --noconfirm gdm
+        fi
     fi
 
     if ! nautilus --help &> /dev/null; then
@@ -144,8 +148,12 @@ arch_pkgs() {
 
 arch_services() {
     echo "Enabling services"
-    # GDM
-    sudo systemctl enable gdm.service
+    # Greeter
+    if [[ $USE_GDM == 1 ]]; then
+        sudo systemctl enable gdm.service
+    else
+        dms greeter install
+    fi
     # Bluetooth
     sudo systemctl enable bluetooth.service
     # Syncthing
@@ -283,12 +291,13 @@ main() {
     cd "$SDIR" || fail "Path didn't exist"
 
     local opt OPTIND OPTARG
-    while getopts 'inafh' opt; do
+    while getopts 'inagfh' opt; do
         case $opt in
             a) IS_ARCH=1 ;;
             n) IS_NIX=1 ;;
             f) INSTALL_FLATPAK=1 ;;
             i) START_INDEX=1 ;;
+            g) USE_GDM=0 ;;
             h) usage ; return 0;;
             \?) fail "Unknown flag";;
             *) : ;;
