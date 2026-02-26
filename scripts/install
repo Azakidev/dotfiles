@@ -46,28 +46,22 @@ declare -a ARCH_FLATPAKS=(
 )
 
 declare -a ARCH_PKGS=(
-    "xdg-desktop-portal-gnome"
-    "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
-    "adw-gtk-theme" "morewaita-icon-theme"
-    "ffmpeg"
-    "zoxide" "bat" "eza" "fastfetch" "less"
-    "yq" "jq"
-    "wl-clipboard" "tealdeer"
-    "ffmpegthumbnailer"
-    "gamemode" "mangohud"
-    "zsh" "ghostty" "neovim"
-    "oh-my-posh-bin"
-    "zsh-autosuggestions" "zsh-syntax-highlighting"
-    "nodejs"
-    "ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito"
-    "flatpak"
-    "steam"
-    "syncthing"
-    "zen-browser-bin"
+    # Desktop
+    "xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
     "resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks"
-    "discord" "betterdiscordctl"
-    "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
-    "android-studio"
+    # Theme
+    "adw-gtk-theme" "morewaita-icon-theme"
+    # CLI
+    "ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer"
+    "zsh" "ghostty" "neovim" "oh-my-posh-bin" "zsh-autosuggestions" "zsh-syntax-highlighting"
+    # Fonts
+    "ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito"
+    # Gaming
+    "gamemode" "mangohud" "steam"
+    # Chat
+    "discord" "betterdiscordctl" "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
+    # Misc
+    "flatpak" "syncthing" "ffmpegthumbnailer" "nodejs" "zen-browser-bin" "android-studio"
 )
 
 usage() {
@@ -120,24 +114,29 @@ install_yay() {
 arch_user_dirs() {
     echo "Making user dirs"
 
-    yay -S --noconfirm xdg-user-dirs
+    if ! xdg-user-dirs-update --help &> /dev/null; then
+        yay -S --noconfirm xdg-user-dirs
+    fi
+
     xdg-user-dirs-update
 }
 
 arch_pkgs() {
+    # Installing gnome stuff
+    if ! gdm --help &> /dev/null; then
+        yay -S --noconfirm gdm
+    fi
+
+    if ! nautilus --help &> /dev/null; then
+        yay -S --noconfirm nautilus
+    fi
+    
+    # Install damn near everything else
     yay -S --noconfirm "${ARCH_PKGS[@]}"
 
     # Set as default shell
     if [[ $SHELL != "/usr/bin/zsh" ]]; then
         chsh -s /usr/bin/zsh
-    fi
-    
-    # Installing gnome stuff
-    if ! nautilus --help &> /dev/null; then
-        yay -S --noconfirm nautilus
-    fi
-    if ! gdm --help &> /dev/null; then
-        yay -S --noconfirm gdm
     fi
 }
 
@@ -194,14 +193,14 @@ install_thumbnailers() {
     # Create folder if it doesn't exist
     sudo mkdir -p /usr/share/thumbnailers/
 
-    sudo ln -sf "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
-    sudo ln -sf "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
+    sudo ln -sf --target-directory="/usr/share/thumbnailers/" "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
+    sudo ln -sf --target-directory="/usr/share/thumbnailers/" "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
 }
 
 niri_config() {
-    ln -sf "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
-    ln -sf "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
-    ln -sf "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
     
     # Set a default wallpaper if none is set
     if [[ $(dms ipc wallpaper get) != *"dotfiles"* ]]; then
@@ -222,18 +221,18 @@ niri_config() {
 }
 
 terminal_config() {
-    ln -sf "$(readlink --canonicalize ../.zshrc)" "$HOME/.zshrc"
-    ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
-    ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../.zshrc)" "$HOME/.zshrc"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
 }
 
 nvim_config() {
-    ln -sf "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
 }
 
 misc_config() {
-    ln -sf "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
-    ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
+    ln -sf --target-directory="$HOME/.config" "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
 }
 
 arch() {
@@ -263,6 +262,9 @@ run() {
             fail "Dotfiles not in ~/Projects"
         fi
     fi
+    
+    # Create ~/.config if it doesn't exist
+    mkdir -p "$HOME/.config/"
 
     terminal_config 
     niri_config
@@ -278,9 +280,6 @@ main() {
     # Ensure we are on the script's folder so relative paths resolve correctly
     cd "$SDIR" || fail "Path didn't exist"
 
-    # Create ~/.config if it doesn't exist
-    mkdir -p "$HOME/.config/"
-    
     local opt OPTIND OPTARG
     while getopts 'inafh' opt; do
         case $opt in
