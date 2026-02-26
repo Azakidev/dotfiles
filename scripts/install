@@ -15,6 +15,7 @@ IS_ARCH=0
 IS_NIX=0
 INSTALL_FLATPAK=0
 USE_GDM=1
+INSTALL_CONFIGS=0
 
 # Flatpak lists
 declare -a FLATPAKS=(
@@ -73,6 +74,7 @@ Install dotfiles, arch packages, and set up my flake
 Usage:
     -a  Installs relevant packages and configurations for Arch Linux
     -n  Installs relevant packages and configurations for NixOS
+    -c  Links the configs to the relevant places
     -i  Starts a dsearch indexing generation
     -f  Set up flathub and install the usual flatpaks
     -g  Use Greetd+dms greeter instead of GDM
@@ -213,9 +215,10 @@ niri_config() {
     ln -sf "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
     
     # Set a default wallpaper if none is set
-    if [[ $(dms ipc wallpaper get) != *"dotfiles"* ]]; then
-        dms ipc wallpaper set ~/Projects/dotfiles/wallpaper/hos.png
-    fi
+    # systemctl --user start dms.service
+    # if [[ $(dms ipc wallpaper get) != *"dotfiles"* ]]; then
+    #     dms ipc wallpaper set ~/Projects/dotfiles/wallpaper/hos.png
+    # fi
 
     if [[ $START_INDEX == 1 ]]; then
         echo "Starting dsearch index"
@@ -273,13 +276,15 @@ run() {
         fi
     fi
     
-    # Create ~/.config if it doesn't exist
-    mkdir -p "$HOME/.config/"
+    if [[ $INSTALL_CONFIGS == 1 ]]; then
+        # Create ~/.config if it doesn't exist
+        mkdir -p "$HOME/.config/"
 
-    terminal_config 
-    niri_config
-    nvim_config 
-    misc_config 
+        terminal_config 
+        niri_config
+        nvim_config 
+        misc_config 
+    fi
 
     if [[ $INSTALL_FLATPAK == 1 ]]; then
         setup_flatpak
@@ -291,11 +296,12 @@ main() {
     cd "$SDIR" || fail "Path didn't exist"
 
     local opt OPTIND OPTARG
-    while getopts 'inagfh' opt; do
+    while getopts 'inacgfh' opt; do
         case $opt in
             a) IS_ARCH=1 ;;
             n) IS_NIX=1 ;;
             f) INSTALL_FLATPAK=1 ;;
+            c) INSTALL_CONFIGS=1 ;;
             i) START_INDEX=1 ;;
             g) USE_GDM=0 ;;
             h) usage ; return 0;;
