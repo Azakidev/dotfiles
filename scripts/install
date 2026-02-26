@@ -30,6 +30,7 @@ declare -a FLATPAKS=(
     "com.orama_interactive.Pixelorama"
     "org.gnome.gitlab.YaLTeR.VideoTrimmer"
     "com.authormore.penpotdesktop"
+    "io.github.ungoogled_software.ungoogled_chromium"
 
     "org.prismlauncher.PrismLauncher"
 )
@@ -42,6 +43,31 @@ declare -a ARCH_FLATPAKS=(
 
     "io.github.everestapi.Olympus"
     "com.heroicgameslauncher.hgl"
+)
+
+declare -a ARCH_PKGS=(
+    "xdg-desktop-portal-gnome"
+    "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
+    "adw-gtk-theme" "morewaita-icon-theme"
+    "ffmpeg"
+    "zoxide" "bat" "eza" "fastfetch" "less"
+    "yq" "jq"
+    "wl-clipboard" "tealdeer"
+    "ffmpegthumbnailer"
+    "gamemode" "mangohud"
+    "zsh" "ghostty" "neovim"
+    "oh-my-posh-bin"
+    "zsh-autosuggestions" "zsh-syntax-highlighting"
+    "nodejs"
+    "ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito"
+    "flatpak"
+    "steam"
+    "syncthing"
+    "zen-browser-bin"
+    "resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks"
+    "discord" "betterdiscordctl"
+    "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
+    "android-studio"
 )
 
 usage() {
@@ -99,46 +125,12 @@ arch_user_dirs() {
 }
 
 arch_pkgs() {
-    # Desktop
-    echo "Installing desktop"
-    yay -S --noconfirm \
-        xdg-desktop-portal-gnome \
-        niri matugen dms-shell-bin dsearch-bin xwayland-satellite \
-        adw-gtk-theme morewaita-icon-theme
+    yay -S --noconfirm "${ARCH_PKGS[@]}"
 
-    # CLIs and utilities
-    echo "Installing CLIs"
-    yay -S --noconfirm \
-        ffmpeg \
-        zoxide bat eza fastfetch \
-        yq jq \
-        nodejs \
-        wl-clipboard tealdeer \
-        ffmpegthumbnailer \
-        gamemode mangohud
-
-    # ZSH plugins
-    echo "Installing ZSH plugins"
-    yay -S --noconfirm zsh ghostty neovim \
-        oh-my-posh-bin \
-        zsh-autosuggestions zsh-syntax-highlighting
     # Set as default shell
-    chsh -s /usr/bin/zsh
-
-    # Fonts
-    echo "Installing fonts"
-    yay -S --noconfirm \
-        ttf-fira-code ttf-meslo-nerd ttf-nunito
-
-    # Apps
-    echo "Installing apps"
-    yay -S --noconfirm \
-        flatpak \
-        steam syncthing zen-browser-bin \
-        resources loupe showtime decibels gcolor3 gnome-tweaks \
-        discord betterdiscordctl \
-        beeper-v4-bin stoat-desktop-bin telegram-desktop \
-        android-studio
+    if [[ $SHELL != "/usr/bin/zsh" ]]; then
+        chsh -s /usr/bin/zsh
+    fi
     
     # Installing gnome stuff
     if ! nautilus --help &> /dev/null; then
@@ -202,14 +194,14 @@ install_thumbnailers() {
     # Create folder if it doesn't exist
     sudo mkdir -p /usr/share/thumbnailers/
 
-    sudo ln -s "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
-    sudo ln -s "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
+    sudo ln -sf "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
+    sudo ln -sf "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
 }
 
 niri_config() {
-    ln -s "$(readlink --canonicalize ../niri/)" "$HOME/.config/niri"
-    ln -s "$(readlink --canonicalize ../dms/)" "$HOME/.config/DankMaterialShell"
-    ln -s "$(readlink --canonicalize ../danksearch/)" "$HOME/.config/danksearch"
+    ln -sf "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
+    ln -sf "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+    ln -sf "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
     
     # Set a default wallpaper if none is set
     if [[ $(dms ipc wallpaper get) != *"dotfiles"* ]]; then
@@ -230,18 +222,18 @@ niri_config() {
 }
 
 terminal_config() {
-    ln -s "$(readlink --canonicalize ../.zshrc)" "$HOME/.zshrc"
-    ln -s "$(readlink --canonicalize ../oh-my-posh/)" "$HOME/.config/oh-my-posh"
-    ln -s "$(readlink --canonicalize ../ghostty/)" "$HOME/.config/ghostty"
+    ln -sf "$(readlink --canonicalize ../.zshrc)" "$HOME/.zshrc"
+    ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
+    ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
 }
 
 nvim_config() {
-    ln -s "$(readlink --canonicalize ../nvim/)" "$HOME/.config/nvim"
+    ln -sf "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
 }
 
 misc_config() {
-    ln -s "$(readlink --canonicalize ../fastfetch/)" "$HOME/.config/fastfetch"
-    ln -s "$(readlink --canonicalize ../MangoHud/)" "$HOME/.config/MangoHud"
+    ln -sf "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
+    ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
 }
 
 arch() {

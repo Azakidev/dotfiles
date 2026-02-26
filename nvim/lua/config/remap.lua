@@ -28,6 +28,12 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = "Previous search result (Centered)", 
 vim.keymap.set('v', '>', '>gv', { desc = "Indent right and reselect", silent = true })
 vim.keymap.set('v', '<', '<gv', { desc = "Indent left and reselect", silent = true })
 
+-- Quote word
+vim.keymap.set('n', "<C-S-2>", 'ciw"<C-r>""<Esc>', { desc = "Double quote the current word", silent = true})
+vim.keymap.set('n', "<C-'>", "ciw'<C-r>\"'<Esc>", { desc = "Double quote the current word", silent = true})
+vim.keymap.set('v', "<C-S-2>", 'c"<C-r>""<Esc>', { desc = "Double quote the current block", silent = true})
+vim.keymap.set('v', "<C-'>", "c'<C-r>\"'<Esc>", { desc = "Double quote the current block", silent = true})
+
 -- Move lines up/down
 vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
 vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
