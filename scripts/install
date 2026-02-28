@@ -234,7 +234,7 @@ niri_config() {
 }
 
 terminal_config() {
-    ln -sf "$(readlink --canonicalize ../.zshrc)" "$HOME/.zshrc"
+    ln -sf "$(readlink --canonicalize ../zshrc)" "$HOME/.zshrc"
     ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
     ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
 }
