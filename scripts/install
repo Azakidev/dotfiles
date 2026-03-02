@@ -69,7 +69,7 @@ declare -a ARCH_PKGS=(
 
 usage() {
     cat << EOF
-Install dotfiles, arch packages, and set up my flake
+Install dotfiles, arch packages, and NixOS flake
 Usage:
     -a  Installs relevant packages and configurations for Arch Linux
     -n  Installs relevant packages and configurations for NixOS
@@ -228,7 +228,7 @@ niri_config() {
     if [[ $IS_NIX == 1 ]]; then
         MAP="$NIX_MAP"
     fi
-    echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl,ctrl:nocaps\"; }; }; }"
+    echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl,ctrl:nocaps\"; }; }; }" > "$HOME/.config/niri/keymap.kdl"
 }
 
 terminal_config() {
