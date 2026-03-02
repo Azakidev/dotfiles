@@ -1,0 +1,9 @@
+[Sound Theme]
+Name=Bella
+Comment="FatDawlf's custom sound theme"
+
+Inherits=freedesktop
+Directories=stereo
+
+[stereo]
+OutputProfile=stereo

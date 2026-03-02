@@ -13,7 +13,7 @@ NIX_MAP="es"
 IS_ARCH=0
 IS_NIX=0
 INSTALL_FLATPAK=0
-USE_GDM=1
+USE_GDM=0
 INSTALL_CONFIGS=0
 
 # Flatpak lists
@@ -76,7 +76,7 @@ Usage:
     -n  Installs relevant packages and configurations for NixOS
     -c  Links the configs to the relevant places
     -f  Set up flathub and install the usual flatpaks
-    -g  Use Greetd+dms greeter instead of GDM
+    -g  Use GDM instead of dms greeter
     -h  Print this usage message
 EOF
 }
@@ -263,12 +263,17 @@ misc_config() {
 }
 
 install_themes() {
+    # Cursor (GTK)
     gsettings set org.gnome.desktop.interface cursor-theme "Afterglow-Recolored-Dracula-Purple"
     # Icons
     gsettings set org.gnome.desktop.interface icon-theme "MoreWaita"
     # GTK
     gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"
-}
+    # Sound theme
+    if [[ ! -L "$HOME/.local/share/sounds/Bella" ]]; then
+        ln -sf "$(readlink --canonicalize ../Bella/)" "$HOME/.local/share/sounds/Bella"
+    fi
+} 
 
 arch() {
     # Install git if not installed already
@@ -326,7 +331,7 @@ main() {
             n) IS_NIX=1 ;;
             f) INSTALL_FLATPAK=1 ;;
             c) INSTALL_CONFIGS=1 ;;
-            g) USE_GDM=0 ;;
+            g) USE_GDM=1 ;;
             h) usage ; return 0;;
             \?) fail "Unknown flag";;
             *) : ;;
