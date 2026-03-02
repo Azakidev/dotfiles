@@ -209,13 +209,16 @@ install_thumbnailers() {
 
 niri_config() {
     if [[ ! -L "$HOME/.config/niri" ]]; then
-        ln -sf "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
+        ln -s "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
     fi
     if [[ ! -L "$HOME/.config/DankMaterialShell" ]]; then
-        ln -sf "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+        ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+    elif [[ -d "$HOME/.config/DankMaterialShell" ]]; then
+        rm -rf "$HOME/.config/DankMaterialShell"
+        ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
     fi
     if [[ ! -L "$HOME/.config/danksearch" ]]; then
-        ln -sf "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
+        ln -s "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
     fi
     
     # Set a default wallpaper if none is set
