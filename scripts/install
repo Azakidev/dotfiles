@@ -268,7 +268,9 @@ arch() {
     fi
     
     pacman_conf 
-    install_yay
+    if ! yay -v &> /dev/nul; then
+        install_yay
+    fi
     arch_user_dirs 
     arch_pkgs
     arch_cursor 
