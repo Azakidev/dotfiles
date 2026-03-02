@@ -6,11 +6,10 @@
 SDIR=$(dirname "$0")
 SDIR=$(readlink --canonicalize "$SDIR")
 
-ARCH_MAP="input { keyboard { xkb { layout \"gb\"; }; }; }"
-NIX_MAP="input { keyboard { xkb { layout \"es\"; }; }; }"
+ARCH_MAP="gb"
+NIX_MAP="es"
 
 # Flags
-START_INDEX=0
 IS_ARCH=0
 IS_NIX=0
 INSTALL_FLATPAK=0
@@ -75,7 +74,6 @@ Usage:
     -a  Installs relevant packages and configurations for Arch Linux
     -n  Installs relevant packages and configurations for NixOS
     -c  Links the configs to the relevant places
-    -i  Starts a dsearch indexing generation
     -f  Set up flathub and install the usual flatpaks
     -g  Use Greetd+dms greeter instead of GDM
     -h  Print this usage message
@@ -105,7 +103,7 @@ install_yay() {
     cd yay || fail "Failed to clone yay"
     
     # Install base-devel so installation succeeds
-    sudo pacman -S --noconfirm base-devel
+    sudo pacman -S --needed --noconfirm base-devel
     
     # Install yay
     makepkg -si --noconfirm
@@ -131,16 +129,16 @@ arch_pkgs() {
     # Installing gnome stuff
     if [[ $USE_GDM == 1 ]]; then
         if ! gdm --help &> /dev/null; then
-            yay -S --noconfirm gdm
+            yay -S --noconfirm --needed gdm
         fi
     fi
 
     if ! nautilus --help &> /dev/null; then
-        yay -S --noconfirm nautilus
+        yay -S --noconfirm --needed nautilus
     fi
     
     # Install damn near everything else
-    yay -S --noconfirm "${ARCH_PKGS[@]}"
+    yay -S --noconfirm --needed "${ARCH_PKGS[@]}"
 
     # Set as default shell
     if [[ $SHELL != "/usr/bin/zsh" ]]; then
@@ -210,9 +208,15 @@ install_thumbnailers() {
 }
 
 niri_config() {
-    ln -sf "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
-    ln -sf "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
-    ln -sf "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
+    if [[ ! -L "$HOME/.config/niri" ]]; then
+        ln -sf "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
+    fi
+    if [[ ! -L "$HOME/.config/DankMaterialShell" ]]; then
+        ln -sf "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+    fi
+    if [[ ! -L "$HOME/.config/danksearch" ]]; then
+        ln -sf "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
+    fi
     
     # Set a default wallpaper if none is set
     # systemctl --user start dms.service
@@ -220,38 +224,44 @@ niri_config() {
     #     dms ipc wallpaper set ~/Projects/dotfiles/wallpaper/hos.png
     # fi
 
-    if [[ $START_INDEX == 1 ]]; then
-        echo "Starting dsearch index"
-        systemctl --user start dsearch.service
-        dsearch index generate
+    local MAP="$ARCH_MAP"
+    if [[ $IS_NIX == 1 ]]; then
+        MAP="$NIX_MAP"
     fi
-
-    if [[ $IS_ARCH == 1 ]]; then 
-        echo "$ARCH_MAP" > "$HOME/.config/niri/keymap.kdl"
-    elif [[ $IS_NIX == 1 ]]; then
-        echo "$NIX_MAP" > "$HOME/.config/niri/keymap.kdl"
-    fi
+    echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl,ctrl:nocaps\"; }; }; }"
 }
 
 terminal_config() {
-    ln -sf "$(readlink --canonicalize ../zshrc)" "$HOME/.zshrc"
-    ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
-    ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
+    if [[ ! -L "$HOME/.zshrc" ]]; then
+        ln -sf "$(readlink --canonicalize ../zshrc)" "$HOME/.zshrc"
+    fi
+    if [[ ! -L "$HOME/.config/oh-my-posh" ]]; then
+        ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
+    fi
+    if [[ ! -L "$HOME/.config/ghostty" ]]; then
+        ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
+    fi
 }
 
 nvim_config() {
-    ln -sf "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
+    if [[ ! -L "$HOME/.config/nvim" ]]; then
+        ln -sf "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
+    fi
 }
 
 misc_config() {
-    ln -sf "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
-    ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
+    if [[ ! -L "$HOME/.config/fastfetch" ]]; then
+        ln -sf "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
+    fi
+    if [[ ! -L "$HOME/.config/MangoHud" ]]; then
+        ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
+    fi
 }
 
 arch() {
     # Install git if not installed already
     if ! git -v &> /dev/null; then
-        pacman -S --noconfirm git
+        pacman -S --needed --noconfirm git
     fi
     
     pacman_conf 
@@ -296,13 +306,12 @@ main() {
     cd "$SDIR" || fail "Path didn't exist"
 
     local opt OPTIND OPTARG
-    while getopts 'inacgfh' opt; do
+    while getopts 'nacgfh' opt; do
         case $opt in
             a) IS_ARCH=1 ;;
             n) IS_NIX=1 ;;
             f) INSTALL_FLATPAK=1 ;;
             c) INSTALL_CONFIGS=1 ;;
-            i) START_INDEX=1 ;;
             g) USE_GDM=0 ;;
             h) usage ; return 0;;
             \?) fail "Unknown flag";;

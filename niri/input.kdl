@@ -1,8 +1,5 @@
 input {
     keyboard {
-        xkb {
-            options "compose:rctrl,ctrl:nocaps"
-        }
         numlock
     }
 
