@@ -1,13 +1,12 @@
 { pkgs, ... }:
 
 {
-  virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.enable = true;
   
-  users.users.zazag = {
-    packages = with pkgs; [
-      android-studio
-      httptoolkit
-    ];
-  };
-
+    users.users.zazag = {
+        packages = with pkgs; [
+            android-studio
+            httptoolkit
+        ];
+    };
 }
