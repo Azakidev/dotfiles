@@ -268,7 +268,7 @@ arch() {
     fi
     
     pacman_conf 
-    if ! yay -v &> /dev/nul; then
+    if ! yay -v &> /dev/null; then
         install_yay
     fi
     arch_user_dirs 
