@@ -50,11 +50,12 @@ declare -a ARCH_PKGS=(
     # Desktop
     "xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
     # Apps
-    "resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks" "ghostty" "zen-browser-bin" "android-studio"
+    "resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks" "gnome-calculator"
+    "ghostty" "zen-browser-bin" "android-studio" "libreoffice-fresh"
     # Theme
     "adw-gtk-theme" "morewaita-icon-theme"
     # CLI
-    "ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim"
+    "ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim" "fzf" "tealdeer"
     # Shell
     "zsh" "oh-my-posh-bin" "zsh-autosuggestions" "zsh-syntax-highlighting"
     # Fonts
@@ -259,6 +260,14 @@ misc_config() {
     if [[ ! -L "$HOME/.config/MangoHud" ]]; then
         ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
     fi
+}
+
+install_themes() {
+    gsettings set org.gnome.desktop.interface cursor-theme "Afterglow-Recolored-Dracula-Purple"
+    # Icons
+    gsettings set org.gnome.desktop.interface icon-theme "MoreWaita"
+    # GTK
+    gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"
 }
 
 arch() {
