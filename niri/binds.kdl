@@ -103,6 +103,6 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-    Mod+XF86AudioPlay    allow-when-locked=false{ spawn "pavucontrol"; }
+    Mod+XF86AudioPlay    allow-when-locked=false { spawn "pavucontrol"; }
     Mod+Shift+XF86AudioPlay    allow-when-locked=false{ spawn "flatpak" "run" "org.pipewire.Helvum"; }
 }
