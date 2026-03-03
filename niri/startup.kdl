@@ -1,0 +1,6 @@
+// xwayland-satellite Theme fixes
+spawn-at-startup "xrdb" "-merge" "~/.Xresources"
+
+// Chats
+spawn-sh-at-startup "sleep 5; discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto"
+spawn-sh-at-startup "sleep 5; stoat-desktop"

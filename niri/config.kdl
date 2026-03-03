@@ -45,7 +45,3 @@ config-notification {
 }
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-spawn-at-startup "xrdb" "-merge" "~/.Xresources"
-spawn-sh-at-startup "sleep 5; discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto"
-spawn-sh-at-startup "sleep 5; stoat-desktop"
