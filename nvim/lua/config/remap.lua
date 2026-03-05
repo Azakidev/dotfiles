@@ -27,6 +27,7 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = "Previous search result (Centered)", 
 -- Better indents
 vim.keymap.set('v', '>', '>gv', { desc = "Indent right and reselect", silent = true })
 vim.keymap.set('v', '<', '<gv', { desc = "Indent left and reselect", silent = true })
+vim.keymap.set('n', '<C-A-l>', 'mzgg=G`zzz', { desc = "Reindent file", silent = true })
 
 -- Quote word
 vim.keymap.set('n', "<C-S-2>", 'ciw"<C-r>""<Esc>', { desc = "Double quote the current word", silent = true})
