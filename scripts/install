@@ -232,7 +232,7 @@ niri_config() {
     if [[ $IS_NIX == 1 ]]; then
         MAP="$NIX_MAP"
     fi
-    echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl,ctrl:nocaps\"; }; }; }" > "$HOME/.config/niri/keymap.kdl"
+    echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl\"; }; }; }" > "$HOME/.config/niri/keymap.kdl"
 }
 
 terminal_config() {
