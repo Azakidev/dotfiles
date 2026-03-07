@@ -1,4 +1,5 @@
 {
+    nh = import ./nh.nix;
     android = import ./android.nix;
     applications = import ./applications.nix;
     core = import ./core;

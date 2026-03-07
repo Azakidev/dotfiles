@@ -4,6 +4,7 @@ let
 
     nixosModules = with self.nixosModules; [
         core
+        nh
         
         fonts
         theme
