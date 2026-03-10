@@ -83,7 +83,7 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; the
     alias dry="nh os switch -n $FLAKE_PATH"
     alias rebuild="nh os switch $FLAKE_PATH"
     alias dryu="nh os switch -nu $FLAKE_PATH"
-    alias update="nh os switch -u $FLAKE_PATH"
+    alias upd="nh os switch -u $FLAKE_PATH"
     # Adb
     alias adbshell='nix-shell -p androidenv.androidPkgs.platform-tools'
     alias adb='steam-run adb'
