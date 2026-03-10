@@ -43,12 +43,6 @@ return {
             signature = {
                 enabled = true,
             },
-
-            sources = {
-                per_filetype = {
-                    rust = { inherit_defaults = true, 'crates' },
-                }
-            }
         },
     },
     {
