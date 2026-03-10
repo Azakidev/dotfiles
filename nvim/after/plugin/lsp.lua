@@ -35,6 +35,25 @@ vim.lsp.config("rust_analyzer", {
     }
 })
 
+-- OMG Harper leave me alone
+vim.lsp.config("harper_ls", {
+    settings = {
+        ["harper-ls"] = {
+            linters = {
+                SentenceCapitalization = false,
+                LongSentences = false,
+                RepeatedWords = false,
+                Spaces = false,
+                NoFrenchSpaces = false,
+                MissingPreposition = false,
+                VerbToAdjective = false,
+                OhMyGod = false,
+                PhrasalVerbAsCompoundNoun = false
+            },
+        }
+    }
+})
+
 vim.lsp.config("jinja_lsp", {
     capabilities = capabilities,
     filetypes = { "nunjucks", "njk", "jinja", "html.jinja" },
