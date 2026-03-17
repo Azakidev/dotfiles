@@ -22,7 +22,7 @@
   "mangoLayoutGapsOverride": -1,
   "mangoLayoutRadiusOverride": -1,
   "mangoLayoutBorderSize": -1,
-  "use24HourClock": true,
+  "use24HourClock": false,
   "showSeconds": false,
   "padHours12Hour": false,
   "useFahrenheit": false,
