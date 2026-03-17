@@ -6,7 +6,7 @@
     users.users.zazag = {
         packages = with pkgs; [
             android-studio
-            httptoolkit
+            # httptoolkit
         ];
     };
 }

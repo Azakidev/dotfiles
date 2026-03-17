@@ -8,7 +8,7 @@
     
     users.users.zazag = {
         packages = with pkgs; [
-            heroic
+            # heroic
         ];
     };
 }
