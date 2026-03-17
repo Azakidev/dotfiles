@@ -48,7 +48,8 @@ vim.lsp.config("harper_ls", {
                 MissingPreposition = false,
                 VerbToAdjective = false,
                 OhMyGod = false,
-                PhrasalVerbAsCompoundNoun = false
+                PhrasalVerbAsCompoundNoun = false,
+                ToDoHyphen = false
             },
         }
     }
