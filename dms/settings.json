@@ -147,6 +147,10 @@
     "main": {
       "type": "icon",
       "value": "home"
+    },
+    "coding": {
+      "type": "icon",
+      "value": "code"
     }
   },
   "waveProgressEnabled": true,
@@ -174,6 +178,17 @@
   "centeringMode": "geometric",
   "clockDateFormat": "d/M",
   "lockDateFormat": "ddd d MMM yyyy",
+  "greeterRememberLastSession": true,
+  "greeterRememberLastUser": true,
+  "greeterEnableFprint": false,
+  "greeterEnableU2f": false,
+  "greeterWallpaperPath": "",
+  "greeterUse24HourClock": true,
+  "greeterShowSeconds": false,
+  "greeterPadHours12Hour": false,
+  "greeterLockDateFormat": "",
+  "greeterFontFamily": "",
+  "greeterWallpaperFillMode": "",
   "mediaSize": 1,
   "appLauncherViewMode": "list",
   "spotlightModalViewMode": "grid",
@@ -296,6 +311,7 @@
   "matugenTemplateKcolorscheme": true,
   "matugenTemplateVscode": false,
   "matugenTemplateEmacs": true,
+  "matugenTemplateZed": true,
   "showDock": false,
   "dockAutoHide": false,
   "dockSmartAutoHide": false,
@@ -337,6 +353,8 @@
   "lockAtStartup": false,
   "enableFprint": true,
   "maxFprintTries": 15,
+  "enableU2f": false,
+  "u2fMode": "or",
   "lockScreenActiveMonitor": "all",
   "lockScreenInactiveColor": "#000000",
   "lockScreenNotificationMode": 2,

@@ -3,6 +3,7 @@ prefer-no-csd
 
 workspace "main"
 workspace "art"
+workspace "coding"
 workspace "dump"
 
 window-rule {
@@ -89,8 +90,17 @@ window-rule {
 }
 
 window-rule {
+    match app-id=r#"^org\.gnome\.Builder$"#
+    match app-id=r#"^jetbrains-studio$"#
+
+    open-focused true
+    open-on-workspace "coding"
+}
+
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id=r#"^com\.belmoussaoui\.Authenticator$"#
     match app-id="zen" title="$Passwords"
 
     block-out-from "screen-capture"
