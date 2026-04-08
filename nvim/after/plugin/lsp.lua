@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         local opts = { buffer = event.buf, silent = true }
         vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
+        vim.keymap.set("n", "<F4>", telescope_builtin.lsp_definitions, opts)
     end,
 })
 
