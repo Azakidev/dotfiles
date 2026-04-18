@@ -5,10 +5,23 @@ export QT_IM_MODULE=ibus
 export ANDROID_HOME="~/Android/Sdk/"
 export PATH="/home/zazag/Android/Sdk/platform-tools/:/opt/rocm/bin:/opt/rocm-*/:$PATH"
 
-if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# Colorize manpages, thanks Dave
+# export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 4)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_se=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_ue=$(tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
+export MANROFFOPT='-c'
+export MANPAGER='less'
+export PAGER='less'
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -29,6 +42,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
+# Skip OMP in TTY
 if ! {tty | grep -q "tty"} ; then
     eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.toml)"
 fi
@@ -59,6 +73,10 @@ alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull;
 
 # Arch commands
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
+    # Plugins
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    # Yay shortcuts
     alias upd='yay -Syu --noconfirm'
     alias add='yay -S'
     alias remove='yay -R'
@@ -67,11 +85,10 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
     alias cleanss='rm -rf ~/Pictures/Screenshots/* && echo "Cleaned screenshots"'
     alias cleanyay='rm -rf --interactive=never ~/.cache/yay/* && echo "Cleaned yay cache"'
     alias cleanall='clean && cleanss && cleanyay'
-
+    ## Desktop brightness control because not all desktops have it
     alias dim="ddcutil -d 1 setvcp 10 0"
     alias bright="ddcutil -d 1 setvcp 10 100"
     alias blc="ddcutil -d 1 setvcp 10"
-    
     # Ollama GPU override on Arch
     alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
 fi
