@@ -88,6 +88,7 @@ window-rule {
 
 window-rule {
     match app-id="^krita$" title="Krita" is-floating=false
+    match app-id="^blender$"
 
     open-maximized true
     open-on-workspace "art"
