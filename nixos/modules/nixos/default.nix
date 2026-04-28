@@ -5,6 +5,7 @@
     core = import ./core;
     common = import ./common.nix;
     desktops = import ./desktops;
+    distrobox = import ./distrobox.nix;
     terminal = import ./terminal.nix;
     theme = import ./theme.nix;
     fonts = import ./fonts.nix;

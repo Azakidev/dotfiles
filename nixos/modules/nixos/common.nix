@@ -34,4 +34,8 @@ in {
     # Misc  
     nixpkgs.config.allowUnfree = true;
     services.flatpak.enable = true;
+
+    nixpkgs.config.permittedInsecurePackages = [
+        "electron-38.8.4"
+    ];
 }
