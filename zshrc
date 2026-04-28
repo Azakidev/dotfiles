@@ -106,8 +106,6 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; the
     alias adb='steam-run adb'
     # Alias betterdiscordctl to not keep it installed
     alias betterdiscordctl="nix run nixpkgs\#betterdiscordctl --"
-
-    alias vim='steam-run nvim'
 fi
 
 eval "$(zoxide init zsh --cmd cd)"

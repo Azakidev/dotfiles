@@ -19,11 +19,6 @@
             gnome-tweaks
             papers
             gcolor3
-
-            # Development
-            pkg-config
-            gtk4
-            libadwaita
         ];
     };
 }

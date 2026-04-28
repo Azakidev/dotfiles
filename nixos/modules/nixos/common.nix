@@ -30,6 +30,8 @@ in {
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    programs.nix-ld.enable = true;
+
     # Misc  
     nixpkgs.config.allowUnfree = true;
     services.flatpak.enable = true;
