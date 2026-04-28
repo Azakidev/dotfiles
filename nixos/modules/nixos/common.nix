@@ -11,7 +11,6 @@ let
 
         android
         applications
-        distrobox
         terminal
         gaming
         nautilus
