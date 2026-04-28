@@ -1,11 +1,14 @@
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # Histfile
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
 # Opts
-set autocd extglob
+opt autocd extglob
 
 # Colorize manpages, thanks Dave
 # export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
