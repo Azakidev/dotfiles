@@ -1,9 +1,11 @@
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
 
-export ANDROID_HOME="~/Android/Sdk/"
-export PATH="/home/zazag/Android/Sdk/platform-tools/:/opt/rocm/bin:/opt/rocm-*/:$PATH"
+# Histfile
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Opts
+set autocd extglob
 
 # Colorize manpages, thanks Dave
 # export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
@@ -23,36 +25,10 @@ export MANROFFOPT='-c'
 export MANPAGER='less'
 export PAGER='less'
 
-# Histfile
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-
-# Opts
-setopt autocd extendedglob nomatch notify correct
-unsetopt beep
-bindkey -e
-typeset -g -A key
-
-zstyle :compinstall filename '~/.zshrc'
-
-autoload -Uz compinit && compinit
-
-## case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' menu select
-
 # Skip OMP in TTY
 if ! tty | grep -q "tty" ; then
-    eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.toml)"
+    eval "$(oh-my-posh init bash --config ~/.config/oh-my-posh/config.toml)"
 fi
-
-# Binds
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-bindkey "$terminfo[kdch1]" delete-char
-bindkey "^[[1;$terminfo[kdch1]" kill-word
-bindkey "^[[1;$terminfo[kbs]" backward-kill-word
 
 # Time savers
 alias clr='clear'
@@ -74,9 +50,6 @@ alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull;
 
 # Arch commands
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
-    # Plugins
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     # Yay shortcuts
     alias upd='yay -Syu --noconfirm'
     alias add='yay -S'
@@ -106,4 +79,4 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; the
     alias betterdiscordctl="nix run nixpkgs\#betterdiscordctl --"
 fi
 
-eval "$(zoxide init zsh --cmd cd)"
+eval "$(zoxide init bash --cmd cd)"
