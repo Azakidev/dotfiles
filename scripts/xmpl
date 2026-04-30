@@ -1,0 +1,168 @@
+#!/usr/bin/env bash
+
+# Folders
+IN="in"
+OUT="out"
+RES="res"
+
+# Constants
+NAME="FatDawlf"
+BLUR=12
+
+fail() {
+	echo "$1"
+	return 1
+}
+
+usage() {
+	local prog=${0##*/}
+	cat <<- EOF
+	Usage: $prog [options]
+
+	Quickly template images in bulk.
+
+	Images should be named the following way: left-right.ext
+	Where left will be placed at the left slot of the image and so on.
+
+	Options:
+	    -i	Input folder
+	    -o	Output folder
+	    -s	Single run
+	    -d	Daemonize, listen to the input directory for changes and rerun when triggered
+	    -h	Print this help message
+	EOF
+}
+
+prepare() {
+	mkdir "$IN"
+	mkdir "$OUT"
+}
+
+run() {
+		local file
+		file="$1"
+
+		local name nameonly left right
+		name=${file##*/} 							#type-price.extension
+		nameonly=$(echo "$name" | cut -d "." -f1) 	# type-price
+		left=$(echo "$nameonly" | cut -d "-" -f1 | sed 's/_/ /g') 	# type
+		right=$(echo "$nameonly" | cut -d "-" -f2)	# price
+
+		local size x y 
+		size=$(identify "$file" | cut -d " " -f3)	# widthxheight
+		x=$(echo "$size" | cut -d "x" -f1) 			# width
+		y=$(echo "$size" | cut -d "x" -f2)			# height
+
+		local logosize logooffset
+		logosize=$((y / 5))
+		logooffset=$((x / 85))
+
+		local titlesize titleoffset titleoffsetsh 
+		titlesize=$((logosize * 3 / 5))
+		titleoffset="+$((logosize + logooffset))+$((logooffset * 7 / 2))"
+		titleoffsetsh="+$((logosize + logooffset))+$(((logooffset * 7 / 2) + 4))"
+
+		local subsize suboffsetleft suboffsetleftsh suboffsetright suboffsetrightsh
+		subsize=$((titlesize * 2 / 3))
+		suboffsetleft="+${logooffset}+${logooffset}"
+		suboffsetleftsh="+${logooffset}+$((logooffset - 3))"
+		suboffsetright="+${logooffset}+$((logooffset - logooffset * 5/4))"
+		suboffsetrightsh="+${logooffset}+$((logooffset - logooffset * 5/4 - 3))"
+
+		echo "Processing $name"
+	
+		# First blur the image and saturate it to 2x
+		# Generate a gradient to determine where the blur is masked on
+		# Composite the blur
+		# Then composite on the information, first the shadow and then text
+		# It does this for the logo, left, and right. In that order
+		magick "$file" \
+			\( +clone -modulate 100,200 -blur "0x$BLUR" \) \
+			\( -size "$size" gradient: -function Polynomial "9,-9,2.25" \) \
+			-scale %[fx:u.w]x%[fx:u.h]! \
+			-composite \
+			\( "$RES/logo.png" -resize "${logosize}x${logosize}" \) \
+			-gravity northwest -geometry "+${logooffset}+$((logooffset - logooffset / 4))" \
+			-composite \
+			-font Nunito-Black -pointsize "$titlesize" -gravity northwest \
+			-fill "#00000099" -annotate "$titleoffsetsh" "$NAME" \
+			-fill white -annotate "$titleoffset" "$NAME" \
+			-font Nunito-ExtraLight-Italic \
+			-pointsize "$subsize" -gravity southwest \
+			-fill '#00000099' -annotate "$suboffsetleftsh" "$left" \
+			-fill white -annotate "$suboffsetleft" "$left" \
+			-pointsize "$((subsize + subsize / 3))" -gravity southeast \
+			-fill '#00000099' -annotate "$suboffsetrightsh" "$right" \
+			-fill white -annotate "$suboffsetright" "$right" \
+			"$OUT/$name"
+}
+
+single_run() {
+	if [[ ! -d "$IN" ]]; then
+		fail "Input directoy should exist"
+	fi 
+
+	if [[ ! -d "$OUT" ]]; then
+		fail "Output directoy should exist"
+	fi 
+
+	local file
+	for file in "$IN"/*; do
+		if [[ ! -f "$file" ]]; then
+			fail "File should exist"
+		else
+			run "$file"
+		fi
+	done
+
+}
+
+daemonize() {
+	if [[ ! -d "$IN" ]]; then
+		fail "Input directoy should exist"
+	fi 
+
+	if [[ ! -d "$OUT" ]]; then
+		fail "Output directoy should exist"
+	fi
+
+	inotifywait -m -e create,modify,moved_to "$IN" | 
+		while read -r _dir _act file; do 
+			if [[ ! -f "$IN/$file" ]]; then
+				echo "$IN/$file"
+				fail "File should exist"
+			else
+				run "$IN/$file"
+			fi
+		done
+}
+
+main() {
+	magick --version &> /dev/null || fail "ImageMagick not installed"
+
+	local opt OPTIND OPTARG single daemon
+	while getopts 'i:o:psdh' opt; do
+		case $opt in
+			i) IN="$OPTARG";;
+			o) OUT="$OPTARG";;
+			p) prepare;;
+			s) single=1;;
+			d) daemon=1;;
+			h) usage; return 0;;
+			*) usage; fail "Either -s or -d is needed to run";;
+		esac
+	done
+	shift "$((OPTIND - 1))"
+
+	if [[ $single = 1 ]]; then
+		single_run 
+	fi
+
+	if [[ $daemon = 1 ]]; then
+		daemonize 
+	fi
+
+	"$@"
+}
+
+main "$@"
