@@ -71,6 +71,7 @@ alias ga='git add'
 alias gd='git diff'
 alias gsall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; gs; cd ..; fi; done'
 alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull; cd ..; fi; done'
+alias pub='git checkout main; git pull; git merge dev -m "Merge branch dev"; git push; git checkout dev'
 
 # Arch commands
 if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
