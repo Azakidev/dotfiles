@@ -17,7 +17,7 @@ return {
                             return true
                         end
                     end,
-                    additional_vim_regex_highlighting = false,
+                    additional_vim_regex_highlighting = true,
                 },
             }
         end,
@@ -32,6 +32,20 @@ return {
                 :totable()
 
             require('nvim-treesitter').install(parsersToInstall)
+
+            vim.api.nvim_create_autocmd('User', {
+                pattern = "TSUpdate",
+                callback = function ()
+                    require("nvim-treesitter.parsers").blueprint = {
+                        install_info = {
+                            path = '~/Projects/tree-sitter-blueprint/',
+                            generate = true,
+                        },
+                        filetype = "blueprint"
+                    }
+                end
+            })
+
         end
     }
 }

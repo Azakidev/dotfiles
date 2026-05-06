@@ -65,3 +65,9 @@ vim.lsp.config("jinja_lsp", {
         templates = './pages/_includes',
     }
 })
+
+vim.lsp.config("blueprint", {
+    capabilities = capabilities,
+    filetypes = { "blueprint" },
+    cmd = { "blueprint-compiler", "lsp" }
+})

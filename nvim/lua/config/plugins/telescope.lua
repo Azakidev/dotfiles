@@ -30,6 +30,7 @@ return {
 
             vim.keymap.set({ 'n' }, '<leader>ff', builtin.find_files)
             vim.keymap.set({ 'n' }, '<leader>fg', builtin.live_grep)
+            vim.keymap.set({ 'n'}, "<F6>", builtin.lsp_references)
             vim.keymap.set({ 'n' }, '<C-g>', builtin.git_files)
             vim.keymap.set({ 'n' }, "<leader>fk", builtin.keymaps)
             vim.keymap.set({ 'n' }, "<leader>t", builtin.builtin)
