@@ -9,6 +9,15 @@ workspace "dump"
 window-rule {
     geometry-corner-radius 14
     clip-to-geometry true
+
+    popups {
+        geometry-corner-radius 15
+        opacity 0.85
+
+        background-effect {
+            blur true
+        }
+    }
 }
 
 window-rule {
@@ -93,6 +102,14 @@ window-rule {
     open-maximized true
     open-on-workspace "art"
     open-focused true
+
+    popups {
+        opacity 1.0
+
+        background-effect {
+            blur false
+        }
+    }
 }
 
 window-rule {

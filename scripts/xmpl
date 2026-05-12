@@ -3,7 +3,7 @@
 # Folders
 IN="in"
 OUT="out"
-RES="res"
+RES="${IN}/../res"
 
 # Constants
 NAME="FatDawlf"
@@ -143,7 +143,7 @@ main() {
 	local opt OPTIND OPTARG single daemon
 	while getopts 'i:o:psdh' opt; do
 		case $opt in
-			i) IN="$OPTARG";;
+			i) IN="$OPTARG"; RES="${IN}/../res";;
 			o) OUT="$OPTARG";;
 			p) prepare;;
 			s) single=1;;

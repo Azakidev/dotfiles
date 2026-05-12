@@ -27,8 +27,10 @@ usage() {
 }
 
 sync-file() {
-	while IFS= read -r -d $'\0' line; do
-		local file=${line##*/}
+		local path file
+		path="$1"
+		file=${path##*/}
+
 		# This works well until two folders of the same name 
 		# have files with also the same name
 		# A recursive apprach should be done, 
@@ -36,31 +38,31 @@ sync-file() {
 		if [[ -f "$OUT_PATH/$file" ]]; then
 			# If both files are the same, do nothing
 			# If they're different, correct the name
-			if cmp -s "$line" "$OUT_PATH/$file"; then
+			if cmp -s "$path" "$OUT_PATH/$file"; then
 				FILES+=("$file")
 				:
 			else
+				local dir dir_name new_name
 				# $HOME/Pictures/.../Dir
-				local dir=$(dirname "$line")
+				dir=$(dirname "$path")
 				# Dir
-				local dir_name=${dir##*/}
+				dir_name=${dir##*/}
 				# Dir-File.ext
-				local new_name="$dir_name-$file"
+				new_name="$dir_name-$file"
 
 				echo "Saving $file as $new_name"
 
 				FILES+=("$new_name")
-				rsync -at "$line" "$OUT_PATH/$new_name"
+				rsync -at "$path" "$OUT_PATH/$new_name"
 			fi
 		else
 			FILES+=("$file")
-			rsync -at "$line" $OUT_PATH
+			rsync -at "$path" "$OUT_PATH"
 		fi
-	done
 }
 
 clean() {
-	for file in $OUT_PATH/*; do
+	for file in "$OUT_PATH"/*; do
 		if [[ -f "$file" ]]; then
 			local filename=${file##*/}
 			if [[ "${FILES[*]}" =~ "$filename" ]]; then
@@ -73,13 +75,13 @@ clean() {
 	done
 }
 
-export -f sync-file
 
 walk-tree() {
-	export -f sync-file 
 	local type
 	for type in "${EXTENSIONS[@]}"; do
-		sync-file < <(find "$ART_PATH" -type f -name "*.$type" -print0)
+		while IFS= read -r -d $'\0' line; do
+			sync-file "$line"
+		done < <(find "$ART_PATH" -type f -name "*.$type" -print0)
 	done
 	clean
 }
@@ -90,10 +92,29 @@ regenerate() {
 }
 
 daemon-run() {
-	while true; do
-		inotifywait -r -e modify,create,delete "$ART_PATH"
-		walk-tree
-	done
+	inotifywait -r -m --csv -e modify,create,delete,moved_to,moved_from "$ART_PATH" |
+		while IFS=',' read -r dir act file; do
+			local ext
+			ext=${file##*.}
+
+			# Verify it's extension is in the list
+			if [[ "${EXTENSIONS[*]}" =~ "$ext" ]]; then
+				case "$act" in
+					"MODIFY" | "CREATE" | "MOVED_TO") sync-file "${dir}${file}" ;;
+					"DELETE" | "MOVED_FROM")
+						local dir_name=${dir##*/}
+						if [[ -f "$OUT_PATH/$file" ]]; then
+							rm "$OUT_PATH/$file";
+						fi
+						if [[ -f "$OUT_PATH/${dir_name}-${file}" ]]; then
+							rm "$OUT_PATH/${dir_name}-${file}";
+						fi
+						echo "Cleared $file"
+						;;
+					*) : ;; # Should never be reached
+				esac
+			fi
+		done
 }
 
 main() {
