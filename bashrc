@@ -8,7 +8,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # Opts
-opt autocd extglob
+shopt -s extglob
+shopt -s autocd		2>/dev/null || true
 
 # Colorize manpages, thanks Dave
 # export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
