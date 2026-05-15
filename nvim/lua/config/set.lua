@@ -21,6 +21,18 @@ vim.o.synmaxcol = 300
 vim.o.winborder = "rounded"
 vim.o.winblend = 0
 
+-- Whitespace
+vim.api.nvim_set_hl(0, "RedundantWhitespace", {
+    bg = "green",
+    ctermbg = "green"
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+    callback = function()
+        vim.fn.matchadd('RedundantWhitespace', [[\s\+$\| \+\ze\t]])
+    end,
+})
+
 -- Search
 vim.o.ignorecase = true
 vim.o.smartcase = true
