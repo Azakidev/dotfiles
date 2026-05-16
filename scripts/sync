@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 #
 # Sync and flatten media in a deeply nested folder structure
-#
-# Author: Azakidev <zazaguichi@outlook.com>
-# Date: 08/01/2026
-# License: MIT
 
 ART_PATH="$HOME/Pictures/Art"
 OUT_PATH="$HOME/Pictures/Share"
-declare -a EXTENSIONS=("png" "gif" "avif" "jpeg" "jpg")
 
+declare -a EXTENSIONS=("png" "gif" "avif" "jpeg" "jpg")
 declare -a FILES=()
 
 usage() {
@@ -118,7 +114,7 @@ daemon-run() {
 }
 
 main() {
-	if [[ ! -d "$OUT_PATH" ]]; then 
+	if [[ ! -d "$OUT_PATH" ]]; then
 		mkdir -p "$OUT_PATH"
 	fi
 
@@ -129,6 +125,7 @@ main() {
 			d) daemon-run ;;
 			s) walk-tree ;;
 			h) usage ; return 0;;
+			\?) fail "Unknown option";;
 			*) usage >&2; return 1;;
 		esac
 	done

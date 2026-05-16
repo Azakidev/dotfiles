@@ -1,345 +1,349 @@
 #!/usr/bin/env bash
 #
-# Link all my configs to the correct places 
+# Link all my configs to the correct places
 # and set up an arch install from a minimal archinstall profile
 
 SDIR=$(dirname "$0")
 SDIR=$(readlink --canonicalize "$SDIR")
 
-ARCH_MAP="gb"
-NIX_MAP="es"
-
 # Flags
 IS_ARCH=0
 IS_NIX=0
 INSTALL_FLATPAK=0
-USE_GDM=0
 INSTALL_CONFIGS=0
+USE_ES=0
+USE_GDM=0
 
 # Flatpak lists
 declare -a FLATPAKS=(
-    "io.github.kolunmi.Bazaar"
-    "io.github.flattool.Warehouse"
-    "com.github.tchx84.Flatseal"
-    
-    "org.pipewire.Helvum"
+	"io.github.kolunmi.Bazaar"
 
-    "com.usebottles.bottles"
-    "md.obsidian.Obsidian"
-    "org.kde.ark"
+	"io.github.flattool.Warehouse"
+	"com.github.tchx84.Flatseal"
 
-    "com.orama_interactive.Pixelorama"
-    "org.gnome.gitlab.YaLTeR.VideoTrimmer"
-    "com.authormore.penpotdesktop"
-    "io.github.ungoogled_software.ungoogled_chromium"
+	"org.prismlauncher.PrismLauncher"
+	"com.usebottles.bottles"
 
-    "org.prismlauncher.PrismLauncher"
+	"org.pipewire.Helvum"
+	"org.kde.ark"
+	"art.fatdawlf.Piccolo"
+
+	"md.obsidian.Obsidian"
+	"com.orama_interactive.Pixelorama"
+	"org.gnome.gitlab.YaLTeR.VideoTrimmer"
+	"com.authormore.penpotdesktop"
+	"org.gnome.Builder"
+
+	"io.github.ungoogled_software.ungoogled_chromium"
 )
 
 declare -a ARCH_FLATPAKS=(
-    "org.mozilla.Thunderbird"
-    "org.localsend.localsend_app"
+	"org.mozilla.Thunderbird"
+	"org.localsend.localsend_app"
 
-    "org.kde.krita"
+	"org.kde.krita"
+	"org.kde.kdenlive"
 
-    "io.github.everestapi.Olympus"
-    "com.heroicgameslauncher.hgl"
+	"io.github.everestapi.Olympus"
+	"com.heroicgameslauncher.hgl"
 )
 
 declare -a ARCH_PKGS=(
-    # Desktop
-    "xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
-    # Apps
-    "resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks" "gnome-calculator"
-    "ghostty" "zen-browser-bin" "android-studio" "libreoffice-fresh"
-    # Theme
-    "adw-gtk-theme" "morewaita-icon-theme"
-    # CLI
-    "ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim" "fzf" "tealdeer"
-    # Shell
-    "zsh" "oh-my-posh-bin" "zsh-autosuggestions" "zsh-syntax-highlighting"
-    # Fonts
-    "ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito" "noto-fonts" "noto-fonts-extra" "noto-fonts-cjk" "ttf-twemoji" "adwaita-fonts" "inter-font" "fonts-kalam"
-    # Gaming
-    "gamemode" "mangohud" "steam"
-    # Chat
-    "discord" "betterdiscordctl" "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
-    # Misc
-    "flatpak" "syncthing" "ffmpegthumbnailer" "nodejs"
+	# Desktop
+	"xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
+	# Apps
+	"resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks" "gnome-calculator"
+	"ghostty" "zen-browser-bin" "android-studio" "libreoffice-fresh"
+	# Theme
+	"adw-gtk-theme" "morewaita-icon-theme"
+	# CLI
+	"ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim" "fzf" "tealdeer"
+	# Shell
+	"zsh" "oh-my-posh-bin" "zsh-autosuggestions" "zsh-syntax-highlighting"
+	# Fonts
+	"ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito" "noto-fonts" "noto-fonts-extra" "noto-fonts-cjk" "ttf-twemoji" "adwaita-fonts" "inter-font" "fonts-kalam"
+	# Gaming
+	"gamemode" "mangohud" "steam"
+	# Chat
+	"discord" "betterdiscordctl" "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
+	# Misc
+	"flatpak" "syncthing" "ffmpegthumbnailer" "nodejs"
 )
 
-usage() {
-    cat << EOF
-Install dotfiles, arch packages, and NixOS flake
-Usage:
-    -a  Installs relevant packages and configurations for Arch Linux
-    -n  Installs relevant packages and configurations for NixOS
-    -c  Links the configs to the relevant places
-    -f  Set up flathub and install the usual flatpaks
-    -g  Use GDM instead of dms greeter
-    -h  Print this usage message
-EOF
+fail() {
+	echo "[ERROR] $1"
+	exit 1
 }
 
-fail() {
-    echo "[ERROR] $1"
-    exit 1
+usage() {
+	local prog=${0##*/}
+	cat <<- EOF
+	Usage: $prog <options>
+
+	Install dotfiles, arch packages, and my NixOS flake automatically
+	Utilize on a fresh arch minimal install or a nixos install to get a fully configured system
+
+	Options:
+		-a  Installs relevant packages and configurations for Arch Linux
+		-e	Use a spanish keyboard layout
+		-n  Installs relevant packages and configurations for NixOS
+		-c  Links the configs to the relevant places
+		-f  Set up flathub and install the usual flatpaks
+		-g  Use GDM instead of dms greeter
+		-h  Print this usage message
+	EOF
 }
 
 pacman_conf() {
-    # Override Arch's stupid ass configs
-    sudo ln -sf "$(readlink --canonicalize ../arch/pacman.conf)" /etc/pacman.conf
-    sudo ln -sf "$(readlink --canonicalize ../arch/makepkg.conf)" /etc/makepkg.conf
+	# Override Arch's stupid ass configs
+	sudo ln -sf "$(readlink --canonicalize ../arch/pacman.conf)" /etc/pacman.conf
+	sudo ln -sf "$(readlink --canonicalize ../arch/makepkg.conf)" /etc/makepkg.conf
 }
 
 install_yay() {
-    echo "Installing yay"
+	echo "Installing yay"
 
-    # Make a tmp dir
-    mkdir -p "$HOME/tmp"
-    cd "$HOME/tmp" || fail "Failed to make tmp folder"
-    
-    # Clone yay and install
-    git clone https://aur.archlinux.org/yay
-    cd yay || fail "Failed to clone yay"
-    
-    # Install base-devel so installation succeeds
-    sudo pacman -S --needed --noconfirm base-devel
-    
-    # Install yay
-    makepkg -si --noconfirm
-    
-    # Clean
-    rm -rf "$HOME/tmp"
-    
-    # Return back to script folder
-    cd "$SDIR" || fail "What"
+	# Make a tmp dir
+	mkdir -p "$HOME/tmp"
+	cd "$HOME/tmp" || fail "Failed to make tmp folder"
+
+	# Clone yay and install
+	git clone https://aur.archlinux.org/yay
+	cd yay || fail "Failed to clone yay"
+
+	# Install base-devel so installation succeeds
+	sudo pacman -S --needed --noconfirm base-devel
+
+	# Install yay
+	makepkg -si --noconfirm
+
+	# Clean
+	rm -rf "$HOME/tmp"
+
+	# Return back to script folder
+	cd "$SDIR" || fail "What"
 }
 
 arch_user_dirs() {
-    echo "Making user dirs"
+	echo "Making user dirs"
 
-    if ! xdg-user-dirs-update --help &> /dev/null; then
-        yay -S --noconfirm xdg-user-dirs
-    fi
+	if ! xdg-user-dirs-update --help &> /dev/null; then
+		yay -S --noconfirm xdg-user-dirs
+	fi
 
-    xdg-user-dirs-update
+	xdg-user-dirs-update
 }
 
 arch_pkgs() {
-    # Installing gnome stuff
-    if [[ $USE_GDM == 1 ]]; then
-        if ! gdm --help &> /dev/null; then
-            yay -S --noconfirm --needed gdm
-        fi
-    fi
+	# Installing gnome stuff
+	if [[ $USE_GDM == 1 ]]; then
+		if ! gdm --help &> /dev/null; then
+			yay -S --noconfirm --needed gdm
+		fi
+	fi
 
-    if ! nautilus --help &> /dev/null; then
-        yay -S --noconfirm --needed nautilus
-    fi
-    
-    # Install damn near everything else
-    yay -S --noconfirm --needed "${ARCH_PKGS[@]}"
+	if ! nautilus --help &> /dev/null; then
+		yay -S --noconfirm --needed nautilus
+	fi
 
-    # Set as default shell
-    if [[ $SHELL != "/usr/bin/zsh" ]]; then
-        chsh -s /usr/bin/zsh
-    fi
+	# Install damn near everything else
+	yay -S --noconfirm --needed "${ARCH_PKGS[@]}"
+
+	# Set as default shell
+	if [[ $SHELL != "/usr/bin/zsh" ]]; then
+		chsh -s /usr/bin/zsh
+	fi
 }
 
 arch_services() {
-    echo "Enabling services"
-    # Greeter
-    if [[ $USE_GDM == 1 ]]; then
-        sudo systemctl enable gdm.service
-    else
-        dms greeter install
-    fi
-    # Bluetooth
-    sudo systemctl enable bluetooth.service
-    # Syncthing
-    systemctl --user start syncthing.service
-    # Niri
-    systemctl --user add-wants niri.service dms.service
-    systemctl --user add-wants niri.service dsearch.service
+	echo "Enabling services"
+	# Greeter
+	if [[ $USE_GDM == 1 ]]; then
+		sudo systemctl enable gdm.service
+	else
+		dms greeter install
+	fi
+	# Bluetooth
+	sudo systemctl enable bluetooth.service
+	# Syncthing
+	systemctl --user start syncthing.service
+	# Niri
+	systemctl --user add-wants niri.service dms.service
+	systemctl --user add-wants niri.service dsearch.service
 }
 
 arch_cursor() {
-    # Make a tmp dir
-    mkdir -p "$HOME/tmp"
-    cd "$HOME/tmp" || fail "Failed to make tmp folder"
+	# Make a tmp dir
+	mkdir -p "$HOME/tmp"
+	cd "$HOME/tmp" || fail "Failed to make tmp folder"
 
-    # Clone and install
-    git clone https://github.com/TeddyBearKilla/Afterglow-Cursors-Recolored.git acr
-    cd acr/colors/Dracula/Purple || "Failed to clone cursors"
+	# Clone and install
+	git clone https://github.com/TeddyBearKilla/Afterglow-Cursors-Recolored.git acr
+	cd acr/colors/Dracula/Purple || "Failed to clone cursors"
 
-    # cp with no check award goes to
-    mkdir -p "$HOME/.local/share/icons"
-    ./install.sh
-    
-    # Clean
-    rm -rf "$HOME/tmp"
-    
-    # Return back to script folder
-    cd "$SDIR" || fail "What"
+	# cp with no check award goes to
+	mkdir -p "$HOME/.local/share/icons"
+	./install.sh
+
+	# Clean
+	rm -rf "$HOME/tmp"
+
+	# Return back to script folder
+	cd "$SDIR" || fail "What"
 }
 
 setup_flatpak() {
-    flatpak --version &> /dev/null || fail "Flatpak is not installed"
-    
-    echo "Adding flathub repo"
-    flatpak remote-add --if-not-exists \
-        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+	flatpak --version &> /dev/null || fail "Flatpak is not installed"
 
-    echo "Installing flatpaks"
-    flatpak install --noninteractive "${FLATPAKS[@]}"
-    
-    if [[ $IS_ARCH == 1 ]]; then
-        echo "Installing arch-only flatpaks"
-        flatpak install --noninteractive "${ARCH_FLATPAKS[@]}"
-    fi
+	echo "Adding flathub repo"
+	flatpak remote-add --if-not-exists \
+		flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+	echo "Installing flatpaks"
+	flatpak install --noninteractive "${FLATPAKS[@]}"
+
+	if [[ $IS_ARCH == 1 ]]; then
+		echo "Installing arch-only flatpaks"
+		flatpak install --noninteractive "${ARCH_FLATPAKS[@]}"
+	fi
 }
 
 install_thumbnailers() {
-    # Create folder if it doesn't exist
-    sudo mkdir -p /usr/share/thumbnailers/
+	# Create folder if it doesn't exist
+	sudo mkdir -p /usr/share/thumbnailers/
 
-    sudo ln -sf "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
-    sudo ln -sf "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
+	sudo ln -sf "$(readlink --canonicalize ../thumbnailers/kra.thumbnailer)" /usr/share/thumbnailers/kra.thumbnailer
+	sudo ln -sf "$(readlink --canonicalize ../thumbnailers/pxo.thumbnailer)" /usr/share/thumbnailers/pxo.thumbnailer
 }
 
 niri_config() {
-    if [[ ! -L "$HOME/.config/niri" ]]; then
-        ln -s "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
-    fi
-    if [[ ! -L "$HOME/.config/DankMaterialShell" ]]; then
-        ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
-    elif [[ -d "$HOME/.config/DankMaterialShell" ]]; then
-        rm -rf "$HOME/.config/DankMaterialShell"
-        ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
-    fi
-    if [[ ! -L "$HOME/.config/danksearch" ]]; then
-        ln -s "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
-    fi
-    
-    # Set a default wallpaper if none is set
-    # systemctl --user start dms.service
-    # if [[ $(dms ipc wallpaper get) != *"dotfiles"* ]]; then
-    #     dms ipc wallpaper set ~/Projects/dotfiles/wallpaper/hos.png
-    # fi
+	if [[ ! -L "$HOME/.config/niri" ]]; then
+		ln -s "$(readlink --canonicalize ../niri)" "$HOME/.config/niri"
+	fi
+	if [[ ! -L "$HOME/.config/DankMaterialShell" ]]; then
+		ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+	elif [[ -d "$HOME/.config/DankMaterialShell" ]]; then
+		rm -rf "$HOME/.config/DankMaterialShell"
+		ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
+	fi
+	if [[ ! -L "$HOME/.config/danksearch" ]]; then
+		ln -s "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
+	fi
 
-    local MAP="$ARCH_MAP"
-    if [[ $IS_NIX == 1 ]]; then
-        MAP="$NIX_MAP"
-    fi
-    echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl\"; }; }; }" > "$HOME/.config/niri/keymap.kdl"
+	local MAP="gb"
+	if [[ $USE_ES == 1 ]]; then
+		MAP="es"
+	fi
+
+	echo "input { keyboard { xkb { layout \"$MAP\"; options \"compose:rctrl\"; }; }; }" > "$HOME/.config/niri/keymap.kdl"
 }
 
 terminal_config() {
-    if [[ ! -L "$HOME/.zshrc" ]]; then
-        ln -sf "$(readlink --canonicalize ../zshrc)" "$HOME/.zshrc"
-    fi
-    if [[ ! -L "$HOME/.config/oh-my-posh" ]]; then
-        ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
-    fi
-    if [[ ! -L "$HOME/.config/ghostty" ]]; then
-        ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
-    fi
+	if [[ ! -L "$HOME/.zshrc" ]]; then
+		ln -sf "$(readlink --canonicalize ../zshrc)" "$HOME/.zshrc"
+	fi
+	if [[ ! -L "$HOME/.config/oh-my-posh" ]]; then
+		ln -sf "$(readlink --canonicalize ../oh-my-posh)" "$HOME/.config/oh-my-posh"
+	fi
+	if [[ ! -L "$HOME/.config/ghostty" ]]; then
+		ln -sf "$(readlink --canonicalize ../ghostty)" "$HOME/.config/ghostty"
+	fi
 }
 
 nvim_config() {
-    if [[ ! -L "$HOME/.config/nvim" ]]; then
-        ln -sf "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
-    fi
+	if [[ ! -L "$HOME/.config/nvim" ]]; then
+		ln -sf "$(readlink --canonicalize ../nvim)" "$HOME/.config/nvim"
+	fi
 }
 
 misc_config() {
-    if [[ ! -L "$HOME/.config/fastfetch" ]]; then
-        ln -sf "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
-    fi
-    if [[ ! -L "$HOME/.config/MangoHud" ]]; then
-        ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
-    fi
+	if [[ ! -L "$HOME/.config/fastfetch" ]]; then
+		ln -sf "$(readlink --canonicalize ../fastfetch)" "$HOME/.config/fastfetch"
+	fi
+	if [[ ! -L "$HOME/.config/MangoHud" ]]; then
+		ln -sf "$(readlink --canonicalize ../MangoHud)" "$HOME/.config/MangoHud"
+	fi
 }
 
 install_themes() {
-    # Cursor (GTK)
-    gsettings set org.gnome.desktop.interface cursor-theme "Afterglow-Recolored-Dracula-Purple"
-    # Icons
-    gsettings set org.gnome.desktop.interface icon-theme "MoreWaita"
-    # GTK
-    gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"
-    # Sound theme
-    if [[ ! -L "$HOME/.local/share/sounds/Bella" ]]; then
-        ln -sf "$(readlink --canonicalize ../Bella/)" "$HOME/.local/share/sounds/Bella"
-    fi
-} 
+	# Cursor (GTK)
+	gsettings set org.gnome.desktop.interface cursor-theme "Afterglow-Recolored-Dracula-Purple"
+	# Icons
+	gsettings set org.gnome.desktop.interface icon-theme "MoreWaita"
+	# GTK
+	gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"
+	# Sound theme
+	if [[ ! -L "$HOME/.local/share/sounds/Bella" ]]; then
+		ln -sf "$(readlink --canonicalize ../Bella/)" "$HOME/.local/share/sounds/Bella"
+	fi
+}
 
 arch() {
-    # Install git if not installed already
-    if ! git -v &> /dev/null; then
-        pacman -S --needed --noconfirm git
-    fi
-    
-    pacman_conf 
-    if ! yay --version &> /dev/null; then
-        install_yay
-    fi
-    arch_user_dirs 
-    arch_pkgs
-    arch_cursor 
-    arch_services 
-    install_thumbnailers
+	# Install git if not installed already
+	if ! git -v &> /dev/null; then
+		pacman -S --needed --noconfirm git
+	fi
+
+	pacman_conf
+	if ! yay --version &> /dev/null; then
+		install_yay
+	fi
+	arch_user_dirs
+	arch_pkgs
+	arch_cursor
+	arch_services
+	install_thumbnailers
 }
 
 run() {
-    if [[ $IS_ARCH == 1 ]]; then
-        arch 
-    fi
+	if [[ $IS_ARCH == 1 ]]; then
+		arch
+	fi
 
-    if [[ $IS_NIX == 1 ]]; then
-        if [[ -d "$HOME/Projects/dotfiles/" ]]; then
-            sudo nixos-rebuild switch --flake "$HOME/Projects/dotfiles/nixos/"
-        else
-            fail "Dotfiles not in ~/Projects"
-        fi
-    fi
-    
-    if [[ $INSTALL_CONFIGS == 1 ]]; then
-        # Create ~/.config if it doesn't exist
-        mkdir -p "$HOME/.config/"
+	if [[ $IS_NIX == 1 ]]; then
+		if [[ -d "$HOME/Projects/dotfiles/" ]]; then
+			sudo nixos-rebuild switch --flake "$HOME/Projects/dotfiles/nixos/"
+		else
+			fail "Dotfiles not in ~/Projects"
+		fi
+	fi
 
-        terminal_config 
-        niri_config
-        nvim_config 
-        misc_config 
-    fi
+	if [[ $INSTALL_CONFIGS == 1 ]]; then
+		# Create ~/.config if it doesn't exist
+		mkdir -p "$HOME/.config/"
 
-    if [[ $INSTALL_FLATPAK == 1 ]]; then
-        setup_flatpak
-    fi
+		terminal_config
+		niri_config
+		nvim_config
+		misc_config
+	fi
+
+	if [[ $INSTALL_FLATPAK == 1 ]]; then
+		setup_flatpak
+	fi
 }
 
 main() {
-    # Ensure we are on the script's folder so relative paths resolve correctly
-    cd "$SDIR" || fail "Path didn't exist"
+	# Ensure we are on the script's folder so relative paths resolve correctly
+	cd "$SDIR" || fail "Path didn't exist"
 
-    local opt OPTIND OPTARG
-    while getopts 'nacgfh' opt; do
-        case $opt in
-            a) IS_ARCH=1 ;;
-            n) IS_NIX=1 ;;
-            f) INSTALL_FLATPAK=1 ;;
-            c) INSTALL_CONFIGS=1 ;;
-            g) USE_GDM=1 ;;
-            h) usage ; return 0;;
-            \?) fail "Unknown flag";;
-            *) : ;;
-        esac
-    done
-    shift "$((OPTIND - 1))"
+	local opt OPTIND OPTARG
+	while getopts 'naecgfh' opt; do
+		case $opt in
+			a) IS_ARCH=1 ;;
+			n) IS_NIX=1 ;;
+			f) INSTALL_FLATPAK=1 ;;
+			c) INSTALL_CONFIGS=1 ;;
+			g) USE_GDM=1 ;;
+			e) USE_ES=1 ;;
+			h) usage ; return 0;;
+			\?) fail "Unknown flag";;
+			*) : ;;
+		esac
+	done
+	shift "$((OPTIND - 1))"
 
-    run
+	run
 }
 
 main "$@"
