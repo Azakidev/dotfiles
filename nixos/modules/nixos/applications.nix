@@ -7,13 +7,13 @@
             resources
             localsend
             obsidian
-            krita
+            # krita
 
             # Chat
             discord
             stoat-desktop
             beeper
-        
+
             #Extra packages
             showtime
             gnome-tweaks
