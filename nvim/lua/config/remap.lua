@@ -30,10 +30,10 @@ vim.keymap.set('v', '<', '<gv', { desc = "Indent left and reselect", silent = tr
 vim.keymap.set('n', '<C-A-l>', 'mzgg=G`zzz', { desc = "Reindent file", silent = true })
 
 -- Quote word
-vim.keymap.set('n', "<C-S-2>", 'ciw"<C-r>""<Esc>', { desc = "Double quote the current word", silent = true})
-vim.keymap.set('n', "<C-'>", "ciw'<C-r>\"'<Esc>", { desc = "Double quote the current word", silent = true})
-vim.keymap.set('v', "<C-S-2>", 'c"<C-r>""<Esc>', { desc = "Double quote the current block", silent = true})
-vim.keymap.set('v', "<C-'>", "c'<C-r>\"'<Esc>", { desc = "Double quote the current block", silent = true})
+vim.keymap.set('n', "<C-S-2>", 'ciw"<C-r>""<Esc>', { desc = "Double quote the current word", silent = true })
+vim.keymap.set('n', "<C-'>", "ciw'<C-r>\"'<Esc>", { desc = "Single quote the current word", silent = true })
+vim.keymap.set('v', "<C-S-2>", 'c"<C-r>""<Esc>', { desc = "Double quote the current block", silent = true })
+vim.keymap.set('v', "<C-'>", "c'<C-r>\"'<Esc>", { desc = "Single quote the current block", silent = true })
 
 -- Move lines up/down
 vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
@@ -45,6 +45,6 @@ vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection dow
 vim.keymap.set('n', "<leader>f", vim.lsp.buf.format)
 
 -- Copy to clipboard
-vim.keymap.set('n', "<leader>a", 'mzggVG"+y`zzzv', { desc = "Copy all to clipboard", silent = true})
-vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy selection to clipboard", silent = true})
-vim.keymap.set({ "n", "x" }, "<leader>d", '"+d', { desc = "Cut selection to clipboard", silent = true})
+vim.keymap.set('n', "<leader>a", 'mzggVG"+y`zzzv', { desc = "Copy all to clipboard", silent = true })
+vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy selection to clipboard", silent = true })
+vim.keymap.set({ "n", "x" }, "<leader>d", '"+d', { desc = "Cut selection to clipboard", silent = true })

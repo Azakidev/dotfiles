@@ -7,7 +7,7 @@ binds {
     Mod+Q hotkey-overlay-title="Open ghostty" { spawn "ghostty"; }
     Mod+A hotkey-overlay-title="Open Zen" { spawn-sh "zen-browser || zen"; }
     Mod+E hotkey-overlay-title="Open Files" { spawn "nautilus"; }
-    
+
     Control+Shift+Escape hotkey-overlay-title="Open Resources" { spawn "resources"; }
 
     // Niri
@@ -52,6 +52,8 @@ binds {
     Mod+Shift+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+Down            cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+Up              cooldown-ms=150 { move-column-to-workspace-up; }
 
     // Stacking widows
     Mod+BracketLeft  { consume-or-expel-window-left; }
@@ -63,7 +65,7 @@ binds {
     // Centering
     Mod+Shift+C { center-column; }
     Mod+Ctrl+C { center-visible-columns; }
-    
+
     // Window sizing
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
@@ -72,7 +74,7 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+Ctrl+F { expand-column-to-available-width; }
-    
+
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
     Mod+Shift+Minus { set-window-height "-10%"; }
@@ -81,7 +83,7 @@ binds {
     // Move the focused window between the floating and the tiling layout.
     Mod+V       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
-    
+
     // Screenshots
     Print { screenshot; }
     Shift+Print { screenshot-screen write-to-disk=false; }
