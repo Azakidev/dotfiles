@@ -1,6 +1,6 @@
 binds {
     // Shortcuts
-    Mod+1 { spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform-hint=auto"; }
+    Mod+1 { spawn-sh "discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto || flatpak run com.discordapp.Discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto"; }
     Mod+4 { spawn-sh "flatpak run org.kde.krita || krita"; }
     Mod+5 { spawn "flatpak" "run" "org.localsend.localsend_app"; }
 
@@ -107,4 +107,10 @@ binds {
 
     Mod+XF86AudioPlay    allow-when-locked=false { spawn "pavucontrol"; }
     Mod+Shift+XF86AudioPlay    allow-when-locked=false{ spawn "flatpak" "run" "org.pipewire.Helvum"; }
+
+    Super+F10 repeat=false allow-when-locked=true { spawn-sh "
+        if iio-niri msg toggle-lock-rotation | grep 'true'; then
+            canberra-gtk-play -i device-added ; else
+            canberra-gtk-play -i device-removed;
+        fi"; }
 }

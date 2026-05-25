@@ -13,7 +13,7 @@
             url = "github:youwen5/zen-browser-flake";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        
+
     };
 
     outputs = {
@@ -39,7 +39,7 @@
                 inherit inputs;
                 inherit username;
             };
-                    
+
             modules = [ ./hosts/laptop/configuration.nix ];
         };
     };

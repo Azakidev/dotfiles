@@ -1,5 +1,5 @@
-{ 
-    pkgs, 
+{
+    pkgs,
     lib,
     inputs,
     config,
@@ -19,7 +19,7 @@ in {
       ./hardware-configuration.nix
     ]
     ++ nixosModules;
-  
+
     services.xserver.xkb = {
         layout = "es";
         variant = "";
@@ -27,6 +27,8 @@ in {
 
     # Configure console keymap
     console.keyMap = "es";
+
+    hardware.enableAllFirmware = true;
 
     networking.hostName = "zazalapbottom"; # Define your hostname.
     system.stateVersion = "25.05";

@@ -25,6 +25,7 @@
             unzip
             tree
             fastfetch
+            libcanberra-gtk3
 
             jq
             yq

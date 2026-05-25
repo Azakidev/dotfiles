@@ -6,14 +6,13 @@
 }:
 
 {
-    hardware.bluetooth.enable = true;
-
     services = {
         gvfs.enable = true;
         udisks2.enable = true;
         upower.enable = true;
         power-profiles-daemon.enable = true;
         accounts-daemon.enable = true;
+        iio-niri.enable = true;
 
         gnome = {
             evolution-data-server.enable = true;

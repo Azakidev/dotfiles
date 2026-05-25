@@ -5,7 +5,7 @@ let
     nixosModules = with self.nixosModules; [
         core
         nh
-        
+
         fonts
         theme
 
@@ -24,15 +24,21 @@ in {
 
     services.displayManager.gdm.enable = true;
 
-    # Screen rotation
-    hardware.sensor.iio.enable = true;
+    # Hardware Features
+    hardware = {
+        sensor.iio.enable = true;
+        bluetooth = {
+            enable = true;
+            powerOnBoot = false;
+        };
+    };
 
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     programs.nix-ld.enable = true;
 
-    # Misc  
+    # Misc
     nixpkgs.config.allowUnfree = true;
     services.flatpak.enable = true;
 
