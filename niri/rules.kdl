@@ -82,7 +82,7 @@ window-rule {
 
     open-floating true
     open-focused false
-    
+
     min-width 385
     min-height 216
 

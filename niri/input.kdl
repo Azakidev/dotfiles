@@ -12,7 +12,7 @@ input {
     }
 
     touch {
-        // off
+        // off  // Turns off the touch screen
     }
 
     mouse {
