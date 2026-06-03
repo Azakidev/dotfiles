@@ -48,6 +48,7 @@
         python313
         jdk
         cmake
+        libavif
     ];
 
 }
