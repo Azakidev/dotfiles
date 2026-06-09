@@ -102,6 +102,7 @@ window-rule {
 window-rule {
     match app-id="^krita$" title="Krita - Edit Text — Krita"
     match app-id="^krita$" title="PNG image — Krita"
+    match app-id="^krita$" title="AVIF Image"
 
     open-floating true
 }
