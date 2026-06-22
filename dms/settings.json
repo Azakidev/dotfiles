@@ -215,7 +215,7 @@
   "dankLauncherV2UnloadOnClose": false,
   "useAutoLocation": false,
   "weatherEnabled": true,
-  "networkPreference": "auto",
+  "networkPreference": "wifi",
   "iconTheme": "MoreWaita",
   "cursorSettings": {
     "theme": "Afterglow-Recolored-Dracula-Purple",

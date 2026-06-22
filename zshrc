@@ -105,6 +105,7 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "nixos" ]]; the
     alias upd="nh os switch -u $FLAKE_PATH"
     # Alias betterdiscordctl to not keep it installed
     alias betterdiscordctl="nix run nixpkgs\#betterdiscordctl --"
+    alias nix-shell="nix-shell --run 'env SHELL=zsh zsh'"
 fi
 
 eval "$(zoxide init zsh --cmd cd)"

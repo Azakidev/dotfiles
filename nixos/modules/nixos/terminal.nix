@@ -45,7 +45,7 @@
         cargo
         rustc
         nodejs
-        python313
+        python314
         jdk
         cmake
         libavif
