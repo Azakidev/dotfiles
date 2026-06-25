@@ -84,7 +84,7 @@ walk-tree() {
 
 regenerate() {
 	rm -f "$OUT_PATH/*";
-	walk-tree 
+	walk-tree
 }
 
 daemon-run() {

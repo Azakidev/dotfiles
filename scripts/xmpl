@@ -45,21 +45,21 @@ run() {
 	file="$1"
 
 	local name nameonly left right
-	name=${file##*/} 										#type-price.extension
-	nameonly=$(cut -d "." -f1 <<< "$name") 					# type-price
-	left=$(cut -d "-" -f1 <<< "$nameonly" | sed 's/_/ /g') 	# type
+	name=${file##*/}										#type-price.extension
+	nameonly=$(cut -d "." -f1 <<< "$name")					# type-price
+	left=$(cut -d "-" -f1 <<< "$nameonly" | sed 's/_/ /g')	# type
 	right=$(cut -d "-" -f2 <<< "$nameonly")					# price
 
-	local size x y 
+	local size x y
 	size=$(identify "$file" | cut -d " " -f3)				# widthxheight
-	x=$(cut -d "x" -f1 <<< "$size") 						# width
+	x=$(cut -d "x" -f1 <<< "$size")							# width
 	y=$(cut -d "x" -f2 <<< "$size")							# height
 
 	local logosize logooffset
 	logosize=$((y / 5))
 	logooffset=$((x / 85))
 
-	local titlesize titleoffset titleoffsetsh 
+	local titlesize titleoffset titleoffsetsh
 	titlesize=$((logosize * 3 / 5))
 	titleoffset="+$((logosize + logooffset))+$((logooffset * 7 / 2))"
 	titleoffsetsh="+$((logosize + logooffset))+$(((logooffset * 7 / 2) + 4))"
@@ -102,11 +102,11 @@ run() {
 single_run() {
 	if [[ ! -d "$IN" ]]; then
 		fail "Input directoy should exist"
-	fi 
+	fi
 
 	if [[ ! -d "$OUT" ]]; then
 		fail "Output directoy should exist"
-	fi 
+	fi
 
 	local file
 	for file in "$IN"/*; do
@@ -122,14 +122,14 @@ single_run() {
 daemonize() {
 	if [[ ! -d "$IN" ]]; then
 		fail "Input directoy should exist"
-	fi 
+	fi
 
 	if [[ ! -d "$OUT" ]]; then
 		fail "Output directoy should exist"
 	fi
 
-	inotifywait -m -e create,modify,moved_to "$IN" | 
-		while read -r _dir _act file; do 
+	inotifywait -m -e create,modify,moved_to "$IN" |
+		while read -r _dir _act file; do
 			if [[ ! -f "$IN/$file" ]]; then
 				echo "$IN/$file"
 				fail "File should exist"
@@ -158,11 +158,11 @@ main() {
 	shift "$((OPTIND - 1))"
 
 	if [[ $single = 1 ]]; then
-		single_run 
+		single_run
 	fi
 
 	if [[ $daemon = 1 ]]; then
-		daemonize 
+		daemonize
 	fi
 
 	"$@"

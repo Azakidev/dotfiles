@@ -1,6 +1,6 @@
 binds {
     // Shortcuts
-    Mod+1 { spawn-sh "discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto"; }
+    Mod+1 { spawn-sh "flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll || discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto"; }
     Mod+4 { spawn-sh "flatpak run org.kde.krita || krita"; }
     Mod+5 { spawn "flatpak" "run" "org.localsend.localsend_app"; }
 

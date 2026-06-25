@@ -43,13 +43,42 @@ alias :q='exit'
 alias uefi='systemctl reboot --firmware-setup'
 alias avenv='source .venv/bin/activate'
 
+if ffmpeg -version 1,2> /dev/null; then
+    hwffmpeg() {
+        local br cod
+        if [[ -n "$3" ]]; then
+            br="$3"
+        else
+            br="8000k"
+        fi
+        
+        if [[ -n "$4" ]]; then
+            cod="${4}_vaapi"
+        else
+            cod="h264_vaapi"
+        fi
+
+		ffmpeg -y -hide_banner -loglevel error \
+            -vaapi_device /dev/dri/renderD128 \
+			-i "$1" \
+			-c:v "$cod" \
+			-vf "format=nv12,hwupload" \
+            -b:v "$br" \
+            "$2"
+
+		echo "Done!"
+    }
+
+	alias ffmpeg='ffmpeg -y -hide_banner -vaapi_device /dev/dri/renderD128'
+fi
+
 # Git aliases
 alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
 alias gd='git diff'
-alias gsall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; gs; cd ..; fi; done'
-alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd $dir; pwd; git pull; cd ..; fi; done'
+alias gsall='for dir in ./*; do if [ -d "$dir" ]; then cd "$dir"; pwd; gs; cd ..; fi; done'
+alias pullall='for dir in ./*; do if [ -d "$dir" ]; then cd "$dir"; pwd; git pull; cd ..; fi; done'
 alias pub='git checkout main; git pull; git merge dev -m "Merge branch dev"; git push; git checkout dev'
 
 # Arch commands
