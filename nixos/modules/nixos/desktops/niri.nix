@@ -35,8 +35,6 @@
         dms-shell = {
             enable = true;
             enableVPN = false;
-
-            quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
         };
 
         dsearch.enable = true;
