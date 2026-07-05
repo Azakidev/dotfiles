@@ -8,6 +8,8 @@ vim.keymap.set('n', "<A-Left>", vim.cmd.BufferPrevious)
 vim.keymap.set('n', "<S-A-Right>", vim.cmd.BufferMoveNext)
 vim.keymap.set('n', "<S-A-Left>", vim.cmd.BufferMovePrevious)
 
+vim.keymap.set('n', "<A-v>", "<C-v>")
+
 -- Undo and redo
 vim.keymap.set({ 'n', 'i', 'v' }, "<C-z>", vim.cmd.undo)
 vim.keymap.set({ 'n', 'i', 'v' }, "<C-y>", vim.cmd.redo)

@@ -5,3 +5,6 @@ spawn-at-startup "xrdb" "-merge" "~/.Xresources"
 spawn-sh-at-startup "sleep 5; flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll"
 // spawn-sh-at-startup "sleep 5; discord --enable-features=UseOzonePlatform --ozone-platform-hint=auto"
 // spawn-sh-at-startup "sleep 5; stoat-desktop"
+
+// Utils
+spawn-at-startup "ddcutil" "-d" "1" "setvcp" "10" "100"

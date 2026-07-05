@@ -71,3 +71,9 @@ vim.lsp.config("blueprint", {
     filetypes = { "blueprint" },
     cmd = { "blueprint-compiler", "lsp" }
 })
+
+vim.lsp.config("qmlls", {
+    capabilities = capabilities,
+    filetypes = { "qml" },
+    cmd = { "qmlls6" }
+})
