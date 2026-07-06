@@ -67,7 +67,7 @@ declare -a ARCH_PKGS=(
 	# Chat
 	"discord" "betterdiscordctl" "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
 	# Misc
-	"flatpak" "syncthing" "ffmpegthumbnailer" "nodejs"
+	"flatpak" "syncthing" "ffmpegthumbnailer" "nodejs" "opentabletdriver"
 )
 
 fail() {

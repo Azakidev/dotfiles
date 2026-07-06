@@ -4,7 +4,7 @@ prefer-no-csd
 workspace "main"
 workspace "art"
 workspace "coding"
-workspace "dump"
+// workspace "dump"
 
 window-rule {
     geometry-corner-radius 14
@@ -67,7 +67,7 @@ window-rule {
 
     open-floating true
     open-focused false
-    
+
     min-width 385
     min-height 216
 
