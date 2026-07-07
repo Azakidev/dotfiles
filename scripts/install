@@ -50,10 +50,11 @@ declare -a ARCH_FLATPAKS=(
 
 declare -a ARCH_PKGS=(
 	# Desktop
-	"xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite"
+	"xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite" "libcanberra"
 	# Apps
-	"resources" "loupe" "showtime" "decibels" "gcolor3" "gnome-tweaks" "gnome-calculator"
-	"ghostty" "zen-browser-bin" "android-studio" "libreoffice-fresh"
+	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator"
+	"ghostty" "zen-browser-bin"
+	# "android-studio" "libreoffice-fresh" # Put large apps here to be toggled when testing
 	# Theme
 	"adw-gtk-theme" "morewaita-icon-theme"
 	# CLI
@@ -98,6 +99,8 @@ pacman_conf() {
 	# Override Arch's stupid ass configs
 	sudo ln -sf "$(readlink --canonicalize ../arch/pacman.conf)" /etc/pacman.conf
 	sudo ln -sf "$(readlink --canonicalize ../arch/makepkg.conf)" /etc/makepkg.conf
+	# Also install the modprobe.d config to not load the hid_uclogic module
+	sudo ln -sf "$(readlink --canonicalize ../modprobe/tablet.conf)" /etc/modprobe.d/tablet.conf
 }
 
 install_yay() {
@@ -170,6 +173,8 @@ arch_services() {
 	# Niri
 	systemctl --user add-wants niri.service dms.service
 	systemctl --user add-wants niri.service dsearch.service
+	# Opentabletdriver
+	systemctl --user enable opentabletdriver.service
 }
 
 arch_cursor() {
@@ -276,6 +281,7 @@ install_themes() {
 	if [[ ! -L "$HOME/.local/share/sounds/Bella" ]]; then
 		ln -sf "$(readlink --canonicalize ../Bella/)" "$HOME/.local/share/sounds/Bella"
 	fi
+	gsettings set org.gnome.desktop.sound theme-name 'Bella'
 }
 
 arch() {
