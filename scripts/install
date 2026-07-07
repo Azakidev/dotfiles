@@ -52,13 +52,12 @@ declare -a ARCH_PKGS=(
 	# Desktop
 	"xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-bin" "dsearch-bin" "xwayland-satellite" "libcanberra"
 	# Apps
-	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator"
-	"ghostty" "zen-browser-bin"
+	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator" "ghostty" "zen-browser-bin"
 	# "android-studio" "libreoffice-fresh" # Put large apps here to be toggled when testing
 	# Theme
 	"adw-gtk-theme" "morewaita-icon-theme"
 	# CLI
-	"ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim" "fzf" "tealdeer"
+	"ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim" "fzf" "github-cli"
 	# Shell
 	"zsh" "oh-my-posh-bin" "zsh-autosuggestions" "zsh-syntax-highlighting"
 	# Fonts
