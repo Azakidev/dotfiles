@@ -34,6 +34,8 @@ declare -a FLATPAKS=(
 	"com.authormore.penpotdesktop"
 	"org.gnome.Builder"
 
+	"dev.vencord.Vesktop"
+
 	"io.github.ungoogled_software.ungoogled_chromium"
 )
 
@@ -50,22 +52,27 @@ declare -a ARCH_FLATPAKS=(
 
 declare -a ARCH_PKGS=(
 	# Desktop
-	"xdg-desktop-portal-gnome" "niri" "matugen" "dms-shell-niri" "dsearch-bin" "xwayland-satellite" "libcanberra"
+	"xdg-desktop-portal-gnome" "niri" "xwayland-satellite"
+	"dms-shell-niri" "dsearch-bin" "matugen" "libcanberra"
 	# Apps
-	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator" "ghostty" "zen-browser-bin"
+	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator"
+	"ghostty" "zen-browser-bin"
 	# "android-studio" "libreoffice-fresh" # Put large apps here to be toggled when testing
 	# Theme
 	"adw-gtk-theme" "morewaita-icon-theme"
 	# CLI
-	"ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq" "wl-clipboard" "tealdeer" "neovim" "fzf" "github-cli"
+	"ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq"
+	"wl-clipboard" "tealdeer" "neovim" "fzf" "github-cli"
 	# Shell
 	"zsh" "oh-my-posh-bin" "zsh-autosuggestions" "zsh-syntax-highlighting"
 	# Fonts
-	"ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito" "noto-fonts" "noto-fonts-extra" "noto-fonts-cjk" "ttf-twemoji" "adwaita-fonts" "inter-font" "fonts-kalam"
+	"ttf-fira-code" "ttf-meslo-nerd" "ttf-nunito" "fonts-kalam"
+	"noto-fonts" "noto-fonts-extra" "noto-fonts-cjk"
+	"ttf-twemoji" "adwaita-fonts" "inter-font"
 	# Gaming
 	"gamemode" "mangohud" "steam"
 	# Chat
-	"discord" "betterdiscordctl" "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
+	"discord" "beeper-v4-bin" "stoat-desktop-bin" "telegram-desktop"
 	# Misc
 	"flatpak" "syncthing" "ffmpegthumbnailer" "nodejs" "opentabletdriver"
 )
