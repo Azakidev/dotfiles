@@ -342,7 +342,7 @@
   "monoFontFamily": "FiraCode Nerd Font",
   "fontWeight": 500,
   "fontScale": 1,
-  "textRenderType": 0,
+  "textRenderType": 1,
   "textRenderQuality": 0,
   "notepadUseMonospace": true,
   "notepadFontFamily": "",
