@@ -72,7 +72,7 @@ if ffmpeg -version 1,2> /dev/null; then
         else
             br="8000k"
         fi
-        
+
         if [[ -n "$4" ]]; then
             cod="$4"
         else
@@ -122,6 +122,8 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
     alias blc="ddcutil -d 1 setvcp 10"
     # Ollama GPU override on Arch
     alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
+    # Steam gamescope
+    alias steam="gamescope --fullscreen --force-grab-cursor -W 1920 -H 1080 -e -- steam"
 fi
 
 # NixOS commands

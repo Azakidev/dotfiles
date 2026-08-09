@@ -26,6 +26,12 @@ window-rule {
 }
 
 window-rule {
+    match app-id="gamescope"
+
+    open-fullscreen true
+}
+
+window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
@@ -57,6 +63,7 @@ window-rule {
 
 window-rule {
     match app-id="^discord$" title="^Discord Updater$"
+    match app-id="^vesktop$" title="^vesktop$"
 
     open-focused false
     default-floating-position x=8 y=8 relative-to="top-right"
@@ -111,15 +118,15 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^krita$" title="Krita - Edit Text — Krita"
-    match app-id="^krita$" title="PNG image — Krita"
-    match app-id="^krita$" title="AVIF Image"
+    match app-id="krita$" title="Krita - Edit Text — Krita"
+    match app-id="krita$" title="PNG image — Krita"
+    match app-id="krita$" title="AVIF Image"
 
     open-floating true
 }
 
 window-rule {
-    match app-id="^krita$" title="Krita" is-floating=false
+    match app-id="krita$" title="Krita" is-floating=false
     match app-id="^blender$"
 
     open-maximized true
