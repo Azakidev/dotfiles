@@ -63,6 +63,7 @@ alias fetch='fastfetch --config ~/.config/fastfetch/config.jsonc'
 alias :q='exit'
 alias uefi='systemctl reboot --firmware-setup'
 alias avenv='source .venv/bin/activate'
+alias vesktop='flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll'
 
 if ffmpeg -version 1,2> /dev/null; then
     hwffmpeg() {
@@ -123,7 +124,7 @@ if [[ $(cat /etc/os-release | grep '^ID=.*$' | cut -d "=" -f2) = "arch" ]]; then
     # Ollama GPU override on Arch
     alias ollama="HSA_OVERRIDE_GFX_VERSION=\"10.3.0\" ollama"
     # Steam gamescope
-    alias steam="gamescope --fullscreen --force-grab-cursor -W 1920 -H 1080 -e -- steam"
+    alias steam="gamescope --mangoapp --fullscreen --force-grab-cursor -W 1920 -H 1080 -e -- steam"
 fi
 
 # NixOS commands

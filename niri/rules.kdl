@@ -10,14 +10,14 @@ window-rule {
     geometry-corner-radius 14
     clip-to-geometry true
 
-    popups {
-        geometry-corner-radius 15
-        opacity 0.85
-
-        background-effect {
-            blur true
-        }
-    }
+    // popups {
+    //     geometry-corner-radius 15
+    //     opacity 0.85
+    //
+    //     background-effect {
+    //         blur true
+    //     }
+    // }
 }
 
 window-rule {
