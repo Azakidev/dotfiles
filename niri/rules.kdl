@@ -20,6 +20,18 @@ window-rule {
     // }
 }
 
+layer-rule {
+    match namespace="pikolaunch:launcher"
+
+    geometry-corner-radius 12
+
+    background-effect {
+            blur true
+            xray false
+            noise 0.05
+    }
+}
+
 window-rule {
     match app-id="steam"
     open-focused false
