@@ -27,6 +27,7 @@
         gnome-characters
         gnome-calculator
         xwayland-satellite
+        wl-clip-persist
     ];
 
     programs = {
