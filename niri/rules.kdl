@@ -21,7 +21,7 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="pikolaunch:launcher"
+    match namespace="lupa:launcher"
 
     geometry-corner-radius 12
 
