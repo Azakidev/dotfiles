@@ -1,5 +1,6 @@
 // xwayland-satellite Theme fixes
 spawn-at-startup "xrdb" "-merge" "~/.Xresources"
+spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 
 // Chats
 spawn-sh-at-startup "sleep 5; flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll"

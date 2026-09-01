@@ -53,7 +53,7 @@ declare -a ARCH_FLATPAKS=(
 declare -a ARCH_PKGS=(
 	# Desktop
 	"xdg-desktop-portal-gnome" "niri" "xwayland-satellite"
-	"dms-shell-niri" "dsearch-bin" "matugen" "libcanberra"
+	"dms-shell-niri" "dsearch-bin" "matugen" "libcanberra" "wl-clip-persist"
 	# Apps
 	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator"
 	"ghostty" "zen-browser-bin"
