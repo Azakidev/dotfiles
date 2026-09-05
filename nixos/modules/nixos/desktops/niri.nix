@@ -28,6 +28,7 @@
         gnome-calculator
         xwayland-satellite
         wl-clip-persist
+        inputs.lupa.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     programs = {

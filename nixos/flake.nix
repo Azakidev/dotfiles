@@ -9,6 +9,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        lupa = {
+            url = "github:azakidev/lupa";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = {
