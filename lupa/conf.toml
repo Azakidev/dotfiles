@@ -1,0 +1,29 @@
+# Configuration file for Lupa
+# Uncomment a line to apply changes
+
+[Aesthetic]
+# The opacity for the window
+opacity=0.8 # Float (Default: 1.0, Range: [0–1])
+
+# The rounding of the main window
+#radius=12 # Integer (Default: 12, Range [0-u32 limit])
+
+# The amount of visible entries
+# entries=5.0 # Float (Default: 5.0, Range: [0–f32 limit])
+
+# The height of each entry
+# entry_size=64 # Integer (Default: 64, Range: [0~i16 limit, but do you really want to])
+
+# The anchors for the launcher window
+# Separate valid values by commas as shown
+# anchors="" # String (Default: "", Values: "top, bottom, left, right")
+
+[Behavior]
+# Whether the launcher will close the moment it loses its active
+# status by, for example, clicking off the launcher
+close_when_unfocused=false # Boolean (Default: true)
+
+# The maximum amount of file entries to add on search
+# Be careful when setting this too high as it may cause
+# lag spikes on 1-2 character searches
+# max_file_entries=25 # Integer (Default: 25, Range: [0-u32 limit])
