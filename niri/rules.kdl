@@ -23,7 +23,7 @@ window-rule {
 layer-rule {
     match namespace="lupa:launcher"
 
-    geometry-corner-radius 12
+    geometry-corner-radius 15
 
     background-effect {
             blur true
