@@ -11,6 +11,7 @@
     fprint = import ./fprint.nix;
     gaming = import ./gaming.nix;
     nautilus = import ./nautilus.nix;
+    qt = import ./qt.nix;
     ssh = import ./ssh.nix;
     syncthing = import ./syncthing.nix;
     zen = import ./zen.nix;

@@ -19,6 +19,8 @@
             gnome-tweaks
             papers
             gcolor3
+
+            kdePackages.ark
         ];
     };
 }

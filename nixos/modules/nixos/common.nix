@@ -14,6 +14,7 @@ let
         terminal
         gaming
         nautilus
+        qt
         syncthing
         ssh
         zen
