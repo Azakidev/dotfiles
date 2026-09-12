@@ -12,5 +12,4 @@ binds {
     XF86AudioPrev hotkey-overlay-title="Media: Previous Track" repeat=false { spawn "dms" "ipc" "call" "mpris" "previous"; }
     XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Brightness Down (10%)" { spawn "dms" "ipc" "call" "brightness" "decrement" "10" ""; }
     XF86MonBrightnessUp allow-when-locked=true hotkey-overlay-title="Brightness Up (10%)" { spawn "dms" "ipc" "call" "brightness" "increment" "10" ""; }
-    Mod+D repeat=false { spawn "lupa"; }
 }
