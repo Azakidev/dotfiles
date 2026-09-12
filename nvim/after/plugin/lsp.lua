@@ -29,9 +29,10 @@ vim.lsp.config("emmet-ls", {
 })
 
 vim.lsp.config("rust_analyzer", {
+    capabilities = capabilities,
     settings = {
         ["rust_analyzer"] = {
-            checkOnSave = { command = "clippy -- -W clippy::all" }
+            checkOnSave = { command = "clippy -- -W clippy::all" },
         }
     }
 })

@@ -27,3 +27,8 @@ close_when_unfocused=false # Boolean (Default: true)
 # Be careful when setting this too high as it may cause
 # lag spikes on 1-2 character searches
 # max_file_entries=25 # Integer (Default: 25, Range: [0-u32 limit])
+
+# The providers shown and the order they run in when there is no prefix present
+# Separate valid values by commas as shown
+# Case insensitive
+# fallback_providers="system, app, file, emoji, calc" # String (Default: "system, app, file, emoji, calc")
