@@ -65,6 +65,9 @@ alias uefi='systemctl reboot --firmware-setup'
 alias avenv='source .venv/bin/activate'
 alias vesktop='flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll'
 
+# Useful for development
+alias togglegtktheme='mv ~/.config/gtk-4.0 ~/.config/gtk4 2> /dev/null || mv ~/.config/gtk4 ~/.config/gtk-4.0 2> /dev/null'
+
 if ffmpeg -version 1,2> /dev/null; then
     hwffmpeg() {
         local br cod
