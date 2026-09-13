@@ -1,10 +1,8 @@
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
 prefer-no-csd
 
 workspace "main"
 workspace "art"
 workspace "coding"
-// workspace "dump"
 
 window-rule {
     geometry-corner-radius 14
@@ -169,4 +167,19 @@ window-rule {
     match app-id="zen" title="$Passwords"
 
     block-out-from "screen-capture"
+}
+
+window-rule {
+    match app-id="Emulator" title="^Android Emulator"
+
+    max-height 1030
+    max-width 487
+    min-height 1030
+    min-width 487
+}
+
+window-rule {
+    match app-id="Emulator" title="^Emulator$"
+
+    open-floating false
 }

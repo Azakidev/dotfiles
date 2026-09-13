@@ -25,7 +25,6 @@ declare -a FLATPAKS=(
 	"com.usebottles.bottles"
 
 	"org.pipewire.Helvum"
-	"org.kde.ark"
 	"art.fatdawlf.Piccolo"
 
 	"md.obsidian.Obsidian"
@@ -54,12 +53,13 @@ declare -a ARCH_PKGS=(
 	# Desktop
 	"xdg-desktop-portal-gnome" "niri" "xwayland-satellite"
 	"dms-shell-niri" "dsearch-bin" "matugen" "libcanberra" "wl-clip-persist"
+	"lupa-git"
 	# Apps
 	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator"
-	"ghostty" "zen-browser-bin"
+	"ghostty" "zen-browser-bin" "ark"
 	# "android-studio" "libreoffice-fresh" # Put large apps here to be toggled when testing
 	# Theme
-	"adw-gtk-theme" "morewaita-icon-theme"
+	"adw-gtk-theme" "morewaita-icon-theme" "kvantum" "qt6ct"
 	# CLI
 	"ffmpeg" "zoxide" "bat" "eza" "fastfetch" "less" "yq" "jq"
 	"wl-clipboard" "tealdeer" "neovim" "fzf" "github-cli"
