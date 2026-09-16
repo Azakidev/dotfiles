@@ -1,4 +1,3 @@
-
 --- Replace with your terminal of choice
 --- and the corresponding argument for launching a process
 local terminal = "ghostty"
@@ -23,11 +22,15 @@ function GET_RESULTS(query)
 end
 
 --- @param entry table
+--- @return table | nil
 function EXECUTE_ENTRY(entry)
-    os.execute(
-        terminal .. " "
-        .. terminal_arguments .. " "
-        .. shell .. " -c '"
-        .. entry.description .. "; " .. shell .. "'"
-    )
+    local launch = terminal ..
+        "\n" .. terminal_arguments .. "\n"
+        .. shell .. "\n" .. "-c" .. "\n"
+        .. entry.description .. ";" .. shell;
+
+    return {
+        action = "spawn",
+        value = launch,
+    }
 end
