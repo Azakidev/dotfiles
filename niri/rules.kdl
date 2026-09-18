@@ -5,17 +5,21 @@ workspace "art"
 workspace "coding"
 
 window-rule {
-    geometry-corner-radius 14
+    geometry-corner-radius 15
     clip-to-geometry true
 
-    // popups {
-    //     geometry-corner-radius 15
-    //     opacity 0.85
-    //
-    //     background-effect {
-    //         blur true
-    //     }
-    // }
+    background-effect {
+        blur true
+    }
+
+    popups {
+        geometry-corner-radius 15
+        opacity 0.85
+
+        background-effect {
+            blur true
+        }
+    }
 }
 
 layer-rule {

@@ -16,7 +16,7 @@ function GET_RESULTS(query)
         {
             name = "Run " .. query .. " in " .. terminal,
             description = query,
-            icon = nil,
+            icon = "utilities-terminal",
         },
     }
 end

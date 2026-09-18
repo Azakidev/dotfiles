@@ -78,3 +78,25 @@ vim.lsp.config("qmlls", {
     filetypes = { "qml" },
     cmd = { "qmlls6" }
 })
+
+vim.lsp.config("omnisharp", {
+    capabilities = capabilities,
+    settings = {
+        ["omnisharp"] = {
+            inlay_hints = {
+                enable_for_parameters = true,
+                for_literal_parameters = true,
+                for_indexer_parameters = true,
+                for_object_creation_parameters = true,
+                for_other_parameters = true,
+                enable_for_types = true,
+                for_implicit_variable_types = true,
+                for_lambda_parameter_types = true,
+                for_implicit_object_creation = true,
+                suppress_for_parameters_that_differ_only_by_suffix = false,
+                suppress_for_parameters_that_match_method_intent = false,
+                suppress_for_parameters_that_match_argument_name = false,
+            }
+        },
+    }
+})

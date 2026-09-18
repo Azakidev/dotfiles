@@ -41,6 +41,7 @@
         wl-clipboard
         ffmpeg-full
         # Programming languages
+        tree-sitter
         gcc
         cargo
         rustc
