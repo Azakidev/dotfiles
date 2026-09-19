@@ -10,16 +10,19 @@ opacity=0.8 # Float (Default: 1.0, Range: [0–1])
 
 # The elevation factor of the entries in the results and sidebar
 # Affects opacity and lightness of the entry's background color and should remain positive
-entry_elevation = 1.7 # Float (Default: 1.2, Range: [1, 2])
+entry_elevation = 1.6 # Float (Default: 1.2, Range: [1, 2])
 
 # The rounding of the main window
-# radius=15 # Integer (Default: 12, Range [0-u32 limit])
+# radius=15 # Integer (Default: 15, Range [0-u32 limit])
 
 # The amount of visible entries
 # entries=5.0 # Float (Default: 5.0, Range: [0–f32 limit])
 
 # The height of each entry
-# entry_size=64 # Integer (Default: 64, Range: [0~i16 limit, but do you really want to])
+# entry_size=64 #  Integer (Default: 64, Range: [0-i16 limit])
+
+# The width of the window
+# width=600 # Integer (Default: 600, Range: [0-u16 limit])
 
 # The anchors for the launcher window
 # Separate valid values by commas as shown
