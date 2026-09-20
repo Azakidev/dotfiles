@@ -22,15 +22,11 @@ function GET_RESULTS(query)
 end
 
 --- @param entry table
---- @return table | nil
 function EXECUTE_ENTRY(entry)
     local launch = terminal ..
         "\n" .. terminal_arguments .. "\n"
         .. shell .. "\n" .. "-c" .. "\n"
         .. entry.description .. ";" .. shell;
 
-    return {
-        action = "spawn",
-        value = launch,
-    }
+    lupa.spawn(launch)
 end

@@ -1,0 +1,8 @@
+{
+    "runtime.version": "Lua5.5",
+    "diagnostics.globals": [
+        "lupa"
+    ],
+    "workspace.checkThirdParty": false,
+    "workspace.library": []
+}

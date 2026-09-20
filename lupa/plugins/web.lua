@@ -21,11 +21,7 @@ function GET_RESULTS(query)
 end
 
 --- @param entry table
---- @return table | nil
 function EXECUTE_ENTRY(entry)
     local launch = "xdg-open" .. "\n" .. string.gsub(browser_query, "__QUERY__", entry.description)
-    return {
-        action = "spawn",
-        value = launch,
-    }
+    lupa.spawn(launch)
 end
