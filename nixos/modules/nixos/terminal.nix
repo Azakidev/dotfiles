@@ -29,6 +29,8 @@
 
             jq
             yq
+            zip
+            xxd
         ];
     };
 
