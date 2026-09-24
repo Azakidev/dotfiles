@@ -41,4 +41,4 @@ close_when_unfocused=false # Boolean (Default: true)
 # The providers shown and the order they run in when there is no prefix present
 # Separate valid values by commas as shown
 # Case insensitive
-fallback_providers="system, app, file, emoji, calc, web" # String (Default: "system, app, file, emoji, calc")
+fallback_providers="system, app, file, emoji, characters, calc, web" # String (Default: "system, app, file, emoji, calc")

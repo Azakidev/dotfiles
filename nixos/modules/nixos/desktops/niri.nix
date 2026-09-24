@@ -34,11 +34,6 @@
     programs = {
         niri.enable = true;
 
-        dms-shell = {
-            enable = true;
-            enableVPN = false;
-        };
-
-        dsearch.enable = true;
+        dms-shell.enable = true;
     };
 }

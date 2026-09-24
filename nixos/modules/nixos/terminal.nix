@@ -39,6 +39,7 @@
         # Essentials
         neovim
         git
+        gnumake
         wget
         wl-clipboard
         ffmpeg-full
