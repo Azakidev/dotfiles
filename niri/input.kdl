@@ -5,7 +5,7 @@ input {
 
     touchpad {
         tap
-        // dwt
+        dwt
         // drag false
         // drag-lock
         natural-scroll

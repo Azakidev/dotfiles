@@ -30,7 +30,7 @@ in {
         sensor.iio.enable = true;
         bluetooth = {
             enable = true;
-            powerOnBoot = false;
+            powerOnBoot = true;
         };
     };
 
@@ -42,8 +42,4 @@ in {
     # Misc
     nixpkgs.config.allowUnfree = true;
     services.flatpak.enable = true;
-
-    nixpkgs.config.permittedInsecurePackages = [
-        "electron-38.8.4"
-    ];
 }
