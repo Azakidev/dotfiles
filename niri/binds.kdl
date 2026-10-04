@@ -8,6 +8,7 @@ binds {
     Mod+Q hotkey-overlay-title="Open ghostty"                   { spawn "ghostty"; }
     Mod+A hotkey-overlay-title="Open Zen"                       { spawn-sh "zen-browser || zen"; }
     Mod+E hotkey-overlay-title="Open Files"                     { spawn "nautilus"; }
+
     Mod+Alt+C hotkey-overlay-title="Pick a color"               { spawn "flatpak" "run" "art.fatdawlf.Piccolo" "--pick"; }
 
     Control+Shift+Escape hotkey-overlay-title="Open Resources"  { spawn "resources"; }
@@ -97,13 +98,25 @@ binds {
     Mod+Shift+E                                         { quit; }
     Ctrl+Alt+Delete                                     { quit; }
 
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
+    // Powers off the monitors
     Mod+Shift+P                                         { power-off-monitors; }
 
-    // Media keys
-    XF86AudioRaiseVolume        allow-when-locked=true  { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
-    XF86AudioLowerVolume        allow-when-locked=true  { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
+    // Media keys and audio control
+    XF86AudioPrev repeat=false hotkey-overlay-title="Media: Previous Track" { spawn "vibepanel" "media" "previous"; }
+    XF86AudioNext repeat=false hotkey-overlay-title="Media: Next Track" { spawn "vibepanel" "media" "next"; }
+    XF86AudioPlay repeat=false hotkey-overlay-title="Media: Play/Pause" { spawn "vibepanel" "media" "play-pause"; }
+
+    XF86AudioRaiseVolume       allow-when-locked=true  { spawn-sh "
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0;
+        pkill canberra || sleep 0.25; canberra-gtk-play -i audio-volume-change
+        ";
+    }
+    XF86AudioLowerVolume       allow-when-locked=true  { spawn-sh "
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-;
+        pkill canberra || sleep 0.25; canberra-gtk-play -i audio-volume-change
+        ";
+    }
+
     XF86AudioMute               allow-when-locked=true  { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute            allow-when-locked=true  { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
@@ -116,5 +129,38 @@ binds {
             canberra-gtk-play -i device-added ; else
             canberra-gtk-play -i device-removed;
         fi
-    ";}
+        ";
+    }
+
+    // Brightness control with shell or ddcutil
+    Super+XF86AudioLowerVolume allow-when-locked=true hotkey-overlay-title="Brightness Down (10%)" {
+        spawn-sh "
+            vibepanel brightness dec 10 ||
+            ddcutil -d 1 setvcp 10 $(( $(ddcutil -d 1 getvcp 10 -t | cut -f4 --delimiter=' ') - 10 ))
+            ";
+    }
+    Super+XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title="Brightness Up (10%)" {
+        spawn-sh "
+            vibepanel brightness inc 10 ||
+            ddcutil -d 1 setvcp 10 $(( $(ddcutil -d 1 getvcp 10 -t | cut -f4 --delimiter=' ') + 10 ));
+            if [[ $(ddcutil -d 1 getvcp 10 -t | cut -f4 --delimiter=' ') > 100 ]]; then
+                ddcutil -d 1 setvcp 10 100
+            fi
+            ";
+    }
+    XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Brightness Down (10%)" {
+        spawn-sh "
+            vibepanel brightness dec 10 ||
+            ddcutil -d 1 setvcp 10 $(( $(ddcutil -d 1 getvcp 10 -t | cut -f4 --delimiter=' ') - 10 ))
+            ";
+    }
+    XF86MonBrightnessUp allow-when-locked=true hotkey-overlay-title="Brightness Up (10%)" {
+        spawn-sh "
+            vibepanel brightness inc 10 ||
+            ddcutil -d 1 setvcp 10 $(( $(ddcutil -d 1 getvcp 10 -t | cut -f4 --delimiter=' ') + 10 ))
+            if [[ $(ddcutil -d 1 getvcp 10 -t | cut -f4 --delimiter=' ') > 100 ]]; then
+                ddcutil -d 1 setvcp 10 100
+            fi
+            ";
+    }
 }

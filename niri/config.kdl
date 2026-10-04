@@ -10,6 +10,12 @@ environment {
 }
 
 layout {
+    gaps 8
+
+    focus-ring {
+        width 2
+    }
+
     center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.

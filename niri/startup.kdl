@@ -7,3 +7,8 @@ spawn-sh-at-startup "sleep 5; flatpak run dev.vencord.Vesktop --enable-blink-fea
 
 // Utils
 spawn-sh-at-startup "ddcutil -d 1 setvcp 10 100"
+
+// Shell
+spawn-at-startup "vibepanel"
+spawn-at-startup "awww-daemon"
+spawn-at-startup "awww-daemon" "-n" "overview"
