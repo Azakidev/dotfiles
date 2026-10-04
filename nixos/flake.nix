@@ -13,6 +13,11 @@
             url = "github:azakidev/lupa";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        vibepanel = {
+            url = "github:prankstr/vibepanel";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = {

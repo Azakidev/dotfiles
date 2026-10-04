@@ -26,9 +26,13 @@
         gnome-disk-utility
         gnome-characters
         gnome-calculator
+
         xwayland-satellite
         wl-clip-persist
+
         inputs.lupa.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.vibepanel.packages.${pkgs.stdenv.hostPlatform.system}.default
+        awww
     ];
 
     programs = {
@@ -36,4 +40,6 @@
 
         dms-shell.enable = true;
     };
+
+    programs.dms-shell.systemd.enable = false;
 }
