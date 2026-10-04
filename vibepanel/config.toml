@@ -1,0 +1,97 @@
+# =============================================================================
+# vibepanel Configuration
+# =============================================================================
+#
+# Minimal starter config. For all available options, see:
+# https://github.com/prankstr/vibepanel/blob/main/docs/configuration.md
+#
+# Commands:
+#   vibepanel --check-config         Validate configuration
+#   vibepanel --print-example-config Print this example config
+#
+# =============================================================================
+
+[bar]
+position = "top"         # "top", "bottom", "left", or "right"
+size = 32
+border_radius = 32
+background_opacity = 0.0 # 0.0 = transparent (islands), 1.0 = solid
+# outline = true         # Override theme.outline for the bar (omit = inherit)
+
+[widgets]
+left = [
+    "workspaces",
+    "window_title"
+]
+center = [
+    "media",
+    "clock",
+    "notifications",
+]
+right = [
+    "battery",
+    "tray",
+    "quick_settings",
+]
+border_radius = 64
+background_opacity = 0.8
+# popover_background_opacity = 0.9  # Override popover opacity (default: max of bar and widget opacity)
+# outline = true                    # Override theme.outline for widgets (omit = inherit)
+
+[widgets.window_title]
+max_chars=35
+
+[widgets.clock]
+format = "%I:%M %p"
+
+[widgets.battery]
+alerts = false
+low_threshold = 25
+critical_thrshold = 10
+
+[widgets.quick_settings]
+vpn = false
+updates = false
+power = false
+idle_inhibitor = false
+# remember_expanded_state = true  # Keep cards expanded across panel close/open
+
+# [widgets.media]
+# visualizer = true  # Enable/disable cava audio visualizer (default: true)
+
+[widgets.notifications]
+toast_position = "top-center"  # "top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"
+
+[theme]
+mode = "auto" # "auto", "dark", "light", "gtk"
+scheme = "dark" # Material You polarity: "dark", "light", or "gtk" (auto mode only)
+
+blur = true       # Enable compositor blur via ext-background-effect-v1 (requires niri with blur)
+
+#animations = true  # Enable/disable all CSS transitions and animations
+#ripple = true      # Enable/disable Material Design ripple effect on click
+
+#outline = false             # Decorative outline on bar, widgets, and surfaces (CSS border)
+#outline_width = 1           # Outline width in pixels (0..=4; 0 disables visibly)
+#outline_color = "accent"    # "subtle" | "accent" | "foreground" | "#rrggbb"
+#outline_opacity = 1.0        # 0.0 = transparent, 1.0 = opaque
+
+[theme.typography]
+font_family = "Adwaita Sans" # Empty string inherits the system font
+font_scale = 0.55          # Text size as a multiplier of widget height
+
+[theme.icons]
+theme = "material" # "material" or "gtk"
+weight = 600       # Material icon stroke weight (100-700)
+
+[osd]
+enabled = true
+position = "bottom" # "bottom", "top", "left", "right"
+show_value = false  # Show current value after the bar
+
+[audio]
+allow_overdrive = false
+
+# Has not released yet lmao
+# [polkit]
+# enabled = true
