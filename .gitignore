@@ -4,5 +4,6 @@ lazy-lock.json
 dms/.changelog*
 dms/monitors.json
 dms/plugins
-niri/dms/outputs.kdl
 niri/keymap.kdl
+outputs.kdl
+colors.kdl

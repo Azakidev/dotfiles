@@ -52,8 +52,8 @@ declare -a ARCH_FLATPAKS=(
 declare -a ARCH_PKGS=(
 	# Desktop
 	"xdg-desktop-portal-gnome" "niri" "xwayland-satellite"
-	"dms-shell-niri" "dsearch-bin" "matugen" "libcanberra" "wl-clip-persist"
-	"lupa-git"
+	"dms-shell-niri" "vibepanel-bin" "matugen" "libcanberra" "wl-clip-persist"
+	"lupa-git" "awww"
 	# Apps
 	"resources" "loupe" "showtime" "decibels" "gnome-tweaks" "gnome-calculator"
 	"ghostty" "zen-browser-bin" "ark"
@@ -237,8 +237,13 @@ niri_config() {
 		rm -rf "$HOME/.config/DankMaterialShell"
 		ln -s "$(readlink --canonicalize ../dms)" "$HOME/.config/DankMaterialShell"
 	fi
-	if [[ ! -L "$HOME/.config/danksearch" ]]; then
-		ln -s "$(readlink --canonicalize ../danksearch)" "$HOME/.config/danksearch"
+
+	if [[ ! -L "$HOME/.config/vibepanel" ]]; then
+		ln -sf "$(readlink --canonicalize ./vibepanel)" "$HOME/.config/vibepanel"
+	fi
+
+	if [[ ! -L "$HOME/.config/matugen" ]]; then
+		ln -sf "$(readlink --canonicalize ./matugen)" "$HOME/.config/matugen"
 	fi
 
 	local MAP="gb"
