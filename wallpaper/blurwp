@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+FOLDER="blur"
+
+BLUR=20
+NOISE=0.25
+NOISE_TYPE="Gaussian"
+
+blur_image() {
+	echo "Blurring $1"
+
+    magick "$1" \
+        -modulate 80,120 \
+        -blur "0x$BLUR" \
+		-attenuate "$NOISE" \
+        +noise "$NOISE_TYPE" \
+        "${FOLDER}/$1"
+	
+	echo "$1 done"
+}
+
+main() {
+	local file
+
+	for file in *.png; do
+		blur_image "$file" &
+	done
+
+	wait
+}
+
+main
