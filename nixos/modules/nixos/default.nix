@@ -4,6 +4,7 @@
     applications = import ./applications.nix;
     core = import ./core;
     common = import ./common.nix;
+    charger = import ./charger.nix;
     desktops = import ./desktops;
     terminal = import ./terminal.nix;
     theme = import ./theme.nix;
