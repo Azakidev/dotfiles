@@ -3,7 +3,7 @@ spawn-at-startup "xrdb" "-merge" "~/.Xresources"
 spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 
 // Chats
-spawn-sh-at-startup "sleep 5; flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll"
+spawn-sh-at-startup "flatpak run dev.vencord.Vesktop --enable-blink-features=MiddleClickAutoscroll"
 
 // Utils
 spawn-sh-at-startup "ddcutil -d 1 setvcp 10 100"
