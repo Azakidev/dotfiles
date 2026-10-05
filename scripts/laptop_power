@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+FILE="/sys/class/power_supply/ADP1/online"
+
+update_state() {
+	if [[ $(cat "$FILE") == 0 ]]; then
+		canberra-gtk-play -i power-unplug &
+	else
+		canberra-gtk-play -i power-plug &
+	fi
+
+	sleep 0.1
+
+	watch-file
+}
+
+watch-file() {
+	inotifywait -e close "$FILE"
+	update_state
+}
+
+
+if [[ -f "$FILE" ]]; then
+	watch-file
+fi

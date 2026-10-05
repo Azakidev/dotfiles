@@ -9,7 +9,6 @@
     nixosModules = with self.nixosModules; [
         common
         fprint
-        charger
 
         desktops.gnome
         desktops.niri

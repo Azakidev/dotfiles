@@ -31,6 +31,7 @@
             yq
             zip
             xxd
+            inotify-tools
         ];
     };
 
