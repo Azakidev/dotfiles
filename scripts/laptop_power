@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
 FILE="/sys/class/power_supply/ADP1/online"
+LAST_STATE=0
 
 update_state() {
-	if [[ $(cat "$FILE") == 0 ]]; then
-		canberra-gtk-play -i power-unplug &
-	else
-		canberra-gtk-play -i power-plug &
+	local state=$(cat "$FILE")
+
+	if [[ ! $state == $LAST_STATE ]]; then
+		if [[ $state == 0 ]]; then
+			canberra-gtk-play -i power-unplug &
+		else
+			canberra-gtk-play -i power-plug &
+		fi
 	fi
 
-	sleep 0.1
+	sleep 0.3
 
 	watch-file
 }
@@ -21,5 +26,7 @@ watch-file() {
 
 
 if [[ -f "$FILE" ]]; then
+	LAST_STATE=$(cat "$FILE")
+
 	watch-file
 fi

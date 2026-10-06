@@ -38,6 +38,9 @@ background_opacity = 0.8
 # popover_background_opacity = 0.9  # Override popover opacity (default: max of bar and widget opacity)
 # outline = true                    # Override theme.outline for widgets (omit = inherit)
 
+[widgets.workspaces]
+label_type="index"
+
 [widgets.window_title]
 max_chars=35
 
@@ -47,7 +50,7 @@ format = "%I:%M %p"
 [widgets.battery]
 alerts = false
 low_threshold = 25
-critical_thrshold = 10
+critical_threshold = 10
 
 [widgets.quick_settings]
 vpn = false
