@@ -29,9 +29,8 @@ center = [
     "notifications",
 ]
 right = [
-    "battery",
     "tray",
-    "quick_settings",
+    { group = ["battery", "quick_settings"] },
 ]
 border_radius = 64
 background_opacity = 0.8
