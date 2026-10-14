@@ -43,7 +43,7 @@
         gnumake
         wget
         wl-clipboard
-        ffmpeg-full
+        ffmpeg
         # Programming languages
         tree-sitter
         gcc
