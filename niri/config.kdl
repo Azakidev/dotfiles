@@ -36,6 +36,11 @@ layout {
     }
 }
 
+cursor {
+    xcursor-theme "Afterglow-Recolored-Dracula-Purple"
+    xcursor-size 24
+}
+
 overview {
     zoom 0.6
 }
