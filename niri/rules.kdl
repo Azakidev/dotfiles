@@ -27,6 +27,7 @@ window-rule {
 
 layer-rule {
     match namespace="lupa:launcher"
+    match namespace="rebar:island"
 
     geometry-corner-radius 15
 
